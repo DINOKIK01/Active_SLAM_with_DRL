@@ -3,6 +3,8 @@
 ## Demo 🤖
 ![map_image](/images/demo.gif?raw=true "Map Image")
 
+**Video:** https://www.youtube.com/watch?v=a0PUhAlBM3Q
+
 ## Quick Start
 1. on Ubuntu 22.04, download required packages:
     - [ROS2 Humble](https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html)
