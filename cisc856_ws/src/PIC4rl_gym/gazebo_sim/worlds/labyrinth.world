@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="box_world">
+
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/test</namespace>
+        <argument>model_states:=model_states_demo</argument>
+      </ros>
+      <update_rate>1.0</update_rate>
+    </plugin>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0 -8 35 0 1.5698 0</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- ================= OUTER WALLS ================= -->
+
+    <model name="wall_front">
+      <static>true</static>
+      <pose>0 10 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_back">
+      <static>true</static>
+      <pose>0 -10 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_left">
+      <static>true</static>
+      <pose>-10 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 20 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 20 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_right">
+      <static>true</static>
+      <pose>10 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 20 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 20 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ================= LABYRINTH WALLS ================= -->
+
+    <!-- Horizontal -->
+    <model name="wall_h1">
+      <static>true</static>
+      <pose>0 3.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>10 0.1 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>10 0.1 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- wall_h2 LEFT -->
+    <model name="wall_h2_left">
+    <static>true</static>
+    <pose>-1 0 0.5 0 0 0</pose>
+    <link name="link">
+        <collision name="collision">
+        <geometry>
+            <box>
+            <size>2 0.1 1</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+            <size>2 0.1 1</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    </model>
+
+    <!-- wall_h2 RIGHT -->
+    <model name="wall_h2_right">
+    <static>true</static>
+    <pose>3.5 -3.5 0.5 0 0 0</pose>
+    <link name="link">
+        <collision name="collision">
+        <geometry>
+            <box>
+            <size>3 0.1 1</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+            <size>3 0.1 1</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    </model>
+
+
+    <!-- Vertical -->
+    <model name="wall_v1">
+      <static>true</static>
+      <pose>-2 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 7 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 7 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_v2">
+      <static>true</static>
+      <pose>3.5 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 10 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 10 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_v3">
+      <static>true</static>
+      <pose>0 -2 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.1 4 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 4 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Center obstacle -->
+    <model name="center_block">
+      <static>true</static>
+      <pose>0 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>2 2 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>2 2 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

@@ -1,0 +1,53 @@
+INFO:root:Total_episodes: 0, Total_steps: 0, episode_steps: 1
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 1 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 1 goal pose [x, y]: [5.05, 2.05]
+INFO:root:Ep 1: Collision
+INFO:root:Total_episodes: 1, Total_steps: 380, episode_steps: 380
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 2 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 2 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 2: Collision
+INFO:root:Total_episodes: 2, Total_steps: 792, episode_steps: 412
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 3 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 3 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 3: Collision
+INFO:root:Total_episodes: 3, Total_steps: 1173, episode_steps: 381
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 4 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 4 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 4: Collision
+INFO:root:Total_episodes: 4, Total_steps: 1525, episode_steps: 352
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 5 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 5 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 5: Collision
+INFO:root:Total_episodes: 5, Total_steps: 1881, episode_steps: 356
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 6 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 6 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 6: Collision
+INFO:root:Total_episodes: 6, Total_steps: 2219, episode_steps: 338
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 7 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 7 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 7: Collision
+INFO:root:Total_episodes: 7, Total_steps: 2550, episode_steps: 331
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 8 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 8 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 8: Collision
+INFO:root:Total_episodes: 8, Total_steps: 2890, episode_steps: 340
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 9 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 9 goal pose [x, y]: [0.0, 0.0]

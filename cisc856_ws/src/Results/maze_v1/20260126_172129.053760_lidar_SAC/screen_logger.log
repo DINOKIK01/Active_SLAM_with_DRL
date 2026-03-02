@@ -1,0 +1,155 @@
+INFO:root:Total_episodes: 0, Total_steps: 0, episode_steps: 1
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 1 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 1 goal pose [x, y]: [5.05, 2.05]
+INFO:root:Ep 1: Collision
+INFO:root:Total_episodes: 1, Total_steps: 413, episode_steps: 413
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 2 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 2 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 2: Collision
+INFO:root:Total_episodes: 2, Total_steps: 822, episode_steps: 409
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 3 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 3 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 3: Collision
+INFO:root:Total_episodes: 3, Total_steps: 1213, episode_steps: 391
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 4 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 4 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 4: Collision
+INFO:root:Total_episodes: 4, Total_steps: 1566, episode_steps: 353
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 5 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 5 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 5: Collision
+INFO:root:Total_episodes: 5, Total_steps: 1916, episode_steps: 350
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 6 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 6 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 6: Collision
+INFO:root:Total_episodes: 6, Total_steps: 2255, episode_steps: 339
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 7 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 7 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 7: Collision
+INFO:root:Total_episodes: 7, Total_steps: 2597, episode_steps: 342
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 8 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 8 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 8: Collision
+INFO:root:Total_episodes: 8, Total_steps: 2930, episode_steps: 333
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 9 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 9 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 9: Collision
+INFO:root:Total_episodes: 9, Total_steps: 3243, episode_steps: 313
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 10 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 10 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 10: Collision
+INFO:root:Total_episodes: 10, Total_steps: 3554, episode_steps: 311
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 11 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 11 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 11: Collision
+INFO:root:Total_episodes: 11, Total_steps: 3891, episode_steps: 337
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 12 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 12 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 12: Collision
+INFO:root:Total_episodes: 12, Total_steps: 4216, episode_steps: 325
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 13 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 13 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 13: Collision
+INFO:root:Total_episodes: 13, Total_steps: 4542, episode_steps: 326
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 14 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 14 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 14: Collision
+INFO:root:Total_episodes: 14, Total_steps: 4872, episode_steps: 330
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 15 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 15 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 15: Collision
+INFO:root:Total_episodes: 15, Total_steps: 5221, episode_steps: 349
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 16 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 16 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 16: Collision
+INFO:root:Total_episodes: 16, Total_steps: 5573, episode_steps: 352
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 17 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 17 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 17: Collision
+INFO:root:Total_episodes: 17, Total_steps: 5927, episode_steps: 354
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 18 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 18 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 18: Collision
+INFO:root:Total_episodes: 18, Total_steps: 6285, episode_steps: 358
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 19 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 19 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 19: Collision
+INFO:root:Total_episodes: 19, Total_steps: 6649, episode_steps: 364
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 20 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 20 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 20: Collision
+INFO:root:Total_episodes: 20, Total_steps: 7024, episode_steps: 375
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 21 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 21 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 21: Collision
+INFO:root:Total_episodes: 21, Total_steps: 7415, episode_steps: 391
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 22 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 22 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 22: Collision
+INFO:root:Total_episodes: 22, Total_steps: 7795, episode_steps: 380
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 23 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 23 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 23: Timeout
+INFO:root:Total_episodes: 23, Total_steps: 8545, episode_steps: 750
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 24 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 24 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 24: Collision
+INFO:root:Total_episodes: 24, Total_steps: 8984, episode_steps: 439
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 25 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 25 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 25: Collision
+INFO:root:Total_episodes: 25, Total_steps: 9437, episode_steps: 453
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 26 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 26 goal pose [x, y]: [0.0, 0.0]

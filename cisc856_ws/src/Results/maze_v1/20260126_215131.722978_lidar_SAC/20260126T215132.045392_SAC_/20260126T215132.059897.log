@@ -1,0 +1,12 @@
+21:51:32.060 [DEBUG] (trainer.py:107) Try to restore model
+21:51:32.060 [DEBUG] (trainer.py:109) model_dir not empty
+21:51:32.060 [INFO] (trainer.py:110) Model directory path /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/maze_v1
+21:51:32.063 [INFO] (trainer.py:114) Restored None
+21:52:12.386 [INFO] (trainer.py:172) Total Epi:     1 Steps:   380 Episode Steps:   380 Return:  169.9774 Eps:   0.6 FPS:  9.42
+21:52:57.343 [INFO] (trainer.py:172) Total Epi:     2 Steps:   792 Episode Steps:   412 Return:  153.1014 Eps:  0.5976 FPS: 10.02
+21:53:39.853 [INFO] (trainer.py:172) Total Epi:     3 Steps:  1173 Episode Steps:   381 Return:  161.8745 Eps:  0.5952096 FPS: 10.01
+21:54:18.466 [INFO] (trainer.py:172) Total Epi:     4 Steps:  1525 Episode Steps:   352 Return:  156.1039 Eps:  0.5928287616 FPS: 10.00
+21:54:58.484 [INFO] (trainer.py:172) Total Epi:     5 Steps:  1881 Episode Steps:   356 Return:  191.9489 Eps:  0.5904574465536 FPS: 10.01
+21:55:36.724 [INFO] (trainer.py:172) Total Epi:     6 Steps:  2219 Episode Steps:   338 Return:  158.1664 Eps:  0.5880956167673856 FPS: 10.00
+21:56:13.234 [INFO] (trainer.py:172) Total Epi:     7 Steps:  2550 Episode Steps:   331 Return:  144.7038+2.0466j Eps:  0.585743234300316 FPS: 10.00
+21:56:51.643 [INFO] (trainer.py:172) Total Epi:     8 Steps:  2890 Episode Steps:   340 Return:  136.4328 Eps:  0.5834002613631147 FPS: 10.00

@@ -33,7 +33,7 @@ class Pic4rlEnvironmentLidar(Node):
 
         ########### Our parameters ##########
         self.slam_proc = None
-        self.max_known = 20900
+        self.max_known = 150000#20900
         #####################################
 
 
@@ -140,6 +140,7 @@ class Pic4rlEnvironmentLidar(Node):
             self.nav_metrics = Navigation_Metrics(self.logdir)
         self.get_logger().debug("PIC4RL_Environment: Starting process")
         self.prev_known = 0
+        self.prev_min_dist = 5
 
     def step(self, action, episode_step=0):
         """ """
@@ -185,6 +186,7 @@ class Pic4rlEnvironmentLidar(Node):
                 done = True
 
             self.prev_known = curr_known
+            self.prev_min_dist = np.min(lidar_measurements)
 
             self.get_logger().debug("getting observation...")
             observation = self.get_observation(
@@ -228,6 +230,7 @@ class Pic4rlEnvironmentLidar(Node):
         self.get_logger().debug(f"frequency : {freq}")
         self.t0 = t1
         if freq > self.update_freq:
+            self.get_logger().debug(f"changing frequency : {freq}")
             frequency_control(self.update_freq)
 
         # self.get_logger().debug("pausing...")
@@ -289,11 +292,110 @@ class Pic4rlEnvironmentLidar(Node):
         return False, "None"
 
     def get_reward(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
+        # hyperparams
+        info_gain_coeff_safe = 1.5 #1.5
+        info_gain_coeff_unsafe = 0.0
+        info_gain_beta = 10
+        collision_penalty = -100
+        max_known_reward = 200
+        covered = False
+        SAFE_DIST = 1.0
+        CRIT_DIST = 0.5
+        danger_multiplier = 6
+        create_distance_reward_multiplier = 0.4
+        reward = 0.0
+
+        #lidar groups
+        front = np.concatenate([        # FRONT: wrap-around (end + beginning)
+            lidar_measurements[-5:],    # indices 31.32,33,34,35
+            lidar_measurements[:6]      # indices 0,1,2,3,4,5
+        ])
+        left = lidar_measurements[6:18]   # 10 values # LEFT: 90°
+        back = lidar_measurements[18:21]  # 5 values # BACK: 180°
+        right = lidar_measurements[21:31] # 10 values # RIGHT: 270°
+        min_dist = np.min(lidar_measurements)
+
+        #info gain
+        total_known = 0
+        for cell in og_map:
+            if cell == 0 or cell == 1:
+                total_known += 1
+        info_gain = total_known - self.prev_known
+        
+
+        if min_dist >= SAFE_DIST:
+            ###No Danger --> Feel free to explore
+            print("!!!!!!!!!!!!!    SAFE DISTANCE   !!!!!!!!!!!")
+            ### Exploration
+            info_gain = info_gain_coeff_safe * np.emath.logn(10.0, 1.0 + info_gain_beta * info_gain)
+            if info_gain >= 0:
+                print(f"Abdeali is happy!")
+            else:
+                print(f"\n\nAbdeali sad :(((\n\n")
+                info_gain = 0 #TODO find why Abdeali gets sad
+            print(f"================ Total known:{total_known}, Prev known:{self.prev_known}")
+
+            ### Motion reward
+            #motion_reward = 0.5 * twist.linear.x
+            #print(f"================ motion reward: {motion_reward}")
+
+            ### calculate reward
+            reward += info_gain 
+            #reward += motion_reward
+            print("!!!!!!!!!!!!!    SAFE DISTANCE   !!!!!!!!!!!")
+
+        elif np.min(lidar_measurements) >= CRIT_DIST:
+            print("!!!!!!!!!!!!!    DISTANCE WARNING   !!!!!!!!!!!")
+            ### Minimal Danger --> Get away from walls
+
+            ### Reduce info gain
+            info_gain = info_gain_coeff_unsafe * np.emath.logn(10.0, 1.0 + info_gain_beta * info_gain)
+            if info_gain >= 0:
+                print(f"Abdeali is happy!")
+            else:
+                print(f"\n\nAbdeali sad :(((\n\n")
+                info_gain = 0 #TODO find why Abdeali gets sad
+            print(f"================ Total known:{total_known}, Prev known:{self.prev_known}")
+
+            ### wall distance punishment #TODO Anpassen, dass front abstand "schlimmer" ist als die anderen
+            danger = danger_multiplier * (SAFE_DIST - min_dist)
+            print(f"================ danger value:{danger}")
+
+            ### create distance reward
+            create_distance_reward = create_distance_reward_multiplier * (min_dist - self.prev_min_dist)
+
+            ### calculate reward
+            reward += info_gain
+            reward -= danger 
+            reward += create_distance_reward
+            print("!!!!!!!!!!!!!    DISTANCE WARNING   !!!!!!!!!!!")
+
+        else:
+            print("!!!!!!!!!!!!!    CRITICAL DISTANCE   !!!!!!!!!!!")
+            ### Close to Crash --> No positive rewards
+            reward -= 5
+
+        # collision
+        collision = False
+        if event == "collision":
+            reward += collision_penalty
+            collision = True
+        
+        # coverage
+        if total_known >= 0.97 * self.max_known:
+            reward += max_known_reward
+            covered = True
+
+        print(f"================ Reward:{reward}, Collision:{collision}")
+        return reward, total_known, covered
+
+
+    def get_reward_old(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
         """ """
         # hyperparams
-        info_gain_coeff = 1.5
+        info_gain_coeff = 0.8 #1.5
         info_gain_beta = 10
-        collision_penalty = -20
+        collision_penalty = -80
         max_known_reward = 100
         covered = False
 
@@ -308,7 +410,7 @@ class Pic4rlEnvironmentLidar(Node):
 
         print(f"================ Raw Info Gain:{info_gain}")
 
-        info_gain = info_gain_coeff * np.emath.logn(10, 1.0 + info_gain_beta * info_gain)
+        info_gain = info_gain_coeff * np.emath.logn(10.0, 1.0 + info_gain_beta * info_gain)
         # 1.5 * log_10(10x + 1) 
 
         print(f"================ Info Gain reward:{info_gain}")
@@ -323,9 +425,70 @@ class Pic4rlEnvironmentLidar(Node):
 
         reward = info_gain
 
+        #lidar groups
+        # FRONT: wrap-around (end + beginning)
+        front = np.concatenate([
+            lidar_measurements[-5:],   # indices 31.32,33,34,35
+            lidar_measurements[:6]     # indices 0,1,2,3,4,5
+        ])
+        # LEFT: 90°
+        left = lidar_measurements[6:18]   # 10 values
+        # BACK: 180°
+        back = lidar_measurements[18:21]  # 5 values
+        # RIGHT: 270°
+        right = lidar_measurements[21:31] # 10 values
+        print(f"=== lidar_measurements: Front: {np.mean(front)} | Back: {np.mean(back)} | Left: {np.mean(left)} | Right: {np.mean(right)}")
+
+        #front distance penalty
+        SAFE_DIST = 1.0
+        CRIT_DIST = 0.6
+        front_min = np.min(front)
+        front_penalty = 0
+        if front_min < SAFE_DIST:
+            if front_min < CRIT_DIST:
+                front_penalty = -4 * (CRIT_DIST - front_min)
+            else:
+                front_penalty = -2 * (CRIT_DIST - front_min)
+        else:
+            front_penalty = np.minimum(3.0, (front_min - SAFE_DIST) / 2)
+        reward += front_penalty
+        print(f"Front penalty: {front_penalty}, front_min: {front_min}")
+
+        #orientation penalty
+        distances = {
+            "distance_forward": lidar_measurements[0],
+            "front_distance": (np.mean(front) + np.min(front)) / 2,
+            "left_distance": (np.mean(left) + np.min(left)) / 2,
+            "right_distance": (np.mean(right) + np.min(right)) / 2,
+            "back_distance": (np.mean(back) + np.min(back)) / 2
+        }
+        penalties = {
+            "distance_forward": -2.0,
+            "front_distance": -2.0,
+            "left_distance": 0,
+            "right_distance": 0,
+            "back_distance": 0.2
+        }
+        min_key = min(distances, key=distances.get)
+        reward += penalties[min_key] * (SAFE_DIST - distances[min_key])
+        print(f"current reward: {reward}\nminkey: {min_key}")
+                
+
+        # === WALL PROXIMITY PENALTY ===
+        #lidar = np.array(lidar_measurements)
+        #lidar = np.clip(lidar, 0.01, self.lidar_distance)
+        #min_dist = np.min(lidar)
+
+        #SAFE_DIST = 0.5
+        #if min_dist < SAFE_DIST:
+        #    wall_penalty = -2.0 * (SAFE_DIST - min_dist)
+        #    reward += wall_penalty
+        #    print(f"Wall penalty: {wall_penalty:.3f}, min_dist: {min_dist:.3f}")
+
         # collision
         collision = False
         if event == "collision":
+            print("AUUUUUUUUUUUUUUUUUAAAAAAAAAAAAAAAAAAAA")
             reward += collision_penalty
             collision = True
         
@@ -388,20 +551,24 @@ class Pic4rlEnvironmentLidar(Node):
         while not self.reset_world_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().warn("service not available, waiting again...")
         self.reset_world_client.call_async(req)
-
+        print("HALLO1")
         if self.slam_proc is not None:
             # self.slam_proc.terminate()
+            
             self.get_logger().info("Killing any existing slam_toolbox processes...")
-            subprocess.run(['pkill', '-f', 'slam_toolbox'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            time.sleep(1.0)  # Give time for OS cleanup
+            _return = subprocess.run(['pkill', '-f', 'slam_toolbox'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            self.get_logger().debug(f"return from kill: {_return}")
+            time.sleep(2.0)  # Give time for OS cleanup ###CHANGE 1.0
             # self.slam_proc.kill()
             # self.slam_proc.wait()
 
+        #assert(self.slam_proc is not None)
         self.slam_proc = subprocess.Popen(['ros2', 'launch', 'slam_toolbox', 'online_async_launch.py'], 
                                         stdout=subprocess.PIPE,
                                         stderr=subprocess.PIPE)
 
         self.prev_known = 0
+        self.prev_min_dist = 5
 
         if self.episode % self.change_episode == 0.0 or self.evaluate:
             self.index = int(np.random.uniform() * len(self.poses)) - 1
@@ -449,6 +616,7 @@ class Pic4rlEnvironmentLidar(Node):
 
     def respawn_robot(self, index):
         """ """
+        self.get_logger().debug("funtction respawn_robot: start")
         if self.episode <= self.starting_episodes:
             x, y, yaw = tuple(self.initial_pose)
         else:
@@ -470,13 +638,17 @@ class Pic4rlEnvironmentLidar(Node):
         orientation = "orientation: {z: " + str(qz) + ",w: " + str(qw) + "}"
         pose = position + ", " + orientation
         state = "'{state: {name: '" + self.robot_name + "',pose: {" + pose + "}}}'"
-        subprocess.run(
+        self.get_logger().debug("funtction respawn_robot: before ros process")
+        time.sleep(0.5) ###CHANGE
+        _return_val = subprocess.run(
             "ros2 service call /test/set_entity_state gazebo_msgs/srv/SetEntityState "
             + state,
             shell=True,
             stdout=subprocess.DEVNULL,
         )
-        time.sleep(0.25)
+        self.get_logger().debug(f"funtction respawn_robot: process return value: {_return_val}")
+        self.get_logger().debug("funtction respawn_robot: after ros process")
+        time.sleep(0.5) ###CHANGE 0.25
 
     def pause(self):
         """ """

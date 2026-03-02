@@ -1,0 +1,12 @@
+17:16:04.312 [DEBUG] (trainer.py:107) Try to restore model
+17:16:04.312 [DEBUG] (trainer.py:109) model_dir not empty
+17:16:04.312 [INFO] (trainer.py:110) Model directory path /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/20260126_162314.807755_lidar_SAC/20260126T162315.130615_SAC_
+17:16:04.315 [INFO] (trainer.py:114) Restored None
+17:16:42.150 [INFO] (trainer.py:172) Total Epi:     1 Steps:   685 Episode Steps:   685 Return:  4370.3642+675.3663j Eps:   0.6 FPS: 18.11
+17:17:19.470 [INFO] (trainer.py:172) Total Epi:     2 Steps:  1024 Episode Steps:   339 Return:  188.5627 Eps:  0.5976 FPS: 10.00
+17:17:55.987 [INFO] (trainer.py:172) Total Epi:     3 Steps:  1345 Episode Steps:   321 Return:  194.8655 Eps:  0.5952096 FPS: 10.01
+17:18:33.011 [INFO] (trainer.py:172) Total Epi:     4 Steps:  1681 Episode Steps:   336 Return:  217.9506 Eps:  0.5928287616 FPS: 10.02
+17:19:05.426 [INFO] (trainer.py:172) Total Epi:     5 Steps:  1971 Episode Steps:   290 Return:  184.9852 Eps:  0.5904574465536 FPS: 10.00
+17:19:32.470 [INFO] (trainer.py:172) Total Epi:     6 Steps:  2197 Episode Steps:   226 Return:  141.7679 Eps:  0.5880956167673856 FPS: 10.01
+17:20:08.691 [INFO] (trainer.py:172) Total Epi:     7 Steps:  2515 Episode Steps:   318 Return:  208.4532 Eps:  0.585743234300316 FPS: 10.01
+17:20:45.305 [INFO] (trainer.py:172) Total Epi:     8 Steps:  2837 Episode Steps:   322 Return:  211.2002 Eps:  0.5834002613631147 FPS: 10.01

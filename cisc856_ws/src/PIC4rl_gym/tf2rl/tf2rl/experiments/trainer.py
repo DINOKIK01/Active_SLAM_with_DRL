@@ -104,7 +104,9 @@ class Trainer:
         self.checkpoint_manager = tf.train.CheckpointManager(
             self._checkpoint, directory=self._output_dir, max_to_keep=5)
 
+        self.logger.debug("Try to restore model")
         if model_dir is not None:
+            self.logger.debug("model_dir not empty")
             self.logger.info("Model directory path {}".format(model_dir))
             assert os.path.isdir(model_dir)
             self._latest_path_ckpt = tf.train.latest_checkpoint(model_dir)
@@ -218,6 +220,7 @@ class Trainer:
                 if self._rb_path_save is not None:
                     print("Saved replay buffer at {}".format(self._rb_path_save))
                     replay_buffer.save_transitions(self._rb_path_save, safe=True)
+            time.sleep(1)
 
         tf.summary.flush()
 

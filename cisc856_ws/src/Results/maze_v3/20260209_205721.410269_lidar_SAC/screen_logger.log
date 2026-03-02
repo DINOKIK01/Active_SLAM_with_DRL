@@ -1,0 +1,202 @@
+INFO:root:Episode 1 metrics results: 
+INFO:root:Total_episodes: 0, Total_steps: 0, episode_steps: 1
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 1 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 1 goal pose [x, y]: [5.05, 2.05]
+INFO:root:Ep 1: Collision
+INFO:root:Episode 2 metrics results: 
+INFO:root:Path_distance: 5.4062542860832705
+INFO:root:Clearance_time: 167.35136222839355
+INFO:root:Mean_velocities: [0.033898197654854204, 0.017968835125333562]
+INFO:root:Std_velocities: [0.0511466854556042, 0.0777939370921229]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.8542212256370123, -0.8645974893534599, 2.7264577438274262, -1.6190188895295858]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [0.005801680560298281, -0.007789825593444219]
+INFO:root:Cumulative_heading_average: 0.5725583210330712
+INFO:root:Total_episodes: 1, Total_steps: 174, episode_steps: 174
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 2 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 2 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 2: Collision
+INFO:root:Episode 3 metrics results: 
+INFO:root:Path_distance: 6.361378871487995
+INFO:root:Clearance_time: 150.18136167526245
+INFO:root:Mean_velocities: [0.04271986437578474, 0.06342296294086887]
+INFO:root:Std_velocities: [0.031989758807668675, 0.09813510663752219]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.13560603560859513, -0.10228400161316471, 0.2385708490866617, -0.19879406497308105]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [0.0004332982819139743, 0.0017065562333253282]
+INFO:root:Cumulative_heading_average: -0.0989752411639099
+INFO:root:Total_episodes: 2, Total_steps: 324, episode_steps: 150
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 3 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 3 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 3: Collision
+INFO:root:Episode 4 metrics results: 
+INFO:root:Path_distance: 4.5659988307923856
+INFO:root:Clearance_time: 81.62497520446777
+INFO:root:Mean_velocities: [0.0548219693242704, 0.046125610991341146]
+INFO:root:Std_velocities: [0.04548639336163425, 0.08760155759113339]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.14826484811441232, -0.18133906842134495, 0.19515029732393793, -0.20633967689904495]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [-3.20890509641475e-05, 1.726425109292895e-05]
+INFO:root:Cumulative_heading_average: -0.16180405161437622
+INFO:root:Total_episodes: 3, Total_steps: 406, episode_steps: 82
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 4 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 4 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 4: Collision
+INFO:root:Episode 5 metrics results: 
+INFO:root:Path_distance: 4.244836061660989
+INFO:root:Clearance_time: 73.53685259819031
+INFO:root:Mean_velocities: [0.05669668563551057, 0.04283011367548284]
+INFO:root:Std_velocities: [0.040559625642099466, 0.09639852825267418]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.11936607963877043, -0.0937436421296665, 0.18518011937103976, -0.23441641493537124]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [0.0018642302696701002, -0.0004282845480287191]
+INFO:root:Cumulative_heading_average: -0.3277397241524665
+INFO:root:Total_episodes: 4, Total_steps: 480, episode_steps: 74
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 5 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 5 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 5: Collision
+INFO:root:Episode 6 metrics results: 
+INFO:root:Path_distance: 15.697098556606537
+INFO:root:Clearance_time: 252.15420627593994
+INFO:root:Mean_velocities: [0.06192623505581962, 0.022440978773349288]
+INFO:root:Std_velocities: [0.06009348509869927, 0.0788184412043805]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.14791014099796426, -0.218539673104471, 0.18351579757193326, -0.187455673510507]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [-2.3647332451164907e-05, -3.668216052147629e-05]
+INFO:root:Cumulative_heading_average: -0.32886283683630985
+INFO:root:Total_episodes: 5, Total_steps: 731, episode_steps: 251
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 6 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 6 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 6: Collision
+INFO:root:Episode 7 metrics results: 
+INFO:root:Path_distance: 6.567878655248558
+INFO:root:Clearance_time: 104.81757998466492
+INFO:root:Mean_velocities: [0.061872291292634864, 0.015442274847134299]
+INFO:root:Std_velocities: [0.05584952862269348, 0.055717125445453146]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.09119304721022596, -0.20166236127391332, 0.1833350416787301, -0.17152124426744936]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [1.143392186581576e-05, 3.417042025745282e-05]
+INFO:root:Cumulative_heading_average: -0.5085765814159223
+INFO:root:Total_episodes: 6, Total_steps: 836, episode_steps: 105
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 7 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 7 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 7: Collision
+INFO:root:Episode 8 metrics results: 
+INFO:root:Path_distance: 6.5061200851649295
+INFO:root:Clearance_time: 82.67579770088196
+INFO:root:Mean_velocities: [0.07881133096218264, 0.020090693218870102]
+INFO:root:Std_velocities: [0.058271390120395575, 0.08122930853430113]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.09898401069928126, -0.19005852044898555, 0.421434492217711, -0.1852478589385376]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [0.0012063072191919372, 0.005342570365192208]
+INFO:root:Cumulative_heading_average: -0.5715510631976014
+INFO:root:Total_episodes: 7, Total_steps: 919, episode_steps: 83
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 8 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 8 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 8: Collision
+INFO:root:Episode 9 metrics results: 
+INFO:root:Path_distance: 6.395633764002395
+INFO:root:Clearance_time: 80.60849905014038
+INFO:root:Mean_velocities: [0.07730845165816476, 0.024268668416377124]
+INFO:root:Std_velocities: [0.06185240881529961, 0.08176810802480963]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.08588244569700197, -0.11788048147595104, 0.6655430583279806, -0.5143236106152612]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [1.6629480318990696e-06, 1.882844970471439e-06]
+INFO:root:Cumulative_heading_average: -0.5533899848655365
+INFO:root:Total_episodes: 8, Total_steps: 1000, episode_steps: 81
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 9 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 9 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 9: Collision
+INFO:root:Episode 10 metrics results: 
+INFO:root:Path_distance: 6.355995584750614
+INFO:root:Clearance_time: 75.56214380264282
+INFO:root:Mean_velocities: [0.08212157599075007, 0.028412983344484576]
+INFO:root:Std_velocities: [0.06175059907265807, 0.07060094926358759]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.11787246779023103, -0.17807544941487202, 0.16138183355144503, -0.1884269070142568]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [4.725016164575357e-06, -1.1298990553344014e-05]
+INFO:root:Cumulative_heading_average: -0.23778303055233643
+INFO:root:Total_episodes: 9, Total_steps: 1076, episode_steps: 76
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 10 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 10 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 10: Collision
+INFO:root:Episode 11 metrics results: 
+INFO:root:Path_distance: 6.4484326023389675
+INFO:root:Clearance_time: 65.5668318271637
+INFO:root:Mean_velocities: [0.09648146482184017, 0.02504827095352016]
+INFO:root:Std_velocities: [0.06112522907561603, 0.056304548275327236]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.1185978723562932, -0.19375276313302436, 0.09398843544418334, -0.13084909431211011]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [4.4832207899631606e-05, -1.1608297660914605e-05]
+INFO:root:Cumulative_heading_average: -0.40507310319856926
+INFO:root:Total_episodes: 10, Total_steps: 1142, episode_steps: 66
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 11 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 11 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 11: Collision
+INFO:root:Episode 12 metrics results: 
+INFO:root:Path_distance: 6.594347235754223
+INFO:root:Clearance_time: 58.5068461894989
+INFO:root:Mean_velocities: [0.10975405623517756, 0.030387337632545298]
+INFO:root:Std_velocities: [0.05820847731564354, 0.08192353062772405]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.11760099304286002, -0.1119536736200067, 0.21306302498270616, -0.4287297648213323]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [8.932585297356822e-06, -3.73240228823077e-05]
+INFO:root:Cumulative_heading_average: -0.12717569158521833
+INFO:root:Total_episodes: 11, Total_steps: 1201, episode_steps: 59
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 12 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 12 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 12: Collision
+INFO:root:Episode 13 metrics results: 
+INFO:root:Path_distance: 6.506492091522825
+INFO:root:Clearance_time: 61.46404838562012
+INFO:root:Mean_velocities: [0.10227222197186342, 0.03177543761401352]
+INFO:root:Std_velocities: [0.06341377802322137, 0.05288826942065514]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.08579528601521236, -0.17460443975445883, 0.15876247121783946, -0.23243673713165985]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [5.703428001446043e-07, -3.4014956048812375e-06]
+INFO:root:Cumulative_heading_average: -0.1011605842297534
+INFO:root:Total_episodes: 12, Total_steps: 1263, episode_steps: 62
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 13 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 13 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 13: Collision
+INFO:root:Episode 14 metrics results: 
+INFO:root:Path_distance: 6.382350120342098
+INFO:root:Clearance_time: 55.4864981174469
+INFO:root:Mean_velocities: [0.11413651934283174, 0.04136938229314278]
+INFO:root:Std_velocities: [0.05909847118717331, 0.07849444339827051]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.06631869807026482, -0.1907409147637687, 0.1514120084176143, -0.14885741553711043]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [-1.4704109970436335e-05, 5.743604055757961e-05]
+INFO:root:Cumulative_heading_average: -0.472662832722858
+INFO:root:Total_episodes: 13, Total_steps: 1319, episode_steps: 56
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 14 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 14 goal pose [x, y]: [0.0, 0.0]
+INFO:root:Ep 14: Collision
+INFO:root:Episode 15 metrics results: 
+INFO:root:Path_distance: 6.447671751365265
+INFO:root:Clearance_time: 56.432663440704346
+INFO:root:Mean_velocities: [0.10988571217391896, 0.03645068576899961]
+INFO:root:Std_velocities: [0.06325759855193129, 0.08391447285429088]
+INFO:root:Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc: [0.09820470377297502, -0.1598245679644642, 0.2264219856917255, -0.2802697416254298]
+INFO:root:Mean_linear_acc, Mean_yaw_acc: [4.273964021025237e-06, -6.289071060748522e-06]
+INFO:root:Cumulative_heading_average: -0.19189359760223554
+INFO:root:Total_episodes: 14, Total_steps: 1376, episode_steps: 57
+
+INFO:root:Initializing new episode ...
+INFO:root:Ep 15 robot pose [x,y,yaw]: [4.5, 1.5, 3.1416]
+INFO:root:Ep 15 goal pose [x, y]: [0.0, 0.0]

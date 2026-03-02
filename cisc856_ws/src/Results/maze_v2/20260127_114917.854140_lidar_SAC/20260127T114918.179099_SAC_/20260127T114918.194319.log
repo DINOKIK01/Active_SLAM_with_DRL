@@ -1,0 +1,37 @@
+11:49:18.194 [DEBUG] (trainer.py:107) Try to restore model
+11:49:18.194 [DEBUG] (trainer.py:109) model_dir not empty
+11:49:18.194 [INFO] (trainer.py:110) Model directory path /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/maze_v1/20260127_111737.193891_lidar_SAC/20260127T111737.512798_SAC_
+11:49:18.227 [INFO] (trainer.py:114) Restored /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/maze_v1/20260127_111737.193891_lidar_SAC/20260127T111737.512798_SAC_/ckpt-13
+11:49:55.168 [INFO] (trainer.py:172) Total Epi:     1 Steps:    43 Episode Steps:    43 Return:  20.2487 Eps:   0.6 FPS:  1.16
+11:50:48.123 [INFO] (trainer.py:172) Total Epi:     2 Steps:    92 Episode Steps:    49 Return:  58.8597 Eps:  0.5976 FPS:  0.99
+11:51:44.146 [INFO] (trainer.py:172) Total Epi:     3 Steps:   143 Episode Steps:    51 Return:  54.9324 Eps:  0.5952096 FPS:  0.99
+11:52:29.007 [INFO] (trainer.py:172) Total Epi:     4 Steps:   184 Episode Steps:    41 Return:  43.8110 Eps:  0.5928287616 FPS:  0.99
+11:53:29.085 [INFO] (trainer.py:172) Total Epi:     5 Steps:   240 Episode Steps:    56 Return:  69.3416 Eps:  0.5904574465536 FPS:  0.99
+11:54:27.094 [INFO] (trainer.py:172) Total Epi:     6 Steps:   294 Episode Steps:    54 Return:  69.7595 Eps:  0.5880956167673856 FPS:  0.99
+11:55:19.143 [INFO] (trainer.py:172) Total Epi:     7 Steps:   342 Episode Steps:    48 Return:  48.5416 Eps:  0.585743234300316 FPS:  0.99
+11:56:10.064 [INFO] (trainer.py:172) Total Epi:     8 Steps:   389 Episode Steps:    47 Return:  57.9144 Eps:  0.5834002613631147 FPS:  0.99
+11:57:29.354 [INFO] (trainer.py:172) Total Epi:     9 Steps:   464 Episode Steps:    75 Return:  122.3812 Eps:  0.5810666603176623 FPS:  0.99
+11:58:51.744 [INFO] (trainer.py:172) Total Epi:    10 Steps:   541 Episode Steps:    77 Return:  85.4511 Eps:  0.5787423936763917 FPS:  0.99
+12:00:53.728 [INFO] (trainer.py:172) Total Epi:    11 Steps:   658 Episode Steps:   117 Return:  241.3079 Eps:  0.5764274241016861 FPS:  0.99
+12:02:16.102 [INFO] (trainer.py:172) Total Epi:    12 Steps:   736 Episode Steps:    78 Return:  115.1186 Eps:  0.5741217144052794 FPS:  0.99
+12:03:18.191 [INFO] (trainer.py:172) Total Epi:    13 Steps:   793 Episode Steps:    57 Return:  96.9065 Eps:  0.5718252275476583 FPS:  0.99
+12:04:20.264 [INFO] (trainer.py:172) Total Epi:    14 Steps:   851 Episode Steps:    58 Return:  58.2665 Eps:  0.5695379266374677 FPS:  0.99
+12:05:18.561 [INFO] (trainer.py:172) Total Epi:    15 Steps:   905 Episode Steps:    54 Return:  56.4176 Eps:  0.5672597749309178 FPS:  0.99
+12:07:12.365 [INFO] (trainer.py:172) Total Epi:    16 Steps:  1013 Episode Steps:   108 Return:  175.8723 Eps:  0.5649907358311942 FPS:  0.99
+12:09:23.337 [INFO] (trainer.py:172) Total Epi:    17 Steps:  1139 Episode Steps:   126 Return:  210.3240 Eps:  0.5627307728878694 FPS:  0.99
+12:10:48.722 [INFO] (trainer.py:172) Total Epi:    18 Steps:  1220 Episode Steps:    81 Return:  119.6974 Eps:  0.5604798497963179 FPS:  0.99
+12:12:30.913 [INFO] (trainer.py:172) Total Epi:    19 Steps:  1317 Episode Steps:    97 Return:  146.3507 Eps:  0.5582379303971327 FPS:  0.99
+12:13:47.205 [INFO] (trainer.py:172) Total Epi:    20 Steps:  1388 Episode Steps:    71 Return:  119.7347 Eps:  0.5560049786755441 FPS:  0.99
+12:15:20.796 [INFO] (trainer.py:172) Total Epi:    21 Steps:  1476 Episode Steps:    88 Return:  126.0807 Eps:  0.5537809587608419 FPS:  0.99
+12:17:06.553 [INFO] (trainer.py:172) Total Epi:    22 Steps:  1576 Episode Steps:   100 Return:  150.9154 Eps:  0.5515658349257985 FPS:  0.99
+12:18:29.905 [INFO] (trainer.py:172) Total Epi:    23 Steps:  1655 Episode Steps:    79 Return:  134.1560 Eps:  0.5493595715860953 FPS:  0.99
+12:19:52.308 [INFO] (trainer.py:172) Total Epi:    24 Steps:  1732 Episode Steps:    77 Return:  98.1582 Eps:  0.5471621332997509 FPS:  0.99
+12:21:04.562 [INFO] (trainer.py:172) Total Epi:    25 Steps:  1799 Episode Steps:    67 Return:  108.2633 Eps:  0.5449734847665519 FPS:  0.99
+12:22:30.012 [INFO] (trainer.py:172) Total Epi:    26 Steps:  1879 Episode Steps:    80 Return:  107.4067 Eps:  0.5427935908274857 FPS:  0.99
+12:24:01.508 [INFO] (trainer.py:172) Total Epi:    27 Steps:  1965 Episode Steps:    86 Return:  119.6593 Eps:  0.5406224164641757 FPS:  0.99
+12:26:03.776 [INFO] (trainer.py:172) Total Epi:    28 Steps:  2082 Episode Steps:   117 Return:  192.8662 Eps:  0.538459926798319 FPS:  0.99
+12:27:53.513 [INFO] (trainer.py:172) Total Epi:    29 Steps:  2187 Episode Steps:   105 Return:  201.7061 Eps:  0.5363060870911257 FPS:  0.99
+12:29:26.351 [INFO] (trainer.py:172) Total Epi:    30 Steps:  2275 Episode Steps:    88 Return:  125.3768 Eps:  0.5341608627427612 FPS:  0.99
+12:31:35.294 [INFO] (trainer.py:172) Total Epi:    31 Steps:  2399 Episode Steps:   124 Return:  179.4437 Eps:  0.5320242192917901 FPS:  0.99
+12:33:08.792 [INFO] (trainer.py:172) Total Epi:    32 Steps:  2488 Episode Steps:    89 Return:  120.6304 Eps:  0.5298961224146229 FPS:  0.99
+12:35:22.186 [INFO] (trainer.py:172) Total Epi:    33 Steps:  2616 Episode Steps:   128 Return:  182.7991 Eps:  0.5277765379249644 FPS:  0.99

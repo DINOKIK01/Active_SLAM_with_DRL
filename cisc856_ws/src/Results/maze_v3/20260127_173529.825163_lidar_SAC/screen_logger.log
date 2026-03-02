@@ -1,0 +1,19 @@
+INFO:root:Total_episodes: 0, Total_steps: 0, episode_steps: 1
+
+INFO:root:Initializing new episode ...
+WARNING:tensorflow:Detecting that an object or model or tf.train.Checkpoint is being deleted with unrestored values. See the following logs for the specific values in question. To silence these warnings, use `status.expect_partial()`. See https://www.tensorflow.org/api_docs/python/tf/train/Checkpoint#restorefor details about the status object returned by the restore function.
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.actor_optimizer.iter
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.actor_optimizer.beta_1
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.actor_optimizer.beta_2
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.actor_optimizer.decay
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.actor_optimizer.learning_rate
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf1_optimizer.iter
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf1_optimizer.beta_1
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf1_optimizer.beta_2
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf1_optimizer.decay
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf1_optimizer.learning_rate
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf2_optimizer.iter
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf2_optimizer.beta_1
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf2_optimizer.beta_2
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf2_optimizer.decay
+WARNING:tensorflow:Value in checkpoint could not be found in the restored object: (root).policy.qf2_optimizer.learning_rate

@@ -1,0 +1,19 @@
+episode1: {}
+episode2:
+  Clearance_time: 76.1265823841095
+  Cumulative_heading_average: -0.12175642523740841
+  Max_linear_acc, Min_linear_acc, Max_yaw_acc, Min_yaw_acc:
+  - 1.8746906090776367
+  - -1.2381622177315859
+  - 2.660506841697535
+  - -2.846479615106444
+  Mean_linear_acc, Mean_yaw_acc:
+  - 0.0207076895441085
+  - 0.011193159221539885
+  Mean_velocities:
+  - 0.10801689829215637
+  - 0.009523714294557502
+  Path_distance: 8.596613801416911
+  Std_velocities:
+  - 0.06436231144699232
+  - 0.07663594928524058

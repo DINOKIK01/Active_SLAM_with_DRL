@@ -11,7 +11,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 # Define timeout in seconds (e.g., 300 seconds = 5 minutes)
-TIMEOUT=300
+TIMEOUT=60000
 
 # Function to clean up and terminate processes
 cleanup() {

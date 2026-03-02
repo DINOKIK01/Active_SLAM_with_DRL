@@ -1,0 +1,1 @@
+/root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/lib/pic4rl/mapping_ours_lidar --ros-args -r __node:=pic4rl_starter --params-file /tmp/launch_params_h3h0bi4h --params-file /tmp/launch_params_tmsh6sth --params-file /tmp/launch_params_jheb5_pq --params-file /tmp/launch_params_id1v5c_p
