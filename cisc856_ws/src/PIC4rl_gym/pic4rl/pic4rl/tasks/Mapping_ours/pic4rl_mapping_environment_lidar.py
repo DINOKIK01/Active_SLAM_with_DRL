@@ -297,22 +297,26 @@ class Pic4rlEnvironmentLidar(Node):
         info_gain_coeff_unsafe = 0.0
         info_gain_beta = 10
         collision_penalty = -100
-        max_known_reward = 200
+        max_known_reward = 100
         covered = False
         SAFE_DIST = 1.0
         CRIT_DIST = 0.5
         danger_multiplier = 6
         create_distance_reward_multiplier = 0.4
+        max_step_gain = 4000
         reward = 0.0
 
         #lidar groups
-        front = np.concatenate([        # FRONT: wrap-around (end + beginning)
-            lidar_measurements[-5:],    # indices 31.32,33,34,35
-            lidar_measurements[:6]      # indices 0,1,2,3,4,5
+        front = np.concatenate([       # 13 values
+            lidar_measurements[30:36],   # indices 31,32,33,34,35,36
+            lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
         ])
-        left = lidar_measurements[6:18]   # 10 values # LEFT: 90°
-        back = lidar_measurements[18:21]  # 5 values # BACK: 180°
-        right = lidar_measurements[21:31] # 10 values # RIGHT: 270°
+        # LEFT: 90°
+        left = lidar_measurements[7:16]   # 9 values
+        # BACK: 180°
+        back = lidar_measurements[16:21]  # 5 values
+        # RIGHT: 270°
+        right = lidar_measurements[21:30] # 9 values
         min_dist = np.min(lidar_measurements)
 
         #info gain
@@ -321,54 +325,42 @@ class Pic4rlEnvironmentLidar(Node):
             if cell == 0 or cell == 1:
                 total_known += 1
         info_gain = total_known - self.prev_known
-        
+        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{total_known / self.prev_known}%")
 
         if min_dist >= SAFE_DIST:
             ###No Danger --> Feel free to explore
             print("!!!!!!!!!!!!!    SAFE DISTANCE   !!!!!!!!!!!")
             ### Exploration
             info_gain = info_gain_coeff_safe * np.emath.logn(10.0, 1.0 + info_gain_beta * info_gain)
-            if info_gain >= 0:
-                print(f"Abdeali is happy!")
-            else:
+            if info_gain < 0:
                 print(f"\n\nAbdeali sad :(((\n\n")
                 info_gain = 0 #TODO find why Abdeali gets sad
-            print(f"================ Total known:{total_known}, Prev known:{self.prev_known}")
-
-            ### Motion reward
-            #motion_reward = 0.5 * twist.linear.x
-            #print(f"================ motion reward: {motion_reward}")
-
+            norm_info_gain = min(info_gain / max_step_gain, 1.0)
+            explore_bonus = 2.0 * (1 - np.exp(-3 * norm_info_gain))
             ### calculate reward
-            reward += info_gain 
-            #reward += motion_reward
-            print("!!!!!!!!!!!!!    SAFE DISTANCE   !!!!!!!!!!!")
+            reward += explore_bonus
 
-        elif np.min(lidar_measurements) >= CRIT_DIST:
+        elif min_dist >= CRIT_DIST:
             print("!!!!!!!!!!!!!    DISTANCE WARNING   !!!!!!!!!!!")
             ### Minimal Danger --> Get away from walls
 
             ### Reduce info gain
             info_gain = info_gain_coeff_unsafe * np.emath.logn(10.0, 1.0 + info_gain_beta * info_gain)
-            if info_gain >= 0:
-                print(f"Abdeali is happy!")
-            else:
+            if info_gain < 0:
                 print(f"\n\nAbdeali sad :(((\n\n")
                 info_gain = 0 #TODO find why Abdeali gets sad
-            print(f"================ Total known:{total_known}, Prev known:{self.prev_known}")
 
             ### wall distance punishment #TODO Anpassen, dass front abstand "schlimmer" ist als die anderen
             danger = danger_multiplier * (SAFE_DIST - min_dist)
             print(f"================ danger value:{danger}")
 
             ### create distance reward
-            create_distance_reward = create_distance_reward_multiplier * (min_dist - self.prev_min_dist)
+            #create_distance_reward = create_distance_reward_multiplier * (min_dist - self.prev_min_dist)
 
             ### calculate reward
             reward += info_gain
             reward -= danger 
-            reward += create_distance_reward
-            print("!!!!!!!!!!!!!    DISTANCE WARNING   !!!!!!!!!!!")
+            #reward += create_distance_reward
 
         else:
             print("!!!!!!!!!!!!!    CRITICAL DISTANCE   !!!!!!!!!!!")
