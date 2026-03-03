@@ -84,9 +84,20 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
             low=low_action, high=high_action, shape=(2,), dtype=np.float32
         )
 
+        """ old state design
         state = [
             [0.0, 15.0],  # goal_distance
             [-math.pi, math.pi],  # goal angle or yaw
+        ]"""
+
+        # new state design (normalized)
+        state = [
+            [0.0, 1.0], # coverage ratio
+            [0.0, 1.0], # front_mean_dist
+            [0.0, 1.0], # left_mean_dist
+            [0.0, 1.0], # back_mean_dist
+            [0.0, 1.0], # right_mean_dist
+            [0.0, 1.0], # min_dist
         ]
 
 
@@ -103,7 +114,7 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
         self.observation_space = spaces.Box(
             low=self.low_state, high=self.high_state, dtype=np.float32
         )
-
+        print(f"CHANGE STATE DESIGN: Setup: observation_space.shape = {self.observation_space.shape}")
         # Set Epsilon-greedy starting value for exploration policy (minimum 0.05)
         epsilon = 0.6
         

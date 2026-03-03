@@ -190,7 +190,7 @@ class Pic4rlEnvironmentLidar(Node):
 
             self.get_logger().debug("getting observation...")
             observation = self.get_observation(
-                twist, lidar_measurements, goal_info, robot_pose
+                twist, lidar_measurements, goal_info, robot_pose, og_map
             )
         else:
             reward = None
@@ -500,13 +500,50 @@ class Pic4rlEnvironmentLidar(Node):
         print(f"================ Reward:{reward}, Collision:{collision}")
         return reward, total_known, covered
 
-    def get_observation(self, twist, lidar_measurements, goal_info, robot_pose):
+    def get_observation(self, twist, lidar_measurements, goal_info, robot_pose, og_map):
         """ """
-        state_list = goal_info
+        # Coverage
+        total_known = 0
+        for cell in og_map:
+            if cell == 0 or cell == 1:
+                total_known += 1
+        map_coverage = total_known / self.max_known
 
+        # Mean Distances
+        # FRONT: wrap-around (end + beginning)
+        front = np.concatenate([       # 13 values
+            lidar_measurements[30:36],   # indices 31,32,33,34,35,36
+            lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
+        ])
+        front_mean_dist = np.mean(front)
+        # LEFT: 90°
+        left = lidar_measurements[7:16]   # 9 values
+        left_mean_dist = np.mean(left)
+        # BACK: 180°
+        back = lidar_measurements[16:21]  # 5 values
+        back_mean_dist = np.mean(back)
+        # RIGHT: 270°
+        right = lidar_measurements[21:30] # 9 values
+        right_mean_dist = np.mean(right)
+
+        # Min Distance
+        min_dist = np.min(lidar_measurements)
+        
+        # normalized
+        max_dist = 5.5
+        front_norm = front_mean_dist / max_dist
+        left_norm = left_mean_dist / max_dist
+        back_norm = back_mean_dist / max_dist
+        right_norm = right_mean_dist / max_dist
+        min_norm = min_dist / max_dist
+
+        #state_list = goal_info
+        state_list = [
+            map_coverage, front_norm, left_norm, back_norm, right_norm, min_norm
+        ]
 
         state = np.array(state_list, dtype=np.float32)
-
+        print(f"CHANGE STATE DESIGN: Env get_observation: state.shape = {state.shape}")
         return state
 
     def update_state(
