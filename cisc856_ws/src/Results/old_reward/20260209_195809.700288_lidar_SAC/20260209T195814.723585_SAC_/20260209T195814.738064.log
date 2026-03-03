@@ -1,5 +1,0 @@
-19:58:14.738 [DEBUG] (trainer.py:107) Try to restore model
-19:58:14.738 [DEBUG] (trainer.py:109) model_dir not empty
-19:58:14.738 [INFO] (trainer.py:110) Model directory path /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/old_reward
-19:58:14.741 [INFO] (trainer.py:114) Restored None
-19:59:32.366 [INFO] (trainer.py:172) Total Epi:     1 Steps:    76 Episode Steps:    76 Return:  106.9347 Eps:   0.0 FPS:  0.98

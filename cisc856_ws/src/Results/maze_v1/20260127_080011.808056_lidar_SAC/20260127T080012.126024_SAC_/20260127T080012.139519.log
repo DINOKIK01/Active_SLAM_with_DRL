@@ -1,4 +1,0 @@
-08:00:12.139 [DEBUG] (trainer.py:107) Try to restore model
-08:00:12.139 [DEBUG] (trainer.py:109) model_dir not empty
-08:00:12.139 [INFO] (trainer.py:110) Model directory path /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/maze_v1
-08:00:12.142 [INFO] (trainer.py:114) Restored None

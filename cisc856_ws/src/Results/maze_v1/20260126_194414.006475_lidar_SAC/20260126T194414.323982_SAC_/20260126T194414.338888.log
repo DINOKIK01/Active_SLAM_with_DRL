@@ -1,5 +1,0 @@
-19:44:14.339 [DEBUG] (trainer.py:107) Try to restore model
-19:44:14.339 [DEBUG] (trainer.py:109) model_dir not empty
-19:44:14.339 [INFO] (trainer.py:110) Model directory path /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/maze_v1/20260126_172129.053760_lidar_SAC/20260126T172129.374931_SAC_
-19:44:14.371 [INFO] (trainer.py:114) Restored /root/Active_SLAM_with_DRL/cisc856_ws/install/pic4rl/share/pic4rl/../../../../src/Results/maze_v1/20260126_172129.053760_lidar_SAC/20260126T172129.374931_SAC_/ckpt-94
-19:44:51.188 [INFO] (trainer.py:172) Total Epi:     1 Steps:   345 Episode Steps:   345 Return:  207.5656 Eps:   0.6 FPS:  9.37
