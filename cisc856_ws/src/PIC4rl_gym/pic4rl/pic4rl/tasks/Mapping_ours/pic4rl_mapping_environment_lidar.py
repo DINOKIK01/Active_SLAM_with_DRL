@@ -325,7 +325,7 @@ class Pic4rlEnvironmentLidar(Node):
             if cell == 0 or cell == 1:
                 total_known += 1
         info_gain = total_known - self.prev_known
-        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{total_known / self.prev_known}%")
+        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{total_known / self.max_known}%")
 
         if min_dist >= SAFE_DIST:
             ###No Danger --> Feel free to explore
@@ -535,7 +535,6 @@ class Pic4rlEnvironmentLidar(Node):
         ]
 
         state = np.array(state_list, dtype=np.float32)
-        print(f"CHANGE STATE DESIGN: Env get_observation: state.shape = {state.shape}")
         return state
 
     def update_state(

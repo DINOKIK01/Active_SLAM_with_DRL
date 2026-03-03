@@ -114,7 +114,6 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
         self.observation_space = spaces.Box(
             low=self.low_state, high=self.high_state, dtype=np.float32
         )
-        print(f"CHANGE STATE DESIGN: Setup: observation_space.shape = {self.observation_space.shape}")
         # Set Epsilon-greedy starting value for exploration policy (minimum 0.05)
         epsilon = 0.6
         
