@@ -149,8 +149,8 @@ class Pic4rlEnvironmentLidar(Node):
         twist.angular.z = float(action[1])
         self.episode_step = episode_step
 
-        observation, reward, done = self._step(twist)
-        info = None
+        observation, reward, done, coverage = self._step(twist)
+        info = {"coverage": coverage}
 
         return observation, reward, done, info
 
@@ -189,7 +189,7 @@ class Pic4rlEnvironmentLidar(Node):
             self.prev_min_dist = np.min(lidar_measurements)
 
             self.get_logger().debug("getting observation...")
-            observation = self.get_observation(
+            observation, coverage = self.get_observation(
                 twist, lidar_measurements, goal_info, robot_pose, og_map
             )
         else:
@@ -197,10 +197,11 @@ class Pic4rlEnvironmentLidar(Node):
             observation = None
             done = False
             event = None
+            coverage = 0.0
 
         self.update_state(twist, lidar_measurements, goal_info, robot_pose, done, event)
 
-        return observation, reward, done
+        return observation, reward, done, coverage
 
     def get_goals_and_poses(self):
         """ """
@@ -293,6 +294,53 @@ class Pic4rlEnvironmentLidar(Node):
 
     def get_reward(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
         # hyperparams
+        covered = False
+        collision_penalty = -50
+        max_known_reward = 100
+        reward = 0.0
+
+        #lidar groups
+        front = np.concatenate([       # 13 values
+            lidar_measurements[30:36],   # indices 31,32,33,34,35,36
+            lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
+        ])
+        # LEFT: 90°
+        left = lidar_measurements[7:16]   # 9 values
+        # BACK: 180°
+        back = lidar_measurements[16:21]  # 5 values
+        # RIGHT: 270°
+        right = lidar_measurements[21:30] # 9 values
+        min_dist = np.min(lidar_measurements)
+
+        #info gain
+        total_known = 0
+        for cell in og_map:
+            if cell == 0 or cell == 1:
+                total_known += 1
+        info_gain = total_known - self.prev_known
+        coverage = np.round(100 * total_known / self.max_known, 4)
+        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{coverage}%")
+
+        reward += info_gain / 500
+        if min_dist < 0.45:
+            reward -= 1
+
+        # collision
+        collision = False
+        if event == "collision":
+            reward += collision_penalty
+            collision = True
+        
+        # coverage
+        if total_known >= 0.97 * self.max_known:
+            reward += max_known_reward
+            covered = True
+
+        print(f"================ Reward:{reward}, Collision:{collision}")
+        return reward, total_known, covered
+
+    def get_rewardv1(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
+        # hyperparams
         info_gain_coeff_safe = 1.5 #1.5
         info_gain_coeff_unsafe = 0.0
         info_gain_beta = 10
@@ -382,116 +430,6 @@ class Pic4rlEnvironmentLidar(Node):
         return reward, total_known, covered
 
 
-    def get_reward_old(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
-        """ """
-        # hyperparams
-        info_gain_coeff = 0.8 #1.5
-        info_gain_beta = 10
-        collision_penalty = -80
-        max_known_reward = 100
-        covered = False
-
-        # info gain
-        total_known = 0
-
-        for cell in og_map:
-            if cell == 0 or cell == 1:
-                total_known += 1
-
-        info_gain = total_known - self.prev_known
-
-        print(f"================ Raw Info Gain:{info_gain}")
-
-        info_gain = info_gain_coeff * np.emath.logn(10.0, 1.0 + info_gain_beta * info_gain)
-        # 1.5 * log_10(10x + 1) 
-
-        print(f"================ Info Gain reward:{info_gain}")
-
-        if info_gain >= 0:
-            print(f"Abdeali is happy!")
-        else:
-            print(f"\n\nAbdeali sad :(((\n\n")
-            info_gain = 0 #TODO find why Abdeali gets sad
-
-        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}")
-
-        reward = info_gain
-
-        #lidar groups
-        # FRONT: wrap-around (end + beginning)
-        front = np.concatenate([
-            lidar_measurements[-5:],   # indices 31.32,33,34,35
-            lidar_measurements[:6]     # indices 0,1,2,3,4,5
-        ])
-        # LEFT: 90°
-        left = lidar_measurements[6:18]   # 10 values
-        # BACK: 180°
-        back = lidar_measurements[18:21]  # 5 values
-        # RIGHT: 270°
-        right = lidar_measurements[21:31] # 10 values
-        print(f"=== lidar_measurements: Front: {np.mean(front)} | Back: {np.mean(back)} | Left: {np.mean(left)} | Right: {np.mean(right)}")
-
-        #front distance penalty
-        SAFE_DIST = 1.0
-        CRIT_DIST = 0.6
-        front_min = np.min(front)
-        front_penalty = 0
-        if front_min < SAFE_DIST:
-            if front_min < CRIT_DIST:
-                front_penalty = -4 * (CRIT_DIST - front_min)
-            else:
-                front_penalty = -2 * (CRIT_DIST - front_min)
-        else:
-            front_penalty = np.minimum(3.0, (front_min - SAFE_DIST) / 2)
-        reward += front_penalty
-        print(f"Front penalty: {front_penalty}, front_min: {front_min}")
-
-        #orientation penalty
-        distances = {
-            "distance_forward": lidar_measurements[0],
-            "front_distance": (np.mean(front) + np.min(front)) / 2,
-            "left_distance": (np.mean(left) + np.min(left)) / 2,
-            "right_distance": (np.mean(right) + np.min(right)) / 2,
-            "back_distance": (np.mean(back) + np.min(back)) / 2
-        }
-        penalties = {
-            "distance_forward": -2.0,
-            "front_distance": -2.0,
-            "left_distance": 0,
-            "right_distance": 0,
-            "back_distance": 0.2
-        }
-        min_key = min(distances, key=distances.get)
-        reward += penalties[min_key] * (SAFE_DIST - distances[min_key])
-        print(f"current reward: {reward}\nminkey: {min_key}")
-                
-
-        # === WALL PROXIMITY PENALTY ===
-        #lidar = np.array(lidar_measurements)
-        #lidar = np.clip(lidar, 0.01, self.lidar_distance)
-        #min_dist = np.min(lidar)
-
-        #SAFE_DIST = 0.5
-        #if min_dist < SAFE_DIST:
-        #    wall_penalty = -2.0 * (SAFE_DIST - min_dist)
-        #    reward += wall_penalty
-        #    print(f"Wall penalty: {wall_penalty:.3f}, min_dist: {min_dist:.3f}")
-
-        # collision
-        collision = False
-        if event == "collision":
-            print("AUUUUUUUUUUUUUUUUUAAAAAAAAAAAAAAAAAAAA")
-            reward += collision_penalty
-            collision = True
-        
-        # coverage
-        if total_known >= 0.97 * self.max_known:
-            reward += max_known_reward
-            covered = True
-
-        print(f"================ Reward:{reward}, Collision:{collision}")
-        return reward, total_known, covered
-
     def get_observation(self, twist, lidar_measurements, goal_info, robot_pose, og_map):
         """ """
         # Coverage
@@ -535,7 +473,7 @@ class Pic4rlEnvironmentLidar(Node):
         ]
 
         state = np.array(state_list, dtype=np.float32)
-        return state
+        return state, map_coverage
 
     def update_state(
         self, twist, lidar_measurements, goal_info, robot_pose, done, event
@@ -565,8 +503,8 @@ class Pic4rlEnvironmentLidar(Node):
         self.get_logger().debug("Performing null step to reset variables")
         self.episode_step = 0
 
-        _, _, _ = self._step(reset_step=True)
-        observation, _, _ = self._step()
+        _, _, _, _ = self._step(reset_step=True)
+        observation, _, _, _ = self._step()
 
         return observation
 

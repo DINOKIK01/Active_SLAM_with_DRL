@@ -135,6 +135,7 @@ class Trainer:
             self._use_nstep_rb, self._n_step)
             
         if self._rb_path_load is not None:
+            self.logger.info("Loading Buffer")
             replay_buffer.load_transitions(self._rb_path_load)
             
         obs = self._env.reset(n_episode, total_steps)
@@ -146,7 +147,7 @@ class Trainer:
             else:
                 action = self._policy.get_action(obs)
 
-            next_obs, reward, done, _ = self._env.step(action, episode_steps)
+            next_obs, reward, done, info = self._env.step(action, episode_steps)
 
             if self._show_progress:
                 self._env.render()
@@ -169,8 +170,8 @@ class Trainer:
                 n_episode += 1
                 
                 fps = episode_steps / (time.perf_counter() - episode_start_time)
-                self.logger.info("Total Epi: {0: 5} Steps: {1: 5} Episode Steps: {2: 5} Return: {3: 5.4f} Eps: {4: 5} FPS: {5:5.2f}".format(
-                    n_episode, total_steps, episode_steps, episode_return, self._policy.epsilon, fps))
+                self.logger.info("Total Epi: {0: 6} Steps: {1: 6} Episode Steps: {2: 6} Return: {3: 6.4f} Coverage: {4:6.4f} Eps: {5: 6} FPS: {6:6.2f}".format(
+                    n_episode, total_steps, episode_steps, episode_return, info["coverage"], self._policy.epsilon, fps))
                 obs = self._env.reset(n_episode, total_steps)
                 tf.summary.scalar(name="Common/training_return", data=episode_return)
                 tf.summary.scalar(name="Common/training_episode_length", data=episode_steps)
@@ -220,7 +221,7 @@ class Trainer:
                 if self._rb_path_save is not None:
                     print("Saved replay buffer at {}".format(self._rb_path_save))
                     replay_buffer.save_transitions(self._rb_path_save, safe=True)
-            time.sleep(1)
+            time.sleep(1.25)
 
         tf.summary.flush()
 
