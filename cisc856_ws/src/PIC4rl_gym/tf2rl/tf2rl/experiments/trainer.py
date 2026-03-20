@@ -288,6 +288,7 @@ class Trainer:
                 if done:
                     fps = episode_step / (time.perf_counter() - episode_start_time)
                     break
+                time.sleep(1.25)
             prefix = "step_{0:08d}_epi_{1:02d}_return_{2:010.4f}".format(
                 total_steps, i, episode_return)
             if self._save_test_path:
