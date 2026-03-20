@@ -132,8 +132,11 @@ class Pic4rlEnvironmentLidar(Node):
         self.evaluate = False
         self.index = 0
 
-        self.initial_pose, self.goals, self.poses = self.get_goals_and_poses()
+        self.initial_pose, self.goals, self.poses, self.layout = self.get_goals_and_poses()
         self.goal_pose = self.goals[0]
+
+        # discete map with additional information
+        self.info_map = get_initial_info_map(self.layout)
 
         self.get_logger().info(f"Gym mode: {self.mode}")
         if self.mode == "testing":
@@ -207,7 +210,7 @@ class Pic4rlEnvironmentLidar(Node):
         """ """
         data = json.load(open(self.data_path, "r"))
 
-        return data["initial_pose"], data["goals"], data["poses"]
+        return data["initial_pose"], data["goals"], data["poses"], data["layout"]
 
     def spin_sensors_callbacks(self):
         """ """
@@ -336,7 +339,8 @@ class Pic4rlEnvironmentLidar(Node):
             reward += max_known_reward
             covered = True
 
-        print(f"================ Reward:{reward}, Collision:{collision}")
+        print(f"================ Step: {self.episode_step}, Reward:{reward}, Collision:{collision}")
+        print_info_map(self.info_map)
         return reward, total_known, covered
 
     def get_rewardv1(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
@@ -439,33 +443,11 @@ class Pic4rlEnvironmentLidar(Node):
                 total_known += 1
         map_coverage = total_known / self.max_known
 
-        # Mean Distances
-        # FRONT: wrap-around (end + beginning)
-        front = np.concatenate([       # 13 values
-            lidar_measurements[30:36],   # indices 31,32,33,34,35,36
-            lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
-        ])
-        front_mean_dist = np.mean(front)
-        # LEFT: 90°
-        left = lidar_measurements[7:16]   # 9 values
-        left_mean_dist = np.mean(left)
-        # BACK: 180°
-        back = lidar_measurements[16:21]  # 5 values
-        back_mean_dist = np.mean(back)
-        # RIGHT: 270°
-        right = lidar_measurements[21:30] # 9 values
-        right_mean_dist = np.mean(right)
+        # normed distances
+        front_norm, left_norm, back_norm, right_norm, min_norm = compute_normed_distances(lidar_measurements)
 
-        # Min Distance
-        min_dist = np.min(lidar_measurements)
-        
-        # normalized
-        max_dist = 5.5
-        front_norm = front_mean_dist / max_dist
-        left_norm = left_mean_dist / max_dist
-        back_norm = back_mean_dist / max_dist
-        right_norm = right_mean_dist / max_dist
-        min_norm = min_dist / max_dist
+        # discrete maze map
+        self.info_map = update_info_map(self.info_map, robot_pose)
 
         #state_list = goal_info
         state_list = [
@@ -502,6 +484,8 @@ class Pic4rlEnvironmentLidar(Node):
         self.new_episode()
         self.get_logger().debug("Performing null step to reset variables")
         self.episode_step = 0
+
+        self.info_map = get_initial_info_map(self.layout)
 
         _, _, _, _ = self._step(reset_step=True)
         observation, _, _, _ = self._step()

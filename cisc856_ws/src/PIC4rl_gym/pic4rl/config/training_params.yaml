@@ -7,7 +7,7 @@ training_params:
     --save-model-interval: 500 # (int) Interval to save model. The default is ``int(1e4)``
     --save-summary-interval: 500 # (int) Interval to save summary. The default is ``int(1e3)``
     --model-dir: 'src/Results/simple_reward'
-    --model-dir: 'src/Results/version2_mazerunner/20260304_174730.139133_lidar_SAC/20260304T174730.452503_SAC_' # (str) Directory to restore model.
+    #--model-dir: 'src/Results/version2_mazerunner/20260304_174730.139133_lidar_SAC/20260304T174730.452503_SAC_' # (str) Directory to restore model.
 #    --dir-suffix: ""  # (str) Suffix for directory that stores results.
 #    --normalize-obs: # Whether normalize observation
     --logdir: 'src/Results/simple_reward' # (str) Output directory name. The default is ``"results"`` (it is relative to workspace directory).
@@ -24,7 +24,7 @@ training_params:
     --use-nstep-rb: # Use Nstep experience replay
     --n-step: 4 # (int) Number of steps for nstep experience reward. The default is ``4``
     --rb-path-save: 'buffer' # Save experience replay buffer in case of save
-    --rb-path-load: 'src/Results/simple_reward/20260305_161808.558747_lidar_SAC/buffer.npz' # Load experience replay buffer in case of restore
+    #--rb-path-load: 'src/Results/simple_reward/20260305_161808.558747_lidar_SAC/buffer.npz' # Load experience replay buffer in case of restore
     --logging-level: DEBUG # (DEBUG, INFO, WARNING) Choose logging level. The default is ``INFO``
     --policy: 'SAC' # training policy
     --policy_trainer: 'off-policy' # trainer off-policy / on-policy

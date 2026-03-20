@@ -205,3 +205,89 @@ def log_check(node):
         node.get_logger().info("LOG_LEVEL not defined, setting default: INFO")
 
     node.get_logger().set_level(log_level)
+
+def get_initial_info_map(layout):
+    """
+    Return initial info map.
+    """
+    grid_height = layout[0]
+    grid_width = layout[1]
+    ret = np.zeros((grid_height, grid_width, 2), dtype=np.int32)
+                                            #channel 0 = visited
+                                            #channel 1 = visit_count
+    return ret
+
+def compute_normed_distances(lidar_measurements):
+    # Mean Distances
+    # FRONT: wrap-around (end + beginning)
+    front = np.concatenate([       # 13 values
+        lidar_measurements[30:36],   # indices 31,32,33,34,35,36
+        lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
+    ])
+    front_mean_dist = np.mean(front)
+    # LEFT: 90°
+    left = lidar_measurements[7:16]   # 9 values
+    left_mean_dist = np.mean(left)
+    # BACK: 180°
+    back = lidar_measurements[16:21]  # 5 values
+    back_mean_dist = np.mean(back)
+    # RIGHT: 270°
+    right = lidar_measurements[21:30] # 9 values
+    right_mean_dist = np.mean(right)
+
+    # Min Distance
+    min_dist = np.min(lidar_measurements)
+    
+    # normalized
+    max_dist = 5.5
+    front_norm = front_mean_dist / max_dist
+    left_norm = left_mean_dist / max_dist
+    back_norm = back_mean_dist / max_dist
+    right_norm = right_mean_dist / max_dist
+    min_norm = min_dist / max_dist
+    return front_norm, left_norm, back_norm, right_norm, min_norm
+
+def update_info_map(info_map, robot_pose, cell_size=3, offset=9):
+    """
+    info_map: shape (H, W, 2)
+    robot_pose: [x, y, yaw]
+    """
+
+    x, y, _ = robot_pose
+
+    # Koordinaten -> Grid Index
+    col = int(np.floor((x + offset) / cell_size))
+    row = int(np.floor((offset - y) / cell_size))
+
+    # Bounds check
+    H, W, _ = info_map.shape
+    if row < 0 or row >= H or col < 0 or col >= W:
+        print("!!!!!!!!!!!! Außerhalb der Karte")
+        return info_map  # außerhalb der Karte
+
+    # Update:
+    info_map[row, col, 0] = 1      # visited
+    info_map[row, col, 1] += 1     # counter
+
+    return info_map
+
+def print_info_map(info_map):
+    visited = info_map[:, :, 0]
+    visit_count = info_map[:, :, 1]
+
+    H, W = visited.shape
+
+    print("\n=== VISITED MAP ===")
+    for r in range(H):
+        row_str = ""
+        for c in range(W):
+            row_str += f"{visited[r, c]:3d} "
+        print(row_str)
+
+    print("\n=== VISIT COUNT MAP ===")
+    for r in range(H):
+        row_str = ""
+        for c in range(W):
+            row_str += f"{visit_count[r, c]:3d} "
+        print(row_str)
+
