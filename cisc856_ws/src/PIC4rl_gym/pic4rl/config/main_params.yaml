@@ -4,7 +4,7 @@ main_node:
     mode: "training" # Training or testing
     # Robot parameters
     robot_name: "jackal_ugv" # robot entity name in gazebo
-    max_lin_vel: 0.2
+    max_lin_vel: 0.4
     min_lin_vel: 0.0
     max_ang_vel: 0.2
     min_ang_vel: -0.2
@@ -45,10 +45,10 @@ main_node:
       odom_topic: "/odom" # /odom or /jackal/ground_truth
       map_topic: "/map" ####
     laser_param:
-      max_distance: 5.5 # Meters (original 10)
+      max_distance: 3.0 # Meters (original 10)
       num_points: 36 # int divider of 360
     depth_param:
-      dist_cutoff: 5.0 # Meters
+      dist_cutoff: 3.0 # Meters
       width: 112
       height: 112
       show_image: False

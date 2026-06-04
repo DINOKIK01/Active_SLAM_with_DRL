@@ -56,6 +56,10 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(PROGRAMS
+  pic4rl/graph_debug_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 install(
   DIRECTORY launch config goals_and_poses

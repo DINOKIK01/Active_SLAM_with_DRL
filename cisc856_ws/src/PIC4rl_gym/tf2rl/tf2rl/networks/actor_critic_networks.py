@@ -2,17 +2,17 @@
 
 import os
 import tensorflow as tf
-from tensorflow.keras import Model
-from tensorflow.keras.layers import Activation
-from tensorflow.keras.layers import Dense, Conv2D, GlobalAveragePooling2D, MaxPooling2D, BatchNormalization
-from tensorflow.keras.layers import Dropout 
-from tensorflow.keras.layers import Input, concatenate
-from tensorflow.keras.initializers import RandomUniform, glorot_normal, HeUniform, GlorotUniform
-from tensorflow.keras.models import load_model
-from tensorflow.keras.optimizers import Adam
+from keras import Model
+from keras.layers import Activation
+from keras.layers import Dense, Conv2D, GlobalAveragePooling2D, MaxPooling2D, BatchNormalization
+from keras.layers import Dropout 
+from keras.layers import Input, concatenate
+from keras.initializers import RandomUniform, glorot_normal, HeUniform, GlorotUniform
+from keras.models import load_model
+from keras.optimizers import Adam
 # from tensorflow.keras.losses import mean_squared_error
-from tensorflow.keras.losses import MSE
-from tensorflow.keras import backend as K
+from keras.losses import MSE
+from keras import backend as K
 import numpy as np
 
 class Actor(tf.keras.Model):

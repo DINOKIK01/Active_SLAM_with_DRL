@@ -90,14 +90,26 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
             [-math.pi, math.pi],  # goal angle or yaw
         ]"""
 
-        # new state design (normalized)
+        # old--new state design (normalized)
+        #state = [
+        #    [0.0, 1.0], # coverage ratio
+        #    [0.0, 1.0], # front_mean_dist
+        #    [0.0, 1.0], # left_mean_dist
+        #    [0.0, 1.0], # back_mean_dist
+        #    [0.0, 1.0], # right_mean_dist
+        #    [0.0, 1.0], # min_dist
+        #]
+
+        # new design
         state = [
-            [0.0, 1.0], # coverage ratio
-            [0.0, 1.0], # front_mean_dist
-            [0.0, 1.0], # left_mean_dist
-            [0.0, 1.0], # back_mean_dist
-            [0.0, 1.0], # right_mean_dist
-            [0.0, 1.0], # min_dist
+            (0.0, 3.0) for _ in range(36)   # lidar (36 rays, max_distance = 3.0)
+        ] + [
+            (-9.0, 9.0),  # robot_x
+            (-9.0, 9.0),  # robot_y
+            (-math.pi, math.pi) # yaw
+        ] + [
+            (self.min_lin_vel, self.max_lin_vel),  # lin vel
+            (self.min_ang_vel, self.max_ang_vel),  # ang vel
         ]
 
 

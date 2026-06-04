@@ -206,33 +206,37 @@ def log_check(node):
 
     node.get_logger().set_level(log_level)
 
+def compute_lidar_groups(lidar_measurements):
+    #lidar groups
+    front = np.concatenate([       # 9 values
+        lidar_measurements[32:36],   # indices 33,34,35,36
+        lidar_measurements[0:5]     # indices 0,1,2,3,4
+    ])
+    # LEFT: 90°
+    left = lidar_measurements[5:14]   # 9 values
+    # BACK: 180°
+    back = lidar_measurements[14:23]  # 9 values
+    # RIGHT: 270°
+    right = lidar_measurements[23:32] # 9 values
+    return front, left, back, right
+
 def get_initial_info_map(layout):
     """
     Return initial info map.
     """
-    grid_height = layout[0]
-    grid_width = layout[1]
-    ret = np.zeros((grid_height, grid_width, 2), dtype=np.int32)
+    grid_width = layout[0]
+    grid_height = layout[1]
+    ret = np.zeros((grid_width, grid_height, 2), dtype=np.int32)
                                             #channel 0 = visited
                                             #channel 1 = visit_count
     return ret
 
 def compute_normed_distances(lidar_measurements):
     # Mean Distances
-    # FRONT: wrap-around (end + beginning)
-    front = np.concatenate([       # 13 values
-        lidar_measurements[30:36],   # indices 31,32,33,34,35,36
-        lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
-    ])
+    front, left, back, right = compute_lidar_groups
     front_mean_dist = np.mean(front)
-    # LEFT: 90°
-    left = lidar_measurements[7:16]   # 9 values
     left_mean_dist = np.mean(left)
-    # BACK: 180°
-    back = lidar_measurements[16:21]  # 5 values
     back_mean_dist = np.mean(back)
-    # RIGHT: 270°
-    right = lidar_measurements[21:30] # 9 values
     right_mean_dist = np.mean(right)
 
     # Min Distance
@@ -247,17 +251,21 @@ def compute_normed_distances(lidar_measurements):
     min_norm = min_dist / max_dist
     return front_norm, left_norm, back_norm, right_norm, min_norm
 
-def update_info_map(info_map, robot_pose, cell_size=3, offset=9):
+def get_coordinates(robot_pose, cell_size=3, offset=9):
+    x, y, _ = robot_pose
+
+    # Koordinaten -> Grid Index
+    x = int(np.floor((x + offset) / cell_size))
+    y = int(np.floor((offset - y) / cell_size))
+    return x, y
+
+def update_info_map(info_map, robot_pose):
     """
     info_map: shape (H, W, 2)
     robot_pose: [x, y, yaw]
     """
 
-    x, y, _ = robot_pose
-
-    # Koordinaten -> Grid Index
-    col = int(np.floor((x + offset) / cell_size))
-    row = int(np.floor((offset - y) / cell_size))
+    col, row = get_coordinates(robot_pose)
 
     # Bounds check
     H, W, _ = info_map.shape

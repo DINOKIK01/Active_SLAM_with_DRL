@@ -1,0 +1,520 @@
+import numpy as np
+from enum import IntEnum
+from pic4rl.utils.env_utils import *
+
+
+class EdgeState(IntEnum):
+    UNKNOWN = -1
+    FREE = 0
+    BLOCKED = 1
+
+
+class Node:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+        self.visited = False
+        self.visit_count = 0
+
+        # edges: N, E, S, W
+        self.edges = {
+            "N": EdgeState.UNKNOWN,
+            "E": EdgeState.UNKNOWN,
+            "S": EdgeState.UNKNOWN,
+            "W": EdgeState.UNKNOWN
+        }
+
+    def __repr__(self):
+        return f"Node({self.x},{self.y}, visited={self.visited})"
+
+
+class GraphMap:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.last_position = (-1, -1)
+
+        self.nodes = [
+            [Node(x, y) for y in range(height)]
+            for x in range(width)
+        ]
+
+    # -----------------------------
+    # Node Zugriff
+    # -----------------------------
+    def get_node(self, x, y):
+        if not self.in_bounds(x, y):
+            return None
+        return self.nodes[x][y]
+
+    def in_bounds(self, x, y):
+        return 0 <= x < self.width and 0 <= y < self.height
+
+    # -----------------------------
+    # Nachbarn
+    # -----------------------------
+    def get_neighbor(self, node, direction):
+        dx, dy = self.direction_to_delta(direction)
+        nx, ny = node.x + dx, node.y + dy
+        return self.get_node(nx, ny)
+
+    def direction_to_delta(self, direction):
+        return {
+            "N": (0, -1),   
+            "E": (1, 0),    
+            "S": (0, 1),    
+            "W": (-1, 0)    
+        }[direction]
+
+    def opposite_direction(self, direction):
+        return {
+            "N": "S",
+            "E": "W",
+            "S": "N",
+            "W": "E"
+        }[direction]
+
+    # -----------------------------
+    # Edge setzen (beidseitig!)
+    # -----------------------------
+    def set_edge(self, node, direction, state):
+        node.edges[direction] = state
+
+        neighbor = self.get_neighbor(node, direction)
+        if neighbor is not None:
+            opp = self.opposite_direction(direction)
+            neighbor.edges[opp] = state
+
+    # -----------------------------
+    # Besuch markieren
+    # -----------------------------
+    def visit_node(self, x, y):
+        node = self.get_node(x, y)
+        if node:
+            node.visited = True
+            node.visit_count += 1
+
+    # -----------------------------
+    # Graph Features
+    # -----------------------------
+    def get_unvisited_neighbors(self, node):
+        count = 0
+        for d, state in node.edges.items():
+            if state == EdgeState.FREE:
+                n = self.get_neighbor(node, d)
+                if n and not n.visited:
+                    count += 1
+        return count
+
+    def get_free_neighbors(self, node):
+        return sum(1 for s in node.edges.values() if s == EdgeState.FREE)
+
+    def is_dead_end(self, node):
+        return self.get_free_neighbors(node) <= 1
+
+    def total_nodes(self):
+        return self.width * self.height
+
+    def visited_nodes(self):
+        return sum(
+            1 for row in self.nodes for n in row if n.visited
+        )
+
+    def remaining_nodes(self):
+        return self.total_nodes() - self.visited_nodes()
+
+    # -----------------------------
+    # BFS: nächster unvisited Node
+    # -----------------------------
+    def distance_to_nearest_unvisited(self, start_node):
+        visited = set()
+        queue = [(start_node, 0)]
+
+        while queue:
+            current, dist = queue.pop(0)
+
+            if (current.x, current.y) in visited:
+                continue
+            visited.add((current.x, current.y))
+
+            if not current.visited:
+                return dist
+
+            for d, state in current.edges.items():
+                if state == EdgeState.FREE:
+                    neighbor = self.get_neighbor(current, d)
+                    if neighbor:
+                        queue.append((neighbor, dist + 1))
+
+        return -1  # nichts gefunden
+
+    # -----------------------------
+    # Debug / Visualisierung
+    # -----------------------------
+
+    def print_graph(self, robot_pose):
+        GREEN = "\033[92m"
+        RED = "\033[91m"
+        GRAY = "\033[90m"
+        RESET = "\033[0m"
+        BLUE = "\033[94m"
+
+        current = self.get_node(robot_pose[0], robot_pose[1])
+
+        def node_str(node, current=None):
+            if current and node.x == current.x and node.y == current.y:
+                return f"{BLUE}●{RESET}"
+            elif node.visited:
+                return f"{GREEN}●{RESET}"
+            else:
+                return f"{GRAY}●{RESET}"
+
+        def edge_str(state, horizontal=True):
+            if state == EdgeState.FREE:
+                color = GREEN
+            elif state == EdgeState.BLOCKED:
+                color = RED
+            else:
+                color = GRAY
+
+            return f"{color}{'──' if horizontal else '│'}{RESET}"
+
+        for y in range(self.height):
+
+            # -----------------------------
+            # 1. NORD KANTEN
+            # -----------------------------
+            line_north = ""
+            for x in range(self.width):
+                node = self.nodes[x][y]
+
+                # Außenkante oben
+                state = node.edges["N"]
+
+                line_north += " " + edge_str(state, horizontal=True) + " "
+
+            print(line_north)
+
+            # -----------------------------
+            # 2. WEST | NODE | OST
+            # -----------------------------
+            line_mid = ""
+            for x in range(self.width):
+                node = self.nodes[x][y]
+
+                # WEST
+                state_w = node.edges["W"]
+
+                # OST
+                state_e = node.edges["E"]
+
+                line_mid += edge_str(state_w, horizontal=False)
+                line_mid += node_str(node, current) + " "
+                line_mid += edge_str(state_e, horizontal=False)
+
+            print(line_mid)
+
+            # -----------------------------
+            # 3. SÜD KANTEN
+            # -----------------------------
+            line_south = ""
+            for x in range(self.width):
+                node = self.nodes[x][y]
+
+                # Außenkante unten
+                state = node.edges["S"]
+
+                line_south += " " + edge_str(state, horizontal=True) + " "
+
+            print(line_south)
+
+def update_graph_from_lidar(
+    graph,
+    robot_pose,
+    lidar_measurements,
+    cell_size=3.0,
+    offset=7.5,
+    center_tol=0.5,
+    angle_tol=0.35,  
+    wall_threshold=2.0,
+    free_threshold=3.5,
+):
+    """
+    Update GraphMap basierend auf Lidar + Pose
+
+    Args:
+        graph: GraphMap
+        robot_x, robot_y: Position in Metern
+        robot_yaw: Orientierung in Radiant
+        lidar_measurements: array mit 36 Werten
+    """
+    robot_x = robot_pose[0]
+    robot_y = robot_pose[1]
+    robot_yaw = robot_pose[2]
+
+    # -----------------------------
+    # 1. Zellindex bestimmen
+    # -----------------------------
+    i, j = get_coordinates(robot_pose)
+
+    node = graph.get_node(i, j)
+    if node is None:
+        return
+    
+    # -----------------------------
+    # 2. Node als besucht markieren
+    # -----------------------------
+    graph.visit_node(i, j)
+
+    # -----------------------------
+    # 3. Node Transition updaten
+    # -----------------------------
+    def update_node_transition(graph, current_node):
+        last_x, last_y = graph.last_position
+
+        # erster Schritt → nichts zu tun
+        if last_x == -1 and last_y == -1:
+            graph.last_position = (current_node.x, current_node.y)
+            return
+
+        # gleiche Position → kein Übergang
+        if (last_x, last_y) == (current_node.x, current_node.y):
+            return
+
+        last_node = graph.get_node(last_x, last_y)
+        if last_node is None:
+            graph.last_position = (current_node.x, current_node.y)
+            return
+
+        dx = current_node.x - last_node.x
+        dy = current_node.y - last_node.y
+
+        def delta_to_direction(delta):
+            return{
+                (0, -1): "N",
+                (1, 0): "E",
+                (0, 1): "S",
+                (-1, 0): "W"
+            }[delta]
+
+        direction = delta_to_direction((dx, dy))
+        
+
+        # Nur UNKNOWN → FREE setzen
+        if last_node.edges[direction] == EdgeState.UNKNOWN:
+            graph.set_edge(last_node, direction, EdgeState.FREE)
+
+        # neue Position speichern
+        graph.last_position = (current_node.x, current_node.y)
+
+    update_node_transition(graph, node)
+
+    # -----------------------------
+    # 4. Zentrum prüfen
+    # -----------------------------
+    cx = i * cell_size - offset
+    cy = offset - j * cell_size
+
+    # -----------------------------
+    # 5. Lidar in 4 Sektoren teilen
+    # -----------------------------
+    front, left, back, right = compute_lidar_groups(lidar_measurements)
+    sectors = {
+        "front": front,
+        "left": left,
+        "back": back,
+        "right": right,
+    }
+
+    # robuste Distanz: Median
+    sector_dist = {
+        k: np.median(v) for k, v in sectors.items()
+    }
+
+    # Position Überprüfen
+    dx = robot_x - cx
+    dy = robot_y - cy
+
+    at_center = abs(dx) < center_tol and abs(dy) < center_tol
+
+    edge_trigger = 0.6
+    axis_tol = 0.3
+
+    at_edge_middle = (
+        (abs(dx) > edge_trigger and abs(dy) < axis_tol) or
+        (abs(dy) > edge_trigger and abs(dx) < axis_tol)
+    )
+
+    if at_edge_middle:
+        update_edges_near_walls_with_orientation(
+            graph,
+            node,
+            robot_x,
+            robot_y,
+            robot_yaw,
+            cx,
+            cy,
+            sector_dist
+        )
+        return
+
+    if not at_center:
+        return
+    
+    # -----------------------------
+    # 6. Winkel prüfen
+    # -----------------------------
+
+    # Welt-Richtungen
+    directions = []
+
+    if is_facing(robot_yaw, 0, angle_tol):  # Osten
+        directions.append(("front", "E"))
+        directions.append(("left", "N"))
+        directions.append(("back", "W"))
+        directions.append(("right", "S"))
+    if is_facing(robot_yaw, np.pi / 2, angle_tol):  # Norden
+        directions.append(("front", "N"))
+        directions.append(("left", "W"))
+        directions.append(("back", "S"))
+        directions.append(("right", "E"))
+    if is_facing(robot_yaw, np.pi, angle_tol):  # Westen
+        directions.append(("front", "W"))
+        directions.append(("left", "S"))
+        directions.append(("back", "E"))
+        directions.append(("right", "N"))
+    if is_facing(robot_yaw, -np.pi / 2, angle_tol):  # Süden
+        directions.append(("front", "S"))
+        directions.append(("left", "E"))
+        directions.append(("back", "N"))
+        directions.append(("right", "W"))
+
+    # -----------------------------
+    # 7. Updates durchführen
+    # -----------------------------
+    def safe_update(node, direction, new_state):
+        current = node.edges[direction]
+
+        # niemals sichere Infos überschreiben
+        if current == EdgeState.BLOCKED:
+            return
+        if current == EdgeState.FREE and new_state == EdgeState.BLOCKED:
+            return
+
+        if new_state != EdgeState.UNKNOWN:
+            graph.set_edge(node, direction, new_state)
+
+    for sector_name, graph_dir in directions:
+        dist = sector_dist[sector_name]
+        state = classify(dist, wall_threshold, free_threshold)
+
+        safe_update(node, graph_dir, state)
+
+def update_edges_near_walls_with_orientation(
+    graph,
+    node,
+    robot_x,
+    robot_y,
+    robot_yaw,
+    cx,
+    cy,
+    sector_dist,
+    proximity_threshold=0.5,
+    angle_tol=0.35,
+    wall_threshold=0.8,
+    free_threshold=3.0,
+):
+    dx = robot_x - cx
+    dy = cy - robot_y
+
+    def safe_update(direction, dist):
+        state = classify(dist, wall_threshold, free_threshold)
+        current = node.edges[direction]
+
+        if current == EdgeState.BLOCKED:
+            return
+        if current == EdgeState.FREE and state == EdgeState.BLOCKED:
+            return
+
+        if state != EdgeState.UNKNOWN:
+            graph.set_edge(node, direction, state)
+
+    # -----------------------------
+    # Mapping: Robot → Welt
+    # -----------------------------
+    # Ergebnis: welcher Sektor entspricht welcher Welt-Richtung?
+    world_mapping = {}
+
+    if is_facing(robot_yaw, 0, angle_tol):  # Osten
+        world_mapping = {
+            "E": "front",
+            "N": "left",
+            "W": "back",
+            "S": "right"
+        }
+
+    elif is_facing(robot_yaw, np.pi / 2, angle_tol):  # Norden
+        world_mapping = {
+            "N": "front",
+            "W": "left",
+            "S": "back",
+            "E": "right"
+        }
+
+    elif is_facing(robot_yaw, np.pi, angle_tol):  # Westen
+        world_mapping = {
+            "W": "front",
+            "S": "left",
+            "E": "back",
+            "N": "right"
+        }
+
+    elif is_facing(robot_yaw, -np.pi / 2, angle_tol):  # Süden
+        world_mapping = {
+            "S": "front",
+            "E": "left",
+            "N": "back",
+            "W": "right"
+        }
+
+    else:
+        # NICHT sauber ausgerichtet → KEIN UPDATE
+        return
+
+    # -----------------------------
+    # EDGE UPDATES (nur wenn nah an Wand)
+    # -----------------------------
+
+    # EAST / WEST
+    if dx > proximity_threshold:
+        sector = world_mapping["E"]
+        safe_update("E", sector_dist[sector])
+
+    elif dx < -proximity_threshold:
+        sector = world_mapping["W"]
+        safe_update("W", sector_dist[sector])
+
+    # NORTH / SOUTH
+    if dy > proximity_threshold:
+        sector = world_mapping["S"]
+        safe_update("S", sector_dist[sector])
+
+    elif dy < -proximity_threshold:
+        sector = world_mapping["N"]
+        safe_update("N", sector_dist[sector])
+
+def angle_diff(a, b):
+    return np.arctan2(np.sin(a - b), np.cos(a - b))
+
+def is_facing(yaw, target, angle_tol):
+    return abs(angle_diff(yaw, target)) < angle_tol
+
+def classify(dist, wall_threshold, free_threshold):
+    if dist < wall_threshold:
+        return EdgeState.BLOCKED
+    elif dist > free_threshold:
+        return EdgeState.FREE
+    else:
+        return EdgeState.UNKNOWN
+

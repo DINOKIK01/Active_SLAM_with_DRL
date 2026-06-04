@@ -23,6 +23,7 @@ from ament_index_python.packages import get_package_share_directory
 from pic4rl.sensors import Sensors
 from pic4rl.utils.env_utils import *
 from pic4rl.testing.nav_metrics import Navigation_Metrics
+from pic4rl.utils.graph_utils import GraphMap, update_graph_from_lidar
 
 
 class Pic4rlEnvironmentLidar(Node):
@@ -136,7 +137,9 @@ class Pic4rlEnvironmentLidar(Node):
         self.goal_pose = self.goals[0]
 
         # discete map with additional information
-        self.info_map = get_initial_info_map(self.layout)
+        #self.info_map = get_initial_info_map(self.layout)
+        # discrete graph representation
+        self.topologic_graph = GraphMap(width=6, height=6)
 
         self.get_logger().info(f"Gym mode: {self.mode}")
         if self.mode == "testing":
@@ -152,8 +155,8 @@ class Pic4rlEnvironmentLidar(Node):
         twist.angular.z = float(action[1])
         self.episode_step = episode_step
 
-        observation, reward, done, coverage = self._step(twist)
-        info = {"coverage": coverage}
+        observation, reward, done = self._step(twist)
+        info = {"coverage":observation[0] }#TODO
 
         return observation, reward, done, info
 
@@ -168,6 +171,7 @@ class Pic4rlEnvironmentLidar(Node):
             lidar_measurements,
             goal_info,
             robot_pose,
+            velocities,
             collision,
             og_map
         ) = self.get_sensor_data()
@@ -192,19 +196,18 @@ class Pic4rlEnvironmentLidar(Node):
             self.prev_min_dist = np.min(lidar_measurements)
 
             self.get_logger().debug("getting observation...")
-            observation, coverage = self.get_observation(
-                twist, lidar_measurements, goal_info, robot_pose, og_map
+            observation = self.get_observation(
+                twist, lidar_measurements, goal_info, robot_pose, velocities, og_map
             )
         else:
             reward = None
             observation = None
             done = False
             event = None
-            coverage = 0.0
 
         self.update_state(twist, lidar_measurements, goal_info, robot_pose, done, event)
 
-        return observation, reward, done, coverage
+        return observation, reward, done
 
     def get_goals_and_poses(self):
         """ """
@@ -245,7 +248,7 @@ class Pic4rlEnvironmentLidar(Node):
 
         sensor_data = {}
         sensor_data["scan"], collision = self.sensors.get_laser()
-        sensor_data["odom"] = self.sensors.get_odom(vel=False)
+        sensor_data["odom"], sensor_data["vel"] = self.sensors.get_odom(vel=True)
         sensor_data["map"] = self.sensors.get_map()
 
         if sensor_data["scan"] is None:
@@ -253,13 +256,15 @@ class Pic4rlEnvironmentLidar(Node):
                 np.ones(self.lidar_points) * self.lidar_distance
             ).tolist()
         if sensor_data["odom"] is None:
-            sensor_data["odom"] = [0.0, 0.0, 0.0]
+            sensor_data["odom"] = [0.0, 0.0, 0.0]        
+        if sensor_data["vel"] is None:
+            sensor_data["vel"] = [0.0, 0.0]
 
         goal_info, robot_pose = process_odom(self.goal_pose, sensor_data["odom"])
         lidar_measurements = sensor_data["scan"]
         og_map = sensor_data["map"]
 
-        return lidar_measurements, goal_info, robot_pose, collision, og_map
+        return lidar_measurements, goal_info, robot_pose, sensor_data["vel"], collision, og_map
 
     def check_events(self, lidar_measurements, goal_info, robot_pose, collision):
         """ """
@@ -294,8 +299,36 @@ class Pic4rlEnvironmentLidar(Node):
             return True, "timeout"
 
         return False, "None"
-
+    
     def get_reward(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
+        covered = False
+        collision_penalty = -50
+        max_known_reward = 100
+        reward = 0.0
+
+        #info gain
+        total_known = 0
+        for cell in og_map:
+            if cell == 0 or cell == 1:
+                total_known += 1
+        info_gain = total_known - self.prev_known
+        coverage = np.round(100 * total_known / self.max_known, 4)
+        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{coverage}%")
+        self.topologic_graph.print_graph(robot_pose)
+
+        # collision
+        collision = False
+        if event == "collision":
+            reward += collision_penalty
+            collision = True
+        
+        # coverage
+        if total_known >= 0.97 * self.max_known:
+            reward += max_known_reward
+            covered = True
+        return reward, total_known, covered
+
+    def get_reward_v2(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
         # hyperparams
         covered = False
         collision_penalty = -50
@@ -303,16 +336,7 @@ class Pic4rlEnvironmentLidar(Node):
         reward = 0.0
 
         #lidar groups
-        front = np.concatenate([       # 13 values
-            lidar_measurements[30:36],   # indices 31,32,33,34,35,36
-            lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
-        ])
-        # LEFT: 90°
-        left = lidar_measurements[7:16]   # 9 values
-        # BACK: 180°
-        back = lidar_measurements[16:21]  # 5 values
-        # RIGHT: 270°
-        right = lidar_measurements[21:30] # 9 values
+        front, left, back, right = compute_lidar_groups(lidar_measurements)
         min_dist = np.min(lidar_measurements)
 
         #info gain
@@ -339,7 +363,14 @@ class Pic4rlEnvironmentLidar(Node):
             reward += max_known_reward
             covered = True
 
+        # discrete map
+        row, col = get_coordinates(robot_pose)
+        region_counter = self.info_map[row][col][1]
+        if(region_counter > 50):
+            reward -= max(1.5 ,(0.25 + 0.05 * (region_counter - 50)))
+
         print(f"================ Step: {self.episode_step}, Reward:{reward}, Collision:{collision}")
+        print(f"================ Current Position: Row --> {row} Coloumn --> {col}")
         print_info_map(self.info_map)
         return reward, total_known, covered
 
@@ -358,17 +389,7 @@ class Pic4rlEnvironmentLidar(Node):
         max_step_gain = 4000
         reward = 0.0
 
-        #lidar groups
-        front = np.concatenate([       # 13 values
-            lidar_measurements[30:36],   # indices 31,32,33,34,35,36
-            lidar_measurements[0:7]     # indices 0,1,2,3,4,5,6
-        ])
-        # LEFT: 90°
-        left = lidar_measurements[7:16]   # 9 values
-        # BACK: 180°
-        back = lidar_measurements[16:21]  # 5 values
-        # RIGHT: 270°
-        right = lidar_measurements[21:30] # 9 values
+        front, left, back, right = compute_lidar_groups(lidar_measurements)
         min_dist = np.min(lidar_measurements)
 
         #info gain
@@ -434,7 +455,7 @@ class Pic4rlEnvironmentLidar(Node):
         return reward, total_known, covered
 
 
-    def get_observation(self, twist, lidar_measurements, goal_info, robot_pose, og_map):
+    def get_observation(self, twist, lidar_measurements, goal_info, robot_pose, velocities, og_map):
         """ """
         # Coverage
         total_known = 0
@@ -444,18 +465,24 @@ class Pic4rlEnvironmentLidar(Node):
         map_coverage = total_known / self.max_known
 
         # normed distances
-        front_norm, left_norm, back_norm, right_norm, min_norm = compute_normed_distances(lidar_measurements)
+        #front_norm, left_norm, back_norm, right_norm, min_norm = compute_normed_distances(lidar_measurements)
 
         # discrete maze map
-        self.info_map = update_info_map(self.info_map, robot_pose)
+        #self.info_map = update_info_map(self.info_map, robot_pose)
+        update_graph_from_lidar(self.topologic_graph, robot_pose, lidar_measurements)
 
+        #old state design
         #state_list = goal_info
-        state_list = [
-            map_coverage, front_norm, left_norm, back_norm, right_norm, min_norm
-        ]
+        #state_list = [
+        #    map_coverage, front_norm, left_norm, back_norm, right_norm, min_norm
+        #]
+        state = np.concatenate([
+            np.asarray(lidar_measurements, dtype=np.float32),
+            np.asarray(robot_pose, dtype=np.float32),
+            np.asarray(velocities, dtype=np.float32)
+        ])
 
-        state = np.array(state_list, dtype=np.float32)
-        return state, map_coverage
+        return state
 
     def update_state(
         self, twist, lidar_measurements, goal_info, robot_pose, done, event
@@ -485,10 +512,11 @@ class Pic4rlEnvironmentLidar(Node):
         self.get_logger().debug("Performing null step to reset variables")
         self.episode_step = 0
 
-        self.info_map = get_initial_info_map(self.layout)
+        #self.info_map = get_initial_info_map(self.layout)
+        self.topologic_graph = GraphMap(width=6, height=6)
 
-        _, _, _, _ = self._step(reset_step=True)
-        observation, _, _, _ = self._step()
+        _, _, _ = self._step(reset_step=True)
+        observation, _, _= self._step()
 
         return observation
 
