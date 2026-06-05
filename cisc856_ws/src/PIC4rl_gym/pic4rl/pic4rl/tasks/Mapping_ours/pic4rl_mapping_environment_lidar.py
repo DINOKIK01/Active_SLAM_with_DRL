@@ -320,8 +320,11 @@ class Pic4rlEnvironmentLidar(Node):
         print(f"================ Previous visited nodes:{self.prev_visited_nodes}")
         self.topologic_graph.print_graph(robot_pose)
 
+        # new node explored
         if self.topologic_graph.visited_nodes() > self.prev_visited_nodes:
             reward += 3
+
+        # new edge explored -> reward += 0.5
 
         # collision
         collision = False
