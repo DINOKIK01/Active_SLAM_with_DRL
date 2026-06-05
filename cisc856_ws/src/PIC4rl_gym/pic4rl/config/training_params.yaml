@@ -6,11 +6,11 @@ training_params:
     # --show-progress: True # Call ``render`` function during training
     --save-model-interval: 500 # (int) Interval to save model. The default is ``int(1e4)``
     --save-summary-interval: 500 # (int) Interval to save summary. The default is ``int(1e3)``
-    --model-dir: 'src/Results/test1'
+    --model-dir: 'src/Results/v1'
     #--model-dir: 'src/Results/info_map_v1/20260320_224123.362282_lidar_SAC/20260320T224123.676668_SAC_' # (str) Directory to restore model.
 #    --dir-suffix: ""  # (str) Suffix for directory that stores results.
 #    --normalize-obs: # Whether normalize observation
-    --logdir: 'src/Results/test1' # (str) Output directory name. The default is ``"results"`` (it is relative to workspace directory).
+    --logdir: 'src/Results/v1' # (str) Output directory name. The default is ``"results"`` (it is relative to workspace directory).
 
 # ENABLE TESTING MODE    
     #--evaluate: True # THIS FLAG ENABLE TESTING MODE

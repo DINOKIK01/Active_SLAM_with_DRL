@@ -145,8 +145,10 @@ class Pic4rlEnvironmentLidar(Node):
         if self.mode == "testing":
             self.nav_metrics = Navigation_Metrics(self.logdir)
         self.get_logger().debug("PIC4RL_Environment: Starting process")
+
         self.prev_known = 0
         self.prev_min_dist = 5
+        self.prev_visited_nodes = 0
 
     def step(self, action, episode_step=0):
         """ """
@@ -194,6 +196,7 @@ class Pic4rlEnvironmentLidar(Node):
 
             self.prev_known = curr_known
             self.prev_min_dist = np.min(lidar_measurements)
+            self.prev_visited_nodes = self.topologic_graph.visited_nodes()
 
             self.get_logger().debug("getting observation...")
             observation = self.get_observation(
@@ -314,7 +317,11 @@ class Pic4rlEnvironmentLidar(Node):
         info_gain = total_known - self.prev_known
         coverage = np.round(100 * total_known / self.max_known, 4)
         print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{coverage}%")
+        print(f"================ Previous visited nodes:{self.prev_visited_nodes}")
         self.topologic_graph.print_graph(robot_pose)
+
+        if self.topologic_graph.visited_nodes() > self.prev_visited_nodes:
+            reward += 3
 
         # collision
         collision = False
@@ -547,6 +554,7 @@ class Pic4rlEnvironmentLidar(Node):
 
         self.prev_known = 0
         self.prev_min_dist = 5
+        self.prev_visited_nodes = 0
 
         if self.episode % self.change_episode == 0.0 or self.evaluate:
             self.index = int(np.random.uniform() * len(self.poses)) - 1

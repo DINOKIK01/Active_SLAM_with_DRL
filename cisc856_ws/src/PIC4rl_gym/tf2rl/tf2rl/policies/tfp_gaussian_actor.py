@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import tensorflow_probability as tfp
-from tensorflow.keras.layers import Dense, Input
+from keras.layers import Dense, Input
 layers = tf.keras.layers
 
 

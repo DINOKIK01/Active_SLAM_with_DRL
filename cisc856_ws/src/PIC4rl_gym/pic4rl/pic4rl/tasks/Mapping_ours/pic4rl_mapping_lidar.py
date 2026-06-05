@@ -127,7 +127,7 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
             low=self.low_state, high=self.high_state, dtype=np.float32
         )
         # Set Epsilon-greedy starting value for exploration policy (minimum 0.05)
-        epsilon = 0.6
+        epsilon = 0.2
         
 
         self.print_log()
@@ -218,7 +218,7 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
                     memory_capacity=self.memory_capacity,
                     epsilon=self.epsilon,
                     epsilon_decay=0.996,
-                    epsilon_min=0.05,
+                    epsilon_min=0,
                     log_level=self.log_level,
                 )
                 self.get_logger().info("Instantiate SAC agent...")
