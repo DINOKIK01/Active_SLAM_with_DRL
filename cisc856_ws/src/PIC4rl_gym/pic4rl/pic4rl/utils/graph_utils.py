@@ -624,7 +624,7 @@ def classify(dist, wall_threshold, free_threshold):
         return EdgeState.UNKNOWN
 
 def step_count_sigmoid(step_count):
-    return 1 / (1 + np.exp(-0.9 * (step_count - 15)))
+    return 1 / (1 + np.exp(-0.9 * (step_count - 20)))
 
 def reentry_sigmoid(reentries):
-    return 1 / (1 + np.exp(-1.5 * (reentries - 4.5)))
+    return 1 / (1 + np.exp(-1.5 * (reentries - 2.5)))

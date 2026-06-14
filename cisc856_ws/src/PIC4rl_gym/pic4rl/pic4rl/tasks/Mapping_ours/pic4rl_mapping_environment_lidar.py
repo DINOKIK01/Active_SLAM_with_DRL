@@ -345,13 +345,13 @@ class Pic4rlEnvironmentLidar(Node):
 
         # too much steps in one node
         step_count = self.topologic_graph.get_step_count(robot_pose)
-        if step_count == 15:
+        if step_count == 20:
             reward -= 0.5
 
         # too many reentries into one node
         reentries = self.topologic_graph.get_reentries(robot_pose)
-        if reentries > self.prev_reentries and reentries >= 4:
-            reward -= 1
+        if reentries > self.prev_reentries and reentries >= 2:
+            reward -= 1.5
 
         # coverage gain
         
@@ -379,6 +379,11 @@ class Pic4rlEnvironmentLidar(Node):
         if current_coverage >= 0.97 :
             reward += max_known_reward
             covered = True
+
+        # timout penalty
+        if self.episode_step == self.timeout_steps:
+            reward -= 20
+            print("================ Maximal steps reached! Timout penalty applied")
 
         print(f"================ Current Coverage: {current_coverage}, Coverage Gains: {coverage_gain}, Reward: {reward}, Episode Step:{self.episode_step}")
         return reward, total_known, covered
