@@ -23,7 +23,7 @@ from ament_index_python.packages import get_package_share_directory
 from pic4rl.sensors import Sensors
 from pic4rl.utils.env_utils import *
 from pic4rl.testing.nav_metrics import Navigation_Metrics
-from pic4rl.utils.graph_utils import GraphMap, update_graph_from_lidar
+from pic4rl.utils.graph_utils import GraphMap, update_graph_from_lidar, step_count_sigmoid, reentry_sigmoid
 
 
 class Pic4rlEnvironmentLidar(Node):
@@ -149,6 +149,9 @@ class Pic4rlEnvironmentLidar(Node):
         self.prev_known = 0
         self.prev_min_dist = 5
         self.prev_visited_nodes = 0
+        self.prev_discovered_edges = 0
+        self.prev_reentries = 0
+        self.no_progress_steps = 0
 
     def step(self, action, episode_step=0):
         """ """
@@ -158,7 +161,10 @@ class Pic4rlEnvironmentLidar(Node):
         self.episode_step = episode_step
 
         observation, reward, done = self._step(twist)
-        info = {"coverage":observation[0] }#TODO
+        node_coverage = self.topologic_graph.visited_nodes() / self.topologic_graph.total_nodes()
+        edge_coverage = self.topologic_graph.discovered_edges() / self.topologic_graph.total_edges()
+        
+        info = {"node_coverage":node_coverage,"edge_coverage":edge_coverage}
 
         return observation, reward, done, info
 
@@ -197,11 +203,19 @@ class Pic4rlEnvironmentLidar(Node):
             self.prev_known = curr_known
             self.prev_min_dist = np.min(lidar_measurements)
             self.prev_visited_nodes = self.topologic_graph.visited_nodes()
+            self.prev_discovered_edges = self.topologic_graph.discovered_edges()
+            self.prev_reentries = self.topologic_graph.get_reentries(robot_pose)
 
             self.get_logger().debug("getting observation...")
             observation = self.get_observation(
                 twist, lidar_measurements, goal_info, robot_pose, velocities, og_map
             )
+            new_edges = self.topologic_graph.discovered_edges() - self.prev_discovered_edges
+            new_nodes = self.topologic_graph.visited_nodes() - self.prev_visited_nodes
+            if new_edges == 0 and new_nodes == 0:
+                self.no_progress_steps += 1
+            else:
+                self.no_progress_steps = 0
         else:
             reward = None
             observation = None
@@ -306,36 +320,67 @@ class Pic4rlEnvironmentLidar(Node):
     def get_reward(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
         covered = False
         collision_penalty = -50
-        max_known_reward = 100
+        max_known_reward = 50
         reward = 0.0
 
         #info gain
         total_known = 0
-        for cell in og_map:
-            if cell == 0 or cell == 1:
-                total_known += 1
-        info_gain = total_known - self.prev_known
-        coverage = np.round(100 * total_known / self.max_known, 4)
-        print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{coverage}%")
-        print(f"================ Previous visited nodes:{self.prev_visited_nodes}")
+        #for cell in og_map:
+        #    if cell == 0 or cell == 1:
+        #        total_known += 1
+        #info_gain = total_known - self.prev_known
+        #coverage = np.round(100 * total_known / self.max_known, 4)
+        #print(f"================ Total known:{total_known}, Prev known:{self.prev_known}, Coverage:{coverage}%")
+        print(f"================ Previous visited nodes:{self.prev_visited_nodes}, Previous discovered edges:{self.prev_discovered_edges}")
+        print(f"================ Visited nodes: {self.topologic_graph.visited_nodes()}, Visited edges: {self.topologic_graph.discovered_edges()}")
         self.topologic_graph.print_graph(robot_pose)
 
         # new node explored
-        if self.topologic_graph.visited_nodes() > self.prev_visited_nodes:
-            reward += 3
+        #if self.topologic_graph.visited_nodes() > self.prev_visited_nodes:
+        #    reward += 3
 
         # new edge explored -> reward += 0.5
+        #if self.topologic_graph.discovered_edges() > self.prev_discovered_edges:
+        #    reward += 0.5
+
+        # too much steps in one node
+        step_count = self.topologic_graph.get_step_count(robot_pose)
+        if step_count == 15:
+            reward -= 0.5
+
+        # too many reentries into one node
+        reentries = self.topologic_graph.get_reentries(robot_pose)
+        if reentries > self.prev_reentries and reentries >= 4:
+            reward -= 1
+
+        # coverage gain
+        
+        prev_node_coverage = self.prev_visited_nodes / self.topologic_graph.total_nodes()
+        prev_edge_coverage = self.prev_discovered_edges / self.topologic_graph.total_edges()
+        prev_coverage = 0.7 * prev_node_coverage + 0.3 * prev_edge_coverage
+
+        current_node_coverage = self.topologic_graph.visited_nodes() / self.topologic_graph.total_nodes()
+        current_edge_coverage = self.topologic_graph.discovered_edges() / self.topologic_graph.total_edges()
+        current_coverage = 0.7 * current_node_coverage + 0.3 * current_edge_coverage
+
+        coverage_gain = current_coverage - prev_coverage
+        reward += 200 * coverage_gain
 
         # collision
         collision = False
         if event == "collision":
             reward += collision_penalty
+            #efficiency_bonus = 25 * current_coverage * min(1.0, 200 / self.episode_step)
+            #reward += efficiency_bonus
             collision = True
         
         # coverage
-        if total_known >= 0.97 * self.max_known:
+        #if total_known >= 0.97 * self.max_known:
+        if current_coverage >= 0.97 :
             reward += max_known_reward
             covered = True
+
+        print(f"================ Current Coverage: {current_coverage}, Coverage Gains: {coverage_gain}, Reward: {reward}, Episode Step:{self.episode_step}")
         return reward, total_known, covered
 
     def get_reward_v2(self, twist, lidar_measurements, goal_info, robot_pose, done, event, og_map):
@@ -469,10 +514,10 @@ class Pic4rlEnvironmentLidar(Node):
         """ """
         # Coverage
         total_known = 0
-        for cell in og_map:
-            if cell == 0 or cell == 1:
-                total_known += 1
-        map_coverage = total_known / self.max_known
+        #for cell in og_map:
+        #    if cell == 0 or cell == 1:
+        #        total_known += 1
+        #map_coverage = total_known / self.max_known
 
         # normed distances
         #front_norm, left_norm, back_norm, right_norm, min_norm = compute_normed_distances(lidar_measurements)
@@ -480,6 +525,14 @@ class Pic4rlEnvironmentLidar(Node):
         # discrete maze map
         #self.info_map = update_info_map(self.info_map, robot_pose)
         update_graph_from_lidar(self.topologic_graph, robot_pose, lidar_measurements)
+
+        edge_status = self.topologic_graph.get_edge_status(robot_pose)
+        neighbor_status = self.topologic_graph.get_neighbor_status(robot_pose)
+        step_counts = [
+            step_count_sigmoid(self.topologic_graph.get_step_count(robot_pose)),
+            reentry_sigmoid(self.topologic_graph.get_reentries(robot_pose))
+        ]
+        print(f"=================== step count: {self.topologic_graph.get_step_count(robot_pose)}, reentries:{self.topologic_graph.get_reentries(robot_pose)}")
 
         #old state design
         #state_list = goal_info
@@ -489,7 +542,10 @@ class Pic4rlEnvironmentLidar(Node):
         state = np.concatenate([
             np.asarray(lidar_measurements, dtype=np.float32),
             np.asarray(robot_pose, dtype=np.float32),
-            np.asarray(velocities, dtype=np.float32)
+            np.asarray(velocities, dtype=np.float32),
+            np.asarray(edge_status, dtype=np.float32),
+            np.asarray(neighbor_status, dtype=np.float32),
+            np.asarray(step_counts, dtype=np.float32),
         ])
 
         return state
@@ -558,6 +614,9 @@ class Pic4rlEnvironmentLidar(Node):
         self.prev_known = 0
         self.prev_min_dist = 5
         self.prev_visited_nodes = 0
+        self.prev_discovered_edges = 0
+        self.prev_reentries = 0
+        self.no_progress_steps = 0
 
         if self.episode % self.change_episode == 0.0 or self.evaluate:
             self.index = int(np.random.uniform() * len(self.poses)) - 1

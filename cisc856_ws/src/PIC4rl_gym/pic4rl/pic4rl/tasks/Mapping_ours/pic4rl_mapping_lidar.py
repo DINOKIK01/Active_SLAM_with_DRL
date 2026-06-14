@@ -110,6 +110,13 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
         ] + [
             (self.min_lin_vel, self.max_lin_vel),  # lin vel
             (self.min_ang_vel, self.max_ang_vel),  # ang vel
+        ] + [
+            (-1.0, 1.0) for _ in range(4) # edge values (blocked, unknown, free)
+        ] + [
+            (0.0, 1.0) for _ in range(4) # visited status in direction
+        ] + [
+            (0.0, 1.0), # steps after node entry normed to [0,1]
+            (0.0, 1.0), # amount of entries into current node normed to [0,1]
         ]
 
 
@@ -127,7 +134,7 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
             low=self.low_state, high=self.high_state, dtype=np.float32
         )
         # Set Epsilon-greedy starting value for exploration policy (minimum 0.05)
-        epsilon = 0.2
+        epsilon = 0.07
         
 
         self.print_log()

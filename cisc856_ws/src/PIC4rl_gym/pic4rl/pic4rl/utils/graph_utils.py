@@ -15,7 +15,8 @@ class Node:
         self.y = y
 
         self.visited = False
-        self.visit_count = 0
+        self.reentry_count = 0
+        self.steps_since_entry = 0
 
         # edges: N, E, S, W
         self.edges = {
@@ -95,9 +96,109 @@ class GraphMap:
             node.visited = True
             node.visit_count += 1
 
+    def update_visit_state(self, i, j):
+        node = self.get_node(i, j)
+        if node is None:
+            return
+
+        if not node.visited:
+            node.visited = True
+            node.reentry_count = 0
+            node.steps_since_entry = 0
+        else:
+            node.reentry_count += 1
+            node.steps_since_entry = 0            
+
+    def increment_step_counter(self, i, j):
+        node = self.get_node(i, j)
+
+        if node is not None:
+            node.steps_since_entry += 1
+
     # -----------------------------
     # Graph Features
     # -----------------------------
+    def get_edge_status(self, robot_pose):
+        i, j = get_coordinates(robot_pose)
+        node = self.get_node(i, j)
+        if node is None:
+            return [0, 0, 0, 0]
+
+        mapping = {
+            EdgeState.BLOCKED: -1,
+            EdgeState.UNKNOWN: 0,
+            EdgeState.FREE: 1,
+        }
+
+        return [
+            mapping[node.edges["N"]],
+            mapping[node.edges["E"]],
+            mapping[node.edges["S"]],
+            mapping[node.edges["W"]],
+        ]
+    
+    def get_neighbor_status(self, robot_pose):
+        i, j = get_coordinates(robot_pose)
+
+        node = self.get_node(i, j)
+        if node is None:
+            return [0, 0, 0, 0]
+
+        status = []
+
+        for direction in ["N", "E", "S", "W"]:
+            neighbor = self.get_neighbor(node, direction)
+
+            if neighbor is not None and neighbor.visited:
+                status.append(1)
+            else:
+                status.append(0)
+
+        return status
+    
+    def total_edges(self):
+        return self.width * self.height * 4
+    
+    def discovered_edges(self):
+        count = 0
+
+        for row in self.nodes:
+            for node in row:
+                for state in node.edges.values():
+                    if state != EdgeState.UNKNOWN:
+                        count += 1
+
+        return count
+    
+    def get_current_visit_count(self, robot_pose):
+        i, j = get_coordinates(robot_pose)
+
+        node = self.get_node(i, j)
+
+        if node is None:
+            return 0
+        
+        return node.visit_count
+
+    def get_step_count(self, robot_pose):
+        i, j = get_coordinates(robot_pose)
+        node = self.get_node(i, j)
+
+        if node is None:
+            return 0
+
+        return node.steps_since_entry
+    
+    def get_reentries(self, robot_pose):
+        i, j = get_coordinates(robot_pose)
+        node = self.get_node(i, j)
+
+        if node is None:
+            return 0
+
+        return node.reentry_count
+    
+
     def get_unvisited_neighbors(self, node):
         count = 0
         for d, state in node.edges.items():
@@ -160,7 +261,8 @@ class GraphMap:
         RESET = "\033[0m"
         BLUE = "\033[94m"
 
-        current = self.get_node(robot_pose[0], robot_pose[1])
+        i, j = get_coordinates(robot_pose)
+        current = self.get_node(i, j)
 
         def node_str(node, current=None):
             if current and node.x == current.x and node.y == current.y:
@@ -265,7 +367,10 @@ def update_graph_from_lidar(
     # -----------------------------
     # 2. Node als besucht markieren
     # -----------------------------
-    graph.visit_node(i, j)
+    last_x, last_y = graph.last_position
+    if i != last_x or j != last_y:
+        graph.update_visit_state(i, j)
+    graph.increment_step_counter(i, j)
 
     # -----------------------------
     # 3. Node Transition updaten
@@ -518,3 +623,8 @@ def classify(dist, wall_threshold, free_threshold):
     else:
         return EdgeState.UNKNOWN
 
+def step_count_sigmoid(step_count):
+    return 1 / (1 + np.exp(-0.9 * (step_count - 15)))
+
+def reentry_sigmoid(reentries):
+    return 1 / (1 + np.exp(-1.5 * (reentries - 4.5)))
