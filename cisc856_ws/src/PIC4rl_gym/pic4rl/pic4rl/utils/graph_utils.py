@@ -118,11 +118,7 @@ class GraphMap:
     # -----------------------------
     # Graph Features
     # -----------------------------
-    def get_edge_status(self, robot_pose):
-        i, j = get_coordinates(robot_pose)
-        node = self.get_node(i, j)
-        if node is None:
-            return [0, 0, 0, 0]
+    def get_edge_status(self, robot_pose, radius=0):
 
         mapping = {
             EdgeState.BLOCKED: -1,
@@ -130,31 +126,134 @@ class GraphMap:
             EdgeState.FREE: 1,
         }
 
-        return [
-            mapping[node.edges["N"]],
-            mapping[node.edges["E"]],
-            mapping[node.edges["S"]],
-            mapping[node.edges["W"]],
-        ]
-    
-    def get_neighbor_status(self, robot_pose):
-        i, j = get_coordinates(robot_pose)
+        if radius == 0:
+            i, j = get_coordinates(robot_pose)
+            node = self.get_node(i, j)
+            if node is None:
+                return [0, 0, 0, 0]
 
-        node = self.get_node(i, j)
-        if node is None:
-            return [0, 0, 0, 0]
+            return [
+                mapping[node.edges["N"]],
+                mapping[node.edges["E"]],
+                mapping[node.edges["S"]],
+                mapping[node.edges["W"]],
+            ]
+        elif radius == 1:
+            i, j = get_coordinates(robot_pose)
+            node = self.get_node(i, j)
+            if node is None:
+                return [0 for _ in range(12)]
+            node_n = self.get_neighbor(node, "N")
+            node_e = self.get_neighbor(node, "E")
+            node_s = self.get_neighbor(node, "S")
+            node_w = self.get_neighbor(node, "W")
 
-        status = []
+            edges_n = []
+            edges_e = []
+            edges_s = []
+            edges_w = []
 
-        for direction in ["N", "E", "S", "W"]:
-            neighbor = self.get_neighbor(node, direction)
-
-            if neighbor is not None and neighbor.visited:
-                status.append(1)
+            if node_n is None:
+                edges_n = [
+                    0,
+                    mapping[node.edges["N"]],
+                    0,
+                ]
             else:
-                status.append(0)
+                edges_n = [
+                    mapping[node_n.edges["E"]],
+                    mapping[node_n.edges["S"]],
+                    mapping[node_n.edges["W"]],
+                ]
+            if node_e is None:
+                edges_e = [
+                    0,
+                    mapping[node.edges["E"]],
+                    0,
+                ]
+            else:
+                edges_e = [
+                    mapping[node_e.edges["N"]],
+                    mapping[node_e.edges["S"]],
+                    mapping[node_e.edges["W"]],
+                ]
+            if node_s is None:
+                edges_s = [
+                    0,
+                    mapping[node.edges["S"]],
+                    0,
+                ]
+            else:
+                edges_s = [
+                    mapping[node_s.edges["N"]],
+                    mapping[node_s.edges["E"]],
+                    mapping[node_s.edges["W"]],
+                ]
+            if node_w is None:
+                edges_w = [
+                    0,
+                    mapping[node.edges["W"]],
+                    0,
+                ]
+            else:
+                edges_w = [
+                    mapping[node_w.edges["N"]],
+                    mapping[node_w.edges["E"]],
+                    mapping[node_w.edges["S"]],
+                ]
 
-        return status
+
+            return edges_n + edges_e + edges_s + edges_w
+            
+    
+    def get_neighbor_status(self, robot_pose, radius=0):
+
+        i, j = get_coordinates(robot_pose)
+        node = self.get_node(i, j)
+        
+        if radius == 0:
+            if node is None:
+                return [0, 0, 0, 0]
+
+            status = []
+
+            for direction in ["N", "E", "S", "W"]:
+                neighbor = self.get_neighbor(node, direction)
+
+                if neighbor is not None and neighbor.visited:
+                    status.append(1)
+                else:
+                    status.append(0)
+
+            return status
+        elif radius == 1:
+            if node is None:
+                return [0 for _ in range(9)]
+            node_n = self.get_neighbor(node, "N")
+            node_e = self.get_neighbor(node, "E")
+            node_s = self.get_neighbor(node, "S")
+            node_w = self.get_neighbor(node, "W")
+
+            status = []
+            neighbors = [
+                self.get_neighbor(node_n,"W"),
+                node_n,
+                self.get_neighbor(node_n,"E"),
+                self.get_neighbor(node,"W"),
+                node,
+                self.get_neighbor(node,"E"),
+                self.get_neighbor(node_s,"W"),
+                node_s,
+                self.get_neighbor(node_s,"E"),
+            ]
+            for neighbor in neighbors:
+                if neighbor is not None and neighbor.visited:
+                    status.append(1)
+                else:
+                    status.append(0)
+            return status
+
+
     
     def total_edges(self):
         return self.width * self.height * 4
