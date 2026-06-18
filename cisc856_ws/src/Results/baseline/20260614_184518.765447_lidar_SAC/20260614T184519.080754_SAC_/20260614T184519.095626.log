@@ -1,0 +1,303 @@
+18:45:19.095 [DEBUG] (trainer.py:107) Try to restore model
+18:45:41.544 [INFO] (trainer.py:173) Total Epi:       1 Steps:     210 Episode Steps:     210 Return: -39.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:    0.07 FPS:    9.36
+18:46:06.656 [INFO] (trainer.py:173) Total Epi:       2 Steps:     427 Episode Steps:     217 Return: -39.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:  0.06972 FPS:   10.03
+18:46:31.158 [INFO] (trainer.py:173) Total Epi:       3 Steps:     638 Episode Steps:     211 Return: -39.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:  0.06944112000000001 FPS:   10.02
+18:46:56.262 [INFO] (trainer.py:173) Total Epi:       4 Steps:     855 Episode Steps:     217 Return: -39.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:  0.06916335552000001 FPS:   10.02
+18:47:26.692 [INFO] (trainer.py:173) Total Epi:       5 Steps:    1009 Episode Steps:     154 Return: -39.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:  0.06888670209792001 FPS:    5.71
+18:47:54.004 [INFO] (trainer.py:173) Total Epi:       6 Steps:    1028 Episode Steps:      19 Return: -38.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:  0.06861115528952834 FPS:    0.79
+18:48:20.061 [INFO] (trainer.py:173) Total Epi:       7 Steps:    1046 Episode Steps:      18 Return: -38.4722 Coverage Node:  0.0556 Coverage Edge  0.0625 Eps:  0.06833671066837023 FPS:    0.79
+18:49:00.531 [INFO] (trainer.py:173) Total Epi:       8 Steps:    1075 Episode Steps:      29 Return: -33.3333 Coverage Node:  0.0833 Coverage Edge  0.0833 Eps:  0.06806336382569675 FPS:    0.79
+18:49:29.135 [INFO] (trainer.py:173) Total Epi:       9 Steps:    1095 Episode Steps:      20 Return: -34.1667 Coverage Node:  0.0833 Coverage Edge  0.0694 Eps:  0.06779111037039397 FPS:    0.79
+18:50:09.032 [INFO] (trainer.py:173) Total Epi:      10 Steps:    1124 Episode Steps:      29 Return: -38.8889 Coverage Node:  0.0556 Coverage Edge  0.0556 Eps:  0.06751994592891239 FPS:    0.79
+18:50:41.710 [INFO] (trainer.py:173) Total Epi:      11 Steps:    1147 Episode Steps:      23 Return: -34.1667 Coverage Node:  0.0833 Coverage Edge  0.0694 Eps:  0.06724986614519674 FPS:    0.79
+18:51:37.964 [INFO] (trainer.py:173) Total Epi:      12 Steps:    1189 Episode Steps:      42 Return: -29.4444 Coverage Node:  0.1111 Coverage Edge  0.0833 Eps:  0.06698086668061595 FPS:    0.79
+18:52:22.891 [INFO] (trainer.py:173) Total Epi:      13 Steps:    1222 Episode Steps:      33 Return: -33.7500 Coverage Node:  0.0833 Coverage Edge  0.0764 Eps:  0.06671294321389348 FPS:    0.79
+18:52:47.177 [INFO] (trainer.py:173) Total Epi:      14 Steps:    1238 Episode Steps:      16 Return: -43.6111 Coverage Node:  0.0278 Coverage Edge  0.0417 Eps:  0.06644609144103791 FPS:    0.80
+18:53:37.133 [INFO] (trainer.py:173) Total Epi:      15 Steps:    1275 Episode Steps:      37 Return: -33.3333 Coverage Node:  0.0833 Coverage Edge  0.0833 Eps:  0.06618030707527377 FPS:    0.79
+18:54:03.186 [INFO] (trainer.py:173) Total Epi:      16 Steps:    1293 Episode Steps:      18 Return: -43.6111 Coverage Node:  0.0278 Coverage Edge  0.0417 Eps:  0.06591558584697267 FPS:    0.79
+18:55:18.890 [INFO] (trainer.py:173) Total Epi:      17 Steps:    1350 Episode Steps:      57 Return: -29.5278 Coverage Node:  0.1111 Coverage Edge  0.0903 Eps:  0.06565192350358479 FPS:    0.79
+18:59:59.229 [INFO] (trainer.py:173) Total Epi:      18 Steps:    1570 Episode Steps:     220 Return: -32.1111 Coverage Node:  0.1111 Coverage Edge  0.0972 Eps:  0.06538931580957044 FPS:    0.79
+19:01:29.440 [INFO] (trainer.py:173) Total Epi:      19 Steps:    1639 Episode Steps:      69 Return: -44.1111 Coverage Node:  0.0278 Coverage Edge  0.0417 Eps:  0.06512775854633215 FPS:    0.79
+19:06:25.260 [INFO] (trainer.py:173) Total Epi:      20 Steps:    1871 Episode Steps:     232 Return: -44.1111 Coverage Node:  0.0278 Coverage Edge  0.0417 Eps:  0.06486724751214683 FPS:    0.79
+19:10:54.195 [INFO] (trainer.py:173) Total Epi:      21 Steps:    2082 Episode Steps:     211 Return: -43.3889 Coverage Node:  0.0556 Coverage Edge  0.0556 Eps:  0.06460777852209824 FPS:    0.79
+19:23:28.811 [INFO] (trainer.py:173) Total Epi:      22 Steps:    2679 Episode Steps:     597 Return: -8.1944 Coverage Node:  0.2778 Coverage Edge  0.2569 Eps:  0.06434934740800985 FPS:    0.79
+19:32:08.188 [INFO] (trainer.py:173) Total Epi:      23 Steps:    3089 Episode Steps:     410 Return:  9.6667 Coverage Node:  0.3333 Coverage Edge  0.2917 Eps:  0.06409195001837781 FPS:    0.79
+19:46:32.320 [INFO] (trainer.py:173) Total Epi:      24 Steps:    3773 Episode Steps:     684 Return: -32.1389 Coverage Node:  0.2222 Coverage Edge  0.1875 Eps:  0.0638355822183043 FPS:    0.79
+20:28:33.276 [INFO] (trainer.py:173) Total Epi:      25 Steps:    5773 Episode Steps:    2000 Return: -22.9167 Coverage Node:  0.3333 Coverage Edge  0.2569 Eps:  0.06358023988943108 FPS:    0.79
+20:40:47.848 [INFO] (trainer.py:173) Total Epi:      26 Steps:    6354 Episode Steps:     581 Return:  9.9722 Coverage Node:  0.3611 Coverage Edge  0.2986 Eps:  0.06332591892987335 FPS:    0.79
+21:07:30.973 [INFO] (trainer.py:173) Total Epi:      27 Steps:    7625 Episode Steps:    1271 Return: -29.0556 Coverage Node:  0.3889 Coverage Edge  0.3750 Eps:  0.06307261525415386 FPS:    0.79
+21:12:12.465 [INFO] (trainer.py:173) Total Epi:      28 Steps:    7846 Episode Steps:     221 Return: -20.3333 Coverage Node:  0.1667 Coverage Edge  0.1389 Eps:  0.06282032479313725 FPS:    0.79
+21:42:11.877 [INFO] (trainer.py:173) Total Epi:      29 Steps:    9273 Episode Steps:    1427 Return: -37.3611 Coverage Node:  0.3611 Coverage Edge  0.3264 Eps:  0.0625690434939647 FPS:    0.79
+21:57:39.166 [INFO] (trainer.py:173) Total Epi:      30 Steps:   10007 Episode Steps:     734 Return: -2.4722 Coverage Node:  0.3056 Coverage Edge  0.2708 Eps:  0.06231876731998883 FPS:    0.79
+22:12:46.151 [INFO] (trainer.py:173) Total Epi:      31 Steps:   10725 Episode Steps:     718 Return: -4.8889 Coverage Node:  0.3056 Coverage Edge  0.2222 Eps:  0.062069492250708874 FPS:    0.79
+22:31:10.963 [INFO] (trainer.py:173) Total Epi:      32 Steps:   11600 Episode Steps:     875 Return:  35.6667 Coverage Node:  0.5000 Coverage Edge  0.4444 Eps:  0.06182121428170604 FPS:    0.79
+22:32:31.121 [INFO] (trainer.py:173) Total Epi:      33 Steps:   11661 Episode Steps:      61 Return: -33.9167 Coverage Node:  0.0833 Coverage Edge  0.0903 Eps:  0.06157392942457922 FPS:    0.79
+22:43:07.594 [INFO] (trainer.py:173) Total Epi:      34 Steps:   12164 Episode Steps:     503 Return: -1.6389 Coverage Node:  0.3056 Coverage Edge  0.2847 Eps:  0.0613276337068809 FPS:    0.79
+22:43:55.030 [INFO] (trainer.py:173) Total Epi:      35 Steps:   12199 Episode Steps:      35 Return: -34.2500 Coverage Node:  0.0833 Coverage Edge  0.0764 Eps:  0.06108232317205338 FPS:    0.79
+23:01:52.067 [INFO] (trainer.py:173) Total Epi:      36 Steps:   13052 Episode Steps:     853 Return:  38.6944 Coverage Node:  0.5556 Coverage Edge  0.4653 Eps:  0.060837993879365164 FPS:    0.79
+23:04:39.038 [INFO] (trainer.py:173) Total Epi:      37 Steps:   13182 Episode Steps:     130 Return: -21.1667 Coverage Node:  0.1667 Coverage Edge  0.1250 Eps:  0.0605946419038477 FPS:    0.79
+23:14:55.413 [INFO] (trainer.py:173) Total Epi:      38 Steps:   13669 Episode Steps:     487 Return:  26.4722 Coverage Node:  0.4444 Coverage Edge  0.3542 Eps:  0.06035226333623231 FPS:    0.79
+23:28:44.475 [INFO] (trainer.py:173) Total Epi:      39 Steps:   14325 Episode Steps:     656 Return:  5.0556 Coverage Node:  0.3611 Coverage Edge  0.3333 Eps:  0.06011085428288738 FPS:    0.79
+23:38:49.541 [INFO] (trainer.py:173) Total Epi:      40 Steps:   14803 Episode Steps:     478 Return:  22.9167 Coverage Node:  0.4167 Coverage Edge  0.3264 Eps:  0.05987041086575583 FPS:    0.79
+23:53:59.804 [INFO] (trainer.py:173) Total Epi:      41 Steps:   15523 Episode Steps:     720 Return:  5.1667 Coverage Node:  0.4167 Coverage Edge  0.3472 Eps:  0.0596309292222928 FPS:    0.79
+00:08:10.266 [INFO] (trainer.py:173) Total Epi:      42 Steps:   16196 Episode Steps:     673 Return:  26.2778 Coverage Node:  0.4722 Coverage Edge  0.4028 Eps:  0.05939240550540363 FPS:    0.79
+00:25:29.676 [INFO] (trainer.py:173) Total Epi:      43 Steps:   17019 Episode Steps:     823 Return: -18.9722 Coverage Node:  0.3889 Coverage Edge  0.3264 Eps:  0.059154835883382016 FPS:    0.79
+00:44:42.128 [INFO] (trainer.py:173) Total Epi:      44 Steps:   17932 Episode Steps:     913 Return: -35.5833 Coverage Node:  0.3333 Coverage Edge  0.3125 Eps:  0.05891821653984849 FPS:    0.79
+00:51:47.329 [INFO] (trainer.py:173) Total Epi:      45 Steps:   18267 Episode Steps:     335 Return: -2.3611 Coverage Node:  0.2778 Coverage Edge  0.2292 Eps:  0.058682543673689094 FPS:    0.79
+00:55:59.863 [INFO] (trainer.py:173) Total Epi:      46 Steps:   18465 Episode Steps:     198 Return: -0.1944 Coverage Node:  0.2778 Coverage Edge  0.2153 Eps:  0.05844781349899434 FPS:    0.79
+01:15:22.648 [INFO] (trainer.py:173) Total Epi:      47 Steps:   19386 Episode Steps:     921 Return:  22.1667 Coverage Node:  0.5000 Coverage Edge  0.4444 Eps:  0.058214022244998366 FPS:    0.79
+01:23:59.666 [INFO] (trainer.py:173) Total Epi:      48 Steps:   19794 Episode Steps:     408 Return: -1.6111 Coverage Node:  0.2778 Coverage Edge  0.2500 Eps:  0.05798116615601837 FPS:    0.79
+01:28:22.313 [INFO] (trainer.py:265) Testing Episode 1
+02:10:10.704 [INFO] (trainer.py:265) Testing Episode 2
+02:51:59.687 [INFO] (trainer.py:207) Evaluation Total Steps:   20000 Average Reward -31.1250 over  2 episodes
+03:02:56.658 [INFO] (trainer.py:173) Total Epi:      49 Steps:   20519 Episode Steps:     725 Return:  30.5000 Coverage Node:  0.3333 Coverage Edge  0.3056 Eps:  0.0577492414913943 FPS:    0.12
+03:26:39.224 [INFO] (trainer.py:173) Total Epi:      50 Steps:   21646 Episode Steps:    1127 Return: -6.6389 Coverage Node:  0.4722 Coverage Edge  0.4375 Eps:  0.057518244525428724 FPS:    0.79
+03:47:36.467 [INFO] (trainer.py:173) Total Epi:      51 Steps:   22642 Episode Steps:     996 Return:  7.4167 Coverage Node:  0.5000 Coverage Edge  0.4236 Eps:  0.05728817154732701 FPS:    0.79
+04:08:22.420 [INFO] (trainer.py:173) Total Epi:      52 Steps:   23629 Episode Steps:     987 Return:  12.2778 Coverage Node:  0.4722 Coverage Edge  0.4444 Eps:  0.0570590188611377 FPS:    0.79
+04:17:30.960 [INFO] (trainer.py:173) Total Epi:      53 Steps:   24062 Episode Steps:     433 Return:  29.5556 Coverage Node:  0.4722 Coverage Edge  0.3611 Eps:  0.056830782785693146 FPS:    0.79
+04:53:49.760 [INFO] (trainer.py:173) Total Epi:      54 Steps:   25790 Episode Steps:    1728 Return: -59.5000 Coverage Node:  0.4167 Coverage Edge  0.4444 Eps:  0.056603459654550374 FPS:    0.79
+04:55:43.919 [INFO] (trainer.py:173) Total Epi:      55 Steps:   25878 Episode Steps:      88 Return: -23.5556 Coverage Node:  0.1389 Coverage Edge  0.1250 Eps:  0.05637704581593217 FPS:    0.79
+05:22:30.139 [INFO] (trainer.py:173) Total Epi:      56 Steps:   27151 Episode Steps:    1273 Return: -44.0000 Coverage Node:  0.4167 Coverage Edge  0.4028 Eps:  0.05615153763266844 FPS:    0.79
+05:49:12.322 [INFO] (trainer.py:173) Total Epi:      57 Steps:   28421 Episode Steps:    1270 Return:  12.4722 Coverage Node:  0.5278 Coverage Edge  0.4931 Eps:  0.055926931482137766 FPS:    0.79
+05:54:05.925 [INFO] (trainer.py:173) Total Epi:      58 Steps:   28651 Episode Steps:     230 Return: -20.6667 Coverage Node:  0.1667 Coverage Edge  0.1667 Eps:  0.055703223756209216 FPS:    0.79
+05:59:07.798 [INFO] (trainer.py:173) Total Epi:      59 Steps:   28888 Episode Steps:     237 Return:  19.5278 Coverage Node:  0.3889 Coverage Edge  0.2847 Eps:  0.05548041086118438 FPS:    0.79
+06:06:43.855 [INFO] (trainer.py:173) Total Epi:      60 Steps:   29247 Episode Steps:     359 Return:  14.8056 Coverage Node:  0.3611 Coverage Edge  0.3125 Eps:  0.05525848921773965 FPS:    0.79
+06:35:39.786 [INFO] (trainer.py:173) Total Epi:      61 Steps:   30623 Episode Steps:    1376 Return: -6.4444 Coverage Node:  0.5278 Coverage Edge  0.5278 Eps:  0.05503745526086869 FPS:    0.79
+06:39:54.840 [INFO] (trainer.py:173) Total Epi:      62 Steps:   30823 Episode Steps:     200 Return:  6.6111 Coverage Node:  0.3056 Coverage Edge  0.2639 Eps:  0.054817305439825215 FPS:    0.79
+06:55:35.060 [INFO] (trainer.py:173) Total Epi:      63 Steps:   31567 Episode Steps:     744 Return: -2.1944 Coverage Node:  0.3611 Coverage Edge  0.3125 Eps:  0.054598036218065915 FPS:    0.79
+07:01:05.593 [INFO] (trainer.py:173) Total Epi:      64 Steps:   31827 Episode Steps:     260 Return:  1.6389 Coverage Node:  0.3056 Coverage Edge  0.2847 Eps:  0.05437964407319365 FPS:    0.79
+07:16:35.885 [INFO] (trainer.py:173) Total Epi:      65 Steps:   32563 Episode Steps:     736 Return:  34.3333 Coverage Node:  0.5000 Coverage Edge  0.4722 Eps:  0.05416212549690087 FPS:    0.79
+07:21:51.345 [INFO] (trainer.py:173) Total Epi:      66 Steps:   32811 Episode Steps:     248 Return:  10.3333 Coverage Node:  0.3333 Coverage Edge  0.2778 Eps:  0.05394547699491327 FPS:    0.79
+07:24:15.963 [INFO] (trainer.py:173) Total Epi:      67 Steps:   32923 Episode Steps:     112 Return: -18.9167 Coverage Node:  0.1667 Coverage Edge  0.1458 Eps:  0.053729695086933614 FPS:    0.79
+07:32:29.189 [INFO] (trainer.py:173) Total Epi:      68 Steps:   33312 Episode Steps:     389 Return:  4.1944 Coverage Node:  0.3056 Coverage Edge  0.2986 Eps:  0.05351477630658588 FPS:    0.79
+07:45:10.534 [INFO] (trainer.py:173) Total Epi:      69 Steps:   33914 Episode Steps:     602 Return:  19.9167 Coverage Node:  0.4167 Coverage Edge  0.4236 Eps:  0.05330071720135954 FPS:    0.79
+07:53:18.729 [INFO] (trainer.py:173) Total Epi:      70 Steps:   34299 Episode Steps:     385 Return:  1.8889 Coverage Node:  0.2778 Coverage Edge  0.2917 Eps:  0.0530875143325541 FPS:    0.79
+07:58:34.620 [INFO] (trainer.py:173) Total Epi:      71 Steps:   34547 Episode Steps:     248 Return:  15.6389 Coverage Node:  0.3611 Coverage Edge  0.2847 Eps:  0.05287516427522388 FPS:    0.79
+08:11:04.623 [INFO] (trainer.py:173) Total Epi:      72 Steps:   35140 Episode Steps:     593 Return: -7.2222 Coverage Node:  0.3056 Coverage Edge  0.2917 Eps:  0.05266366361812298 FPS:    0.79
+08:14:31.905 [INFO] (trainer.py:173) Total Epi:      73 Steps:   35302 Episode Steps:     162 Return:  6.6111 Coverage Node:  0.3056 Coverage Edge  0.2639 Eps:  0.05245300896365049 FPS:    0.79
+08:21:00.743 [INFO] (trainer.py:173) Total Epi:      74 Steps:   35608 Episode Steps:     306 Return:  19.5278 Coverage Node:  0.3889 Coverage Edge  0.3264 Eps:  0.05224319692779589 FPS:    0.79
+09:03:02.604 [INFO] (trainer.py:173) Total Epi:      75 Steps:   37608 Episode Steps:    2000 Return: -34.0556 Coverage Node:  0.4722 Coverage Edge  0.4306 Eps:  0.052034224140084705 FPS:    0.79
+09:07:42.871 [INFO] (trainer.py:173) Total Epi:      76 Steps:   37828 Episode Steps:     220 Return:  3.3056 Coverage Node:  0.2778 Coverage Edge  0.2569 Eps:  0.05182608724352437 FPS:    0.79
+09:10:56.860 [INFO] (trainer.py:173) Total Epi:      77 Steps:   37979 Episode Steps:     151 Return: -9.0556 Coverage Node:  0.2222 Coverage Edge  0.1806 Eps:  0.05161878289455027 FPS:    0.79
+09:29:03.371 [INFO] (trainer.py:173) Total Epi:      78 Steps:   38839 Episode Steps:     860 Return:  10.8611 Coverage Node:  0.4722 Coverage Edge  0.4375 Eps:  0.051412307762972065 FPS:    0.79
+09:39:51.481 [INFO] (trainer.py:173) Total Epi:      79 Steps:   39351 Episode Steps:     512 Return:  1.9167 Coverage Node:  0.3333 Coverage Edge  0.3125 Eps:  0.05120665853192018 FPS:    0.79
+09:52:44.471 [INFO] (trainer.py:173) Total Epi:      80 Steps:   39962 Episode Steps:     611 Return:  47.9444 Coverage Node:  0.5833 Coverage Edge  0.4583 Eps:  0.0510018318977925 FPS:    0.79
+09:53:35.724 [INFO] (trainer.py:265) Testing Episode 1
+10:00:48.241 [INFO] (trainer.py:265) Testing Episode 2
+10:42:36.797 [INFO] (trainer.py:207) Evaluation Total Steps:   40000 Average Reward  29.8333 over  2 episodes
+10:59:24.421 [INFO] (trainer.py:173) Total Epi:      81 Steps:   40797 Episode Steps:     835 Return:  33.5833 Coverage Node:  0.4167 Coverage Edge  0.4167 Eps:  0.05079782457020133 FPS:    0.21
+11:14:07.091 [INFO] (trainer.py:173) Total Epi:      82 Steps:   41495 Episode Steps:     698 Return:  30.6111 Coverage Node:  0.4722 Coverage Edge  0.4167 Eps:  0.05059463327192052 FPS:    0.79
+11:20:37.248 [INFO] (trainer.py:173) Total Epi:      83 Steps:   41802 Episode Steps:     307 Return:  7.7500 Coverage Node:  0.3333 Coverage Edge  0.2847 Eps:  0.05039225473883284 FPS:    0.79
+11:37:41.965 [INFO] (trainer.py:173) Total Epi:      84 Steps:   42613 Episode Steps:     811 Return:  20.6111 Coverage Node:  0.4722 Coverage Edge  0.4167 Eps:  0.05019068571987751 FPS:    0.79
+11:41:58.278 [INFO] (trainer.py:173) Total Epi:      85 Steps:   42814 Episode Steps:     201 Return:  8.3611 Coverage Node:  0.3056 Coverage Edge  0.2847 Eps:  0.049989922976998 FPS:    0.79
+11:57:32.990 [INFO] (trainer.py:173) Total Epi:      86 Steps:   43553 Episode Steps:     739 Return:  42.1111 Coverage Node:  0.5556 Coverage Edge  0.5139 Eps:  0.049789963285090014 FPS:    0.79
+12:09:52.983 [INFO] (trainer.py:173) Total Epi:      87 Steps:   44138 Episode Steps:     585 Return:  56.4167 Coverage Node:  0.5833 Coverage Edge  0.4792 Eps:  0.04959080343194965 FPS:    0.79
+12:16:24.044 [INFO] (trainer.py:173) Total Epi:      88 Steps:   44446 Episode Steps:     308 Return:  31.2222 Coverage Node:  0.4444 Coverage Edge  0.3750 Eps:  0.04939244021822185 FPS:    0.79
+12:22:54.558 [INFO] (trainer.py:173) Total Epi:      89 Steps:   44753 Episode Steps:     307 Return:  30.3889 Coverage Node:  0.4444 Coverage Edge  0.3611 Eps:  0.049194870457348966 FPS:    0.79
+12:30:38.951 [INFO] (trainer.py:173) Total Epi:      90 Steps:   45119 Episode Steps:     366 Return:  42.5000 Coverage Node:  0.5000 Coverage Edge  0.4167 Eps:  0.04899809097551957 FPS:    0.79
+12:57:07.997 [INFO] (trainer.py:173) Total Epi:      91 Steps:   46378 Episode Steps:    1259 Return:  46.7222 Coverage Node:  0.6944 Coverage Edge  0.6667 Eps:  0.04880209861161749 FPS:    0.79
+13:01:47.657 [INFO] (trainer.py:173) Total Epi:      92 Steps:   46597 Episode Steps:     219 Return:  7.0278 Coverage Node:  0.3056 Coverage Edge  0.2708 Eps:  0.04860689021717102 FPS:    0.79
+13:43:51.958 [INFO] (trainer.py:173) Total Epi:      93 Steps:   48597 Episode Steps:    2000 Return: -9.7500 Coverage Node:  0.5833 Coverage Edge  0.5764 Eps:  0.048412462656302335 FPS:    0.79
+14:22:00.919 [INFO] (trainer.py:173) Total Epi:      94 Steps:   50411 Episode Steps:    1814 Return:  14.1667 Coverage Node:  0.7500 Coverage Edge  0.6944 Eps:  0.04821881280567713 FPS:    0.79
+14:37:13.478 [INFO] (trainer.py:173) Total Epi:      95 Steps:   51132 Episode Steps:     721 Return:  47.1111 Coverage Node:  0.5556 Coverage Edge  0.4722 Eps:  0.04802593755445442 FPS:    0.79
+14:54:27.532 [INFO] (trainer.py:173) Total Epi:      96 Steps:   51950 Episode Steps:     818 Return: -26.1667 Coverage Node:  0.3333 Coverage Edge  0.3194 Eps:  0.0478338338042366 FPS:    0.79
+14:58:11.865 [INFO] (trainer.py:173) Total Epi:      97 Steps:   52125 Episode Steps:     175 Return:  4.2778 Coverage Node:  0.3056 Coverage Edge  0.2083 Eps:  0.047642498469019655 FPS:    0.79
+15:01:19.141 [INFO] (trainer.py:173) Total Epi:      98 Steps:   52271 Episode Steps:     146 Return:  0.4722 Coverage Node:  0.2778 Coverage Edge  0.2014 Eps:  0.047451928475143575 FPS:    0.79
+15:26:02.561 [INFO] (trainer.py:173) Total Epi:      99 Steps:   53445 Episode Steps:    1174 Return:  24.5833 Coverage Node:  0.6667 Coverage Edge  0.5625 Eps:  0.047262120761243 FPS:    0.79
+15:36:50.908 [INFO] (trainer.py:173) Total Epi:     100 Steps:   53957 Episode Steps:     512 Return:  55.6389 Coverage Node:  0.6111 Coverage Edge  0.4514 Eps:  0.04707307227819803 FPS:    0.79
+15:50:57.216 [INFO] (trainer.py:173) Total Epi:     101 Steps:   54626 Episode Steps:     669 Return: -4.6111 Coverage Node:  0.3611 Coverage Edge  0.3472 Eps:  0.04688477998908524 FPS:    0.79
+16:04:41.725 [INFO] (trainer.py:173) Total Epi:     102 Steps:   55278 Episode Steps:     652 Return:  66.1944 Coverage Node:  0.6389 Coverage Edge  0.6042 Eps:  0.046697240869128895 FPS:    0.79
+16:10:39.386 [INFO] (trainer.py:173) Total Epi:     103 Steps:   55559 Episode Steps:     281 Return:  4.7778 Coverage Node:  0.3056 Coverage Edge  0.2500 Eps:  0.04651045190565238 FPS:    0.79
+16:23:51.129 [INFO] (trainer.py:173) Total Epi:     104 Steps:   56185 Episode Steps:     626 Return: -12.8056 Coverage Node:  0.3056 Coverage Edge  0.2986 Eps:  0.04632441009802977 FPS:    0.79
+16:27:43.598 [INFO] (trainer.py:173) Total Epi:     105 Steps:   56367 Episode Steps:     182 Return:  7.0278 Coverage Node:  0.3056 Coverage Edge  0.2708 Eps:  0.046139112457637646 FPS:    0.79
+17:01:07.351 [INFO] (trainer.py:173) Total Epi:     106 Steps:   57955 Episode Steps:    1588 Return: -90.5278 Coverage Node:  0.3611 Coverage Edge  0.3403 Eps:  0.045954556007807096 FPS:    0.79
+17:12:20.976 [INFO] (trainer.py:173) Total Epi:     107 Steps:   58487 Episode Steps:     532 Return:  22.8333 Coverage Node:  0.4167 Coverage Edge  0.3750 Eps:  0.04577073778377587 FPS:    0.79
+17:16:40.534 [INFO] (trainer.py:173) Total Epi:     108 Steps:   58690 Episode Steps:     203 Return:  2.7222 Coverage Node:  0.2778 Coverage Edge  0.2639 Eps:  0.04558765483264077 FPS:    0.79
+17:32:46.123 [INFO] (trainer.py:173) Total Epi:     109 Steps:   59454 Episode Steps:     764 Return: -20.5556 Coverage Node:  0.3056 Coverage Edge  0.3194 Eps:  0.0454053042133102 FPS:    0.79
+17:40:38.379 [INFO] (trainer.py:173) Total Epi:     110 Steps:   59826 Episode Steps:     372 Return:  55.0278 Coverage Node:  0.5556 Coverage Edge  0.4792 Eps:  0.04522368299645696 FPS:    0.79
+17:44:20.750 [INFO] (trainer.py:265) Testing Episode 1
+18:26:09.232 [INFO] (trainer.py:265) Testing Episode 2
+19:07:57.804 [INFO] (trainer.py:207) Evaluation Total Steps:   60000 Average Reward -44.3056 over  2 episodes
+19:15:52.466 [INFO] (trainer.py:173) Total Epi:     111 Steps:   60374 Episode Steps:     548 Return:  56.9167 Coverage Node:  0.3056 Coverage Edge  0.2917 Eps:  0.04504278826447113 FPS:    0.10
+19:28:42.921 [INFO] (trainer.py:173) Total Epi:     112 Steps:   60983 Episode Steps:     609 Return: -16.7222 Coverage Node:  0.3056 Coverage Edge  0.2917 Eps:  0.04486261711141325 FPS:    0.79
+19:51:02.550 [INFO] (trainer.py:173) Total Epi:     113 Steps:   62043 Episode Steps:    1060 Return: -56.0000 Coverage Node:  0.3333 Coverage Edge  0.3056 Eps:  0.04468316664296759 FPS:    0.79
+20:00:13.320 [INFO] (trainer.py:173) Total Epi:     114 Steps:   62478 Episode Steps:     435 Return: -7.1389 Coverage Node:  0.3056 Coverage Edge  0.2847 Eps:  0.044504433976395724 FPS:    0.79
+20:22:48.945 [INFO] (trainer.py:173) Total Epi:     115 Steps:   63551 Episode Steps:    1073 Return:  63.9167 Coverage Node:  0.7500 Coverage Edge  0.7153 Eps:  0.04432641624049014 FPS:    0.79
+20:36:12.151 [INFO] (trainer.py:173) Total Epi:     116 Steps:   64186 Episode Steps:     635 Return: -16.9167 Coverage Node:  0.3333 Coverage Edge  0.2986 Eps:  0.04414911057552818 FPS:    0.79
+20:47:26.922 [INFO] (trainer.py:173) Total Epi:     117 Steps:   64719 Episode Steps:     533 Return: -4.8611 Coverage Node:  0.3611 Coverage Edge  0.3264 Eps:  0.043972514133226066 FPS:    0.79
+20:50:09.397 [INFO] (trainer.py:173) Total Epi:     118 Steps:   64845 Episode Steps:     126 Return: -3.4167 Coverage Node:  0.2500 Coverage Edge  0.2014 Eps:  0.043796624076693165 FPS:    0.79
+20:54:38.953 [INFO] (trainer.py:173) Total Epi:     119 Steps:   65056 Episode Steps:     211 Return:  1.3889 Coverage Node:  0.2778 Coverage Edge  0.2500 Eps:  0.04362143758038639 FPS:    0.79
+20:59:00.320 [INFO] (trainer.py:173) Total Epi:     120 Steps:   65261 Episode Steps:     205 Return:  2.6389 Coverage Node:  0.2778 Coverage Edge  0.2708 Eps:  0.04344695183006485 FPS:    0.79
+21:07:20.535 [INFO] (trainer.py:173) Total Epi:     121 Steps:   65655 Episode Steps:     394 Return:  14.1389 Coverage Node:  0.3611 Coverage Edge  0.3264 Eps:  0.04327316402274459 FPS:    0.79
+21:16:59.682 [INFO] (trainer.py:173) Total Epi:     122 Steps:   66112 Episode Steps:     457 Return: -0.3333 Coverage Node:  0.3333 Coverage Edge  0.2917 Eps:  0.04310007136665361 FPS:    0.79
+21:24:24.813 [INFO] (trainer.py:173) Total Epi:     123 Steps:   66463 Episode Steps:     351 Return:  36.4444 Coverage Node:  0.4722 Coverage Edge  0.3889 Eps:  0.042927671081186995 FPS:    0.79
+21:25:13.514 [INFO] (trainer.py:173) Total Epi:     124 Steps:   66499 Episode Steps:      36 Return: -33.3333 Coverage Node:  0.0833 Coverage Edge  0.0833 Eps:  0.04275596039686225 FPS:    0.79
+21:41:27.219 [INFO] (trainer.py:173) Total Epi:     125 Steps:   67269 Episode Steps:     770 Return:  13.6389 Coverage Node:  0.4444 Coverage Edge  0.4236 Eps:  0.042584936555274795 FPS:    0.79
+21:56:23.593 [INFO] (trainer.py:173) Total Epi:     126 Steps:   67978 Episode Steps:     709 Return:  59.2500 Coverage Node:  0.6667 Coverage Edge  0.5903 Eps:  0.0424145968090537 FPS:    0.79
+22:15:39.088 [INFO] (trainer.py:173) Total Epi:     127 Steps:   68892 Episode Steps:     914 Return: -35.5278 Coverage Node:  0.3611 Coverage Edge  0.3403 Eps:  0.04224493842181748 FPS:    0.79
+22:27:51.821 [INFO] (trainer.py:173) Total Epi:     128 Steps:   69471 Episode Steps:     579 Return:  41.3889 Coverage Node:  0.5278 Coverage Edge  0.4583 Eps:  0.04207595866813021 FPS:    0.79
+23:04:16.549 [INFO] (trainer.py:173) Total Epi:     129 Steps:   71202 Episode Steps:    1731 Return: -57.1944 Coverage Node:  0.5278 Coverage Edge  0.4653 Eps:  0.04190765483345769 FPS:    0.79
+23:09:44.643 [INFO] (trainer.py:173) Total Epi:     130 Steps:   71460 Episode Steps:     258 Return:  7.3611 Coverage Node:  0.3056 Coverage Edge  0.2847 Eps:  0.04174002421412386 FPS:    0.79
+23:14:35.711 [INFO] (trainer.py:173) Total Epi:     131 Steps:   71688 Episode Steps:     228 Return:  4.0556 Coverage Node:  0.2778 Coverage Edge  0.2778 Eps:  0.04157306411726736 FPS:    0.79
+23:21:09.261 [INFO] (trainer.py:173) Total Epi:     132 Steps:   71998 Episode Steps:     310 Return:  6.6111 Coverage Node:  0.3056 Coverage Edge  0.3056 Eps:  0.041406771860798296 FPS:    0.79
+23:28:20.083 [INFO] (trainer.py:173) Total Epi:     133 Steps:   72337 Episode Steps:     339 Return:  51.4444 Coverage Node:  0.5556 Coverage Edge  0.4444 Eps:  0.0412411447733551 FPS:    0.79
+23:56:57.537 [INFO] (trainer.py:173) Total Epi:     134 Steps:   73697 Episode Steps:    1360 Return:  55.3889 Coverage Node:  0.7778 Coverage Edge  0.7083 Eps:  0.04107618019426168 FPS:    0.79
+00:23:43.720 [INFO] (trainer.py:173) Total Epi:     135 Steps:   74969 Episode Steps:    1272 Return: -54.9444 Coverage Node:  0.3611 Coverage Edge  0.3333 Eps:  0.040911875473484634 FPS:    0.79
+00:40:25.436 [INFO] (trainer.py:173) Total Epi:     136 Steps:   75761 Episode Steps:     792 Return:  49.7500 Coverage Node:  0.5833 Coverage Edge  0.5347 Eps:  0.040748227971590695 FPS:    0.79
+00:43:36.347 [INFO] (trainer.py:173) Total Epi:     137 Steps:   75910 Episode Steps:     149 Return: -0.0278 Coverage Node:  0.2778 Coverage Edge  0.2014 Eps:  0.04058523505970433 FPS:    0.79
+00:51:28.728 [INFO] (trainer.py:173) Total Epi:     138 Steps:   76282 Episode Steps:     372 Return:  50.7778 Coverage Node:  0.5556 Coverage Edge  0.4167 Eps:  0.040422894119465515 FPS:    0.79
+01:22:52.475 [INFO] (trainer.py:173) Total Epi:     139 Steps:   77774 Episode Steps:    1492 Return:  14.3056 Coverage Node:  0.6944 Coverage Edge  0.6597 Eps:  0.04026120254298765 FPS:    0.79
+01:35:55.766 [INFO] (trainer.py:173) Total Epi:     140 Steps:   78393 Episode Steps:     619 Return:  64.2778 Coverage Node:  0.6389 Coverage Edge  0.5972 Eps:  0.0401001577328157 FPS:    0.79
+02:04:30.741 [INFO] (trainer.py:173) Total Epi:     141 Steps:   79751 Episode Steps:    1358 Return:  32.6111 Coverage Node:  0.7222 Coverage Edge  0.6250 Eps:  0.03993975710188444 FPS:    0.79
+02:08:25.729 [INFO] (trainer.py:173) Total Epi:     142 Steps:   79935 Episode Steps:     184 Return:  17.8889 Coverage Node:  0.3611 Coverage Edge  0.3056 Eps:  0.0397799980734769 FPS:    0.79
+02:09:50.945 [INFO] (trainer.py:265) Testing Episode 1
+02:51:39.655 [INFO] (trainer.py:265) Testing Episode 2
+03:33:28.892 [INFO] (trainer.py:207) Evaluation Total Steps:   80000 Average Reward  73.6389 over  2 episodes
+03:56:24.571 [INFO] (trainer.py:173) Total Epi:     143 Steps:   81088 Episode Steps:    1153 Return:  105.8889 Coverage Node:  0.8056 Coverage Edge  0.7361 Eps:  0.039620878081182996 FPS:    0.18
+04:08:52.637 [INFO] (trainer.py:173) Total Epi:     144 Steps:   81679 Episode Steps:     591 Return:  59.8889 Coverage Node:  0.6111 Coverage Edge  0.5139 Eps:  0.039462394568858264 FPS:    0.79
+04:28:53.897 [INFO] (trainer.py:173) Total Epi:     145 Steps:   82629 Episode Steps:     950 Return:  52.8333 Coverage Node:  0.6667 Coverage Edge  0.6250 Eps:  0.03930454499058283 FPS:    0.79
+04:53:10.182 [INFO] (trainer.py:173) Total Epi:     146 Steps:   83782 Episode Steps:    1153 Return:  33.3333 Coverage Node:  0.6667 Coverage Edge  0.6250 Eps:  0.0391473268106205 FPS:    0.79
+05:15:34.467 [INFO] (trainer.py:173) Total Epi:     147 Steps:   84846 Episode Steps:    1064 Return:  42.8333 Coverage Node:  0.6667 Coverage Edge  0.5833 Eps:  0.03899073750337802 FPS:    0.79
+05:26:03.333 [INFO] (trainer.py:173) Total Epi:     148 Steps:   85342 Episode Steps:     496 Return:  47.7222 Coverage Node:  0.5278 Coverage Edge  0.4722 Eps:  0.0388347745533645 FPS:    0.79
+05:41:07.051 [INFO] (trainer.py:173) Total Epi:     149 Steps:   86056 Episode Steps:     714 Return:  56.5556 Coverage Node:  0.6111 Coverage Edge  0.5417 Eps:  0.03867943545515105 FPS:    0.79
+06:08:23.371 [INFO] (trainer.py:173) Total Epi:     150 Steps:   87352 Episode Steps:    1296 Return:  50.1111 Coverage Node:  0.7222 Coverage Edge  0.6667 Eps:  0.03852471771333044 FPS:    0.79
+06:27:03.664 [INFO] (trainer.py:173) Total Epi:     151 Steps:   88238 Episode Steps:     886 Return:  57.5833 Coverage Node:  0.6667 Coverage Edge  0.6042 Eps:  0.03837061884247712 FPS:    0.79
+06:58:40.577 [INFO] (trainer.py:173) Total Epi:     152 Steps:   89740 Episode Steps:    1502 Return:  19.6111 Coverage Node:  0.7222 Coverage Edge  0.6250 Eps:  0.03821713636710721 FPS:    0.79
+07:22:28.757 [INFO] (trainer.py:173) Total Epi:     153 Steps:   90870 Episode Steps:    1130 Return:  47.9722 Coverage Node:  0.6944 Coverage Edge  0.6042 Eps:  0.038064267821638784 FPS:    0.79
+07:43:16.346 [INFO] (trainer.py:173) Total Epi:     154 Steps:   91857 Episode Steps:     987 Return:  66.2500 Coverage Node:  0.7500 Coverage Edge  0.6042 Eps:  0.03791201075035223 FPS:    0.79
+08:20:02.275 [INFO] (trainer.py:173) Total Epi:     155 Steps:   93604 Episode Steps:    1747 Return: -11.0278 Coverage Node:  0.6944 Coverage Edge  0.6458 Eps:  0.037760362707350816 FPS:    0.79
+09:02:06.690 [INFO] (trainer.py:173) Total Epi:     156 Steps:   95604 Episode Steps:    2000 Return:  15.1667 Coverage Node:  0.6667 Coverage Edge  0.5972 Eps:  0.03760932125652141 FPS:    0.79
+09:17:47.351 [INFO] (trainer.py:173) Total Epi:     157 Steps:   96348 Episode Steps:     744 Return:  48.3889 Coverage Node:  0.6944 Coverage Edge  0.5694 Eps:  0.03745888397149533 FPS:    0.79
+09:32:47.434 [INFO] (trainer.py:173) Total Epi:     158 Steps:   97059 Episode Steps:     711 Return:  63.2778 Coverage Node:  0.6389 Coverage Edge  0.5972 Eps:  0.037309048435609345 FPS:    0.79
+09:45:13.064 [INFO] (trainer.py:173) Total Epi:     159 Steps:   97648 Episode Steps:     589 Return:  53.1111 Coverage Node:  0.6389 Coverage Edge  0.5694 Eps:  0.03715981224186691 FPS:    0.79
+10:00:21.098 [INFO] (trainer.py:173) Total Epi:     160 Steps:   98366 Episode Steps:     718 Return:  68.5833 Coverage Node:  0.6667 Coverage Edge  0.5625 Eps:  0.03701117299289944 FPS:    0.79
+10:32:08.012 [INFO] (trainer.py:173) Total Epi:     161 Steps:   99876 Episode Steps:    1510 Return:  15.9167 Coverage Node:  0.7500 Coverage Edge  0.6736 Eps:  0.03686312830092784 FPS:    0.79
+10:34:47.465 [INFO] (trainer.py:265) Testing Episode 1
+10:40:12.249 [INFO] (trainer.py:265) Testing Episode 2
+10:57:25.832 [INFO] (trainer.py:207) Evaluation Total Steps:  100000 Average Reward  51.4722 over  2 episodes
+11:03:18.777 [INFO] (trainer.py:173) Total Epi:     162 Steps:  100277 Episode Steps:     401 Return:  95.2222 Coverage Node:  0.5000 Coverage Edge  0.4028 Eps:  0.036715675787724125 FPS:    0.21
+11:08:45.277 [INFO] (trainer.py:173) Total Epi:     163 Steps:  100533 Episode Steps:     256 Return:  34.8611 Coverage Node:  0.4722 Coverage Edge  0.3542 Eps:  0.03656881308457323 FPS:    0.79
+11:13:50.728 [INFO] (trainer.py:173) Total Epi:     164 Steps:  100773 Episode Steps:     240 Return:  43.6667 Coverage Node:  0.5000 Coverage Edge  0.4028 Eps:  0.03642253783223494 FPS:    0.79
+11:18:47.045 [INFO] (trainer.py:173) Total Epi:     165 Steps:  101005 Episode Steps:     232 Return:  34.6944 Coverage Node:  0.4722 Coverage Edge  0.3264 Eps:  0.036276847680906 FPS:    0.79
+11:39:45.971 [INFO] (trainer.py:173) Total Epi:     166 Steps:  102001 Episode Steps:     996 Return:  73.3611 Coverage Node:  0.7222 Coverage Edge  0.6458 Eps:  0.036131740290182374 FPS:    0.79
+12:21:52.111 [INFO] (trainer.py:173) Total Epi:     167 Steps:  104001 Episode Steps:    2000 Return:  28.0000 Coverage Node:  0.7500 Coverage Edge  0.7083 Eps:  0.03598721332902165 FPS:    0.79
+12:39:56.613 [INFO] (trainer.py:173) Total Epi:     168 Steps:  104859 Episode Steps:     858 Return:  70.5556 Coverage Node:  0.6944 Coverage Edge  0.6389 Eps:  0.03584326447570556 FPS:    0.79
+12:50:02.654 [INFO] (trainer.py:173) Total Epi:     169 Steps:  105337 Episode Steps:     478 Return:  61.8889 Coverage Node:  0.6111 Coverage Edge  0.5139 Eps:  0.035699891417802734 FPS:    0.79
+12:57:04.828 [INFO] (trainer.py:173) Total Epi:     170 Steps:  105669 Episode Steps:     332 Return:  42.6667 Coverage Node:  0.5000 Coverage Edge  0.4028 Eps:  0.035557091852131524 FPS:    0.79
+13:12:15.587 [INFO] (trainer.py:173) Total Epi:     171 Steps:  106389 Episode Steps:     720 Return:  69.8333 Coverage Node:  0.6667 Coverage Edge  0.5833 Eps:  0.035414863484722996 FPS:    0.79
+13:28:21.542 [INFO] (trainer.py:173) Total Epi:     172 Steps:  107152 Episode Steps:     763 Return:  43.6111 Coverage Node:  0.6389 Coverage Edge  0.5278 Eps:  0.03527320403078411 FPS:    0.79
+13:36:24.287 [INFO] (trainer.py:173) Total Epi:     173 Steps:  107532 Episode Steps:     380 Return:  62.6389 Coverage Node:  0.6111 Coverage Edge  0.4931 Eps:  0.03513211121466097 FPS:    0.79
+14:07:21.323 [INFO] (trainer.py:173) Total Epi:     174 Steps:  109002 Episode Steps:    1470 Return:  7.3611 Coverage Node:  0.6389 Coverage Edge  0.5903 Eps:  0.034991582769802326 FPS:    0.79
+14:12:44.482 [INFO] (trainer.py:173) Total Epi:     175 Steps:  109256 Episode Steps:     254 Return:  46.6389 Coverage Node:  0.5278 Coverage Edge  0.3958 Eps:  0.034851616438723115 FPS:    0.79
+14:39:27.060 [INFO] (trainer.py:173) Total Epi:     176 Steps:  110524 Episode Steps:    1268 Return:  32.7222 Coverage Node:  0.6944 Coverage Edge  0.6250 Eps:  0.03471220997296822 FPS:    0.79
+14:48:51.882 [INFO] (trainer.py:173) Total Epi:     177 Steps:  110970 Episode Steps:     446 Return:  62.8889 Coverage Node:  0.6111 Coverage Edge  0.5139 Eps:  0.034573361133076345 FPS:    0.79
+14:54:05.990 [INFO] (trainer.py:173) Total Epi:     178 Steps:  111216 Episode Steps:     246 Return:  32.8056 Coverage Node:  0.4444 Coverage Edge  0.3681 Eps:  0.03443506768854404 FPS:    0.79
+15:15:37.164 [INFO] (trainer.py:173) Total Epi:     179 Steps:  112237 Episode Steps:    1021 Return:  34.6111 Coverage Node:  0.6389 Coverage Edge  0.5278 Eps:  0.03429732741778987 FPS:    0.79
+15:57:42.636 [INFO] (trainer.py:173) Total Epi:     180 Steps:  114237 Episode Steps:    2000 Return:  32.3333 Coverage Node:  0.7500 Coverage Edge  0.6806 Eps:  0.03416013810811871 FPS:    0.79
+16:16:38.773 [INFO] (trainer.py:173) Total Epi:     181 Steps:  115135 Episode Steps:     898 Return:  54.4722 Coverage Node:  0.6944 Coverage Edge  0.5625 Eps:  0.03402349755568623 FPS:    0.79
+16:39:39.547 [INFO] (trainer.py:173) Total Epi:     182 Steps:  116227 Episode Steps:    1092 Return:  55.6667 Coverage Node:  0.7500 Coverage Edge  0.6528 Eps:  0.033887403565463485 FPS:    0.79
+17:11:23.299 [INFO] (trainer.py:173) Total Epi:     183 Steps:  117734 Episode Steps:    1507 Return:  37.7222 Coverage Node:  0.7778 Coverage Edge  0.7222 Eps:  0.03375185395120163 FPS:    0.79
+17:22:37.928 [INFO] (trainer.py:173) Total Epi:     184 Steps:  118266 Episode Steps:     532 Return:  69.5000 Coverage Node:  0.6667 Coverage Edge  0.5278 Eps:  0.03361684653539682 FPS:    0.79
+17:40:09.598 [INFO] (trainer.py:173) Total Epi:     185 Steps:  119097 Episode Steps:     831 Return:  71.8889 Coverage Node:  0.6944 Coverage Edge  0.6111 Eps:  0.03348237914925523 FPS:    0.79
+17:59:10.916 [INFO] (trainer.py:265) Testing Episode 1
+18:40:59.701 [INFO] (trainer.py:265) Testing Episode 2
+19:22:48.427 [INFO] (trainer.py:207) Evaluation Total Steps:  120000 Average Reward  52.0417 over  2 episodes
+19:45:56.459 [INFO] (trainer.py:173) Total Epi:     186 Steps:  121097 Episode Steps:    2000 Return:  196.6667 Coverage Node:  0.6667 Coverage Edge  0.5903 Eps:  0.03334844963265821 FPS:    0.27
+19:56:32.814 [INFO] (trainer.py:173) Total Epi:     187 Steps:  121599 Episode Steps:     502 Return:  76.5556 Coverage Node:  0.6944 Coverage Edge  0.5556 Eps:  0.03321505583412758 FPS:    0.79
+20:24:50.154 [INFO] (trainer.py:173) Total Epi:     188 Steps:  122943 Episode Steps:    1344 Return:  40.7500 Coverage Node:  0.7500 Coverage Edge  0.6458 Eps:  0.03308219561079107 FPS:    0.79
+20:40:32.892 [INFO] (trainer.py:173) Total Epi:     189 Steps:  123687 Episode Steps:     744 Return:  56.5000 Coverage Node:  0.6667 Coverage Edge  0.5694 Eps:  0.032949866828347905 FPS:    0.79
+21:03:22.995 [INFO] (trainer.py:173) Total Epi:     190 Steps:  124771 Episode Steps:    1084 Return:  68.1667 Coverage Node:  0.7500 Coverage Edge  0.6944 Eps:  0.032818067361034514 FPS:    0.79
+21:39:19.962 [INFO] (trainer.py:173) Total Epi:     191 Steps:  126479 Episode Steps:    1708 Return: -6.3889 Coverage Node:  0.7222 Coverage Edge  0.6250 Eps:  0.03268679509159038 FPS:    0.79
+22:18:21.948 [INFO] (trainer.py:173) Total Epi:     192 Steps:  128333 Episode Steps:    1854 Return: -2.3333 Coverage Node:  0.7500 Coverage Edge  0.6944 Eps:  0.03255604791122402 FPS:    0.79
+22:45:27.592 [INFO] (trainer.py:173) Total Epi:     193 Steps:  129619 Episode Steps:    1286 Return:  28.7222 Coverage Node:  0.6944 Coverage Edge  0.6250 Eps:  0.03242582371957912 FPS:    0.79
+23:05:19.041 [INFO] (trainer.py:173) Total Epi:     194 Steps:  130561 Episode Steps:     942 Return:  80.1389 Coverage Node:  0.7778 Coverage Edge  0.7292 Eps:  0.0322961204247008 FPS:    0.79
+23:27:50.587 [INFO] (trainer.py:173) Total Epi:     195 Steps:  131630 Episode Steps:    1069 Return:  61.8333 Coverage Node:  0.7500 Coverage Edge  0.6389 Eps:  0.032166935943002 FPS:    0.79
+23:58:49.885 [INFO] (trainer.py:173) Total Epi:     196 Steps:  133100 Episode Steps:    1470 Return:  29.1667 Coverage Node:  0.7500 Coverage Edge  0.6944 Eps:  0.03203826819922999 FPS:    0.79
+00:18:07.524 [INFO] (trainer.py:173) Total Epi:     197 Steps:  134015 Episode Steps:     915 Return:  57.3056 Coverage Node:  0.6944 Coverage Edge  0.6181 Eps:  0.03191011512643307 FPS:    0.79
+00:51:09.697 [INFO] (trainer.py:173) Total Epi:     198 Steps:  135584 Episode Steps:    1569 Return:  12.6389 Coverage Node:  0.6944 Coverage Edge  0.6319 Eps:  0.03178247466592734 FPS:    0.79
+01:15:39.991 [INFO] (trainer.py:173) Total Epi:     199 Steps:  136747 Episode Steps:    1163 Return:  24.9167 Coverage Node:  0.6667 Coverage Edge  0.5764 Eps:  0.03165534476726363 FPS:    0.79
+01:57:46.095 [INFO] (trainer.py:173) Total Epi:     200 Steps:  138747 Episode Steps:    2000 Return:  18.3889 Coverage Node:  0.7778 Coverage Edge  0.7500 Eps:  0.031528723388194575 FPS:    0.79
+02:24:09.278 [INFO] (trainer.py:265) Testing Episode 1
+03:05:58.040 [INFO] (trainer.py:265) Testing Episode 2
+03:18:14.628 [INFO] (trainer.py:207) Evaluation Total Steps:  140000 Average Reward  44.8056 over  2 episodes
+03:34:00.885 [INFO] (trainer.py:173) Total Epi:     201 Steps:  140747 Episode Steps:    2000 Return:  210.3333 Coverage Node:  0.6667 Coverage Edge  0.5694 Eps:  0.0314026084946418 FPS:    0.35
+03:42:34.053 [INFO] (trainer.py:173) Total Epi:     202 Steps:  141151 Episode Steps:     404 Return:  51.1944 Coverage Node:  0.5556 Coverage Edge  0.4653 Eps:  0.03127699806066323 FPS:    0.79
+04:19:40.657 [INFO] (trainer.py:173) Total Epi:     203 Steps:  142914 Episode Steps:    1763 Return: -7.3333 Coverage Node:  0.7500 Coverage Edge  0.6944 Eps:  0.03115189006842058 FPS:    0.79
+04:46:32.169 [INFO] (trainer.py:173) Total Epi:     204 Steps:  144188 Episode Steps:    1274 Return:  31.5000 Coverage Node:  0.7500 Coverage Edge  0.6667 Eps:  0.031027282508146896 FPS:    0.79
+04:53:24.690 [INFO] (trainer.py:173) Total Epi:     205 Steps:  144512 Episode Steps:     324 Return:  52.1111 Coverage Node:  0.5556 Coverage Edge  0.4306 Eps:  0.03090317337811431 FPS:    0.79
+05:19:45.342 [INFO] (trainer.py:173) Total Epi:     206 Steps:  145763 Episode Steps:    1251 Return:  35.7500 Coverage Node:  0.7500 Coverage Edge  0.6458 Eps:  0.030779560684601852 FPS:    0.79
+05:52:09.957 [INFO] (trainer.py:173) Total Epi:     207 Steps:  147302 Episode Steps:    1539 Return:  39.6111 Coverage Node:  0.8056 Coverage Edge  0.7222 Eps:  0.030656442441863444 FPS:    0.79
+06:20:00.204 [INFO] (trainer.py:173) Total Epi:     208 Steps:  148623 Episode Steps:    1321 Return:  21.3889 Coverage Node:  0.6944 Coverage Edge  0.6528 Eps:  0.030533816672095992 FPS:    0.79
+06:29:02.443 [INFO] (trainer.py:173) Total Epi:     209 Steps:  149050 Episode Steps:     427 Return:  63.9722 Coverage Node:  0.6111 Coverage Edge  0.5069 Eps:  0.030411681405407606 FPS:    0.79
+07:10:14.182 [INFO] (trainer.py:173) Total Epi:     210 Steps:  151006 Episode Steps:    1956 Return: -21.7500 Coverage Node:  0.7500 Coverage Edge  0.6875 Eps:  0.030290034679785974 FPS:    0.79
+07:19:04.978 [INFO] (trainer.py:173) Total Epi:     211 Steps:  151425 Episode Steps:     419 Return:  65.6389 Coverage Node:  0.6111 Coverage Edge  0.5347 Eps:  0.030168874541066832 FPS:    0.79
+07:35:22.810 [INFO] (trainer.py:173) Total Epi:     212 Steps:  152197 Episode Steps:     772 Return:  79.1944 Coverage Node:  0.7222 Coverage Edge  0.6181 Eps:  0.030048199042902565 FPS:    0.79
+08:00:30.690 [INFO] (trainer.py:173) Total Epi:     213 Steps:  153390 Episode Steps:    1193 Return:  32.0556 Coverage Node:  0.6944 Coverage Edge  0.6389 Eps:  0.029928006246730955 FPS:    0.79
+08:42:36.496 [INFO] (trainer.py:173) Total Epi:     214 Steps:  155390 Episode Steps:    2000 Return:  3.3889 Coverage Node:  0.0278 Coverage Edge  0.0000 Eps:  0.029808294221744032 FPS:    0.79
+08:46:49.270 [INFO] (trainer.py:173) Total Epi:     215 Steps:  155587 Episode Steps:     197 Return:  38.1944 Coverage Node:  0.4722 Coverage Edge  0.3681 Eps:  0.029689061044857055 FPS:    0.79
+09:01:05.314 [INFO] (trainer.py:173) Total Epi:     216 Steps:  156263 Episode Steps:     676 Return:  75.6389 Coverage Node:  0.6944 Coverage Edge  0.5903 Eps:  0.029570304800677627 FPS:    0.79
+09:43:12.393 [INFO] (trainer.py:173) Total Epi:     217 Steps:  158263 Episode Steps:    2000 Return:  42.4444 Coverage Node:  0.8056 Coverage Edge  0.7778 Eps:  0.029452023581474918 FPS:    0.79
+10:03:53.643 [INFO] (trainer.py:173) Total Epi:     218 Steps:  159244 Episode Steps:     981 Return:  40.8056 Coverage Node:  0.6944 Coverage Edge  0.5764 Eps:  0.02933421548714902 FPS:    0.79
+10:18:20.055 [INFO] (trainer.py:173) Total Epi:     219 Steps:  159928 Episode Steps:     684 Return:  74.3056 Coverage Node:  0.6944 Coverage Edge  0.5764 Eps:  0.029216878625200424 FPS:    0.79
+10:19:54.117 [INFO] (trainer.py:265) Testing Episode 1
+10:54:01.782 [INFO] (trainer.py:265) Testing Episode 2
+11:35:50.961 [INFO] (trainer.py:207) Evaluation Total Steps:  160000 Average Reward  46.6944 over  2 episodes
+11:44:29.413 [INFO] (trainer.py:173) Total Epi:     220 Steps:  160408 Episode Steps:     480 Return:  88.5833 Coverage Node:  0.6111 Coverage Edge  0.5139 Eps:  0.02910001111069962 FPS:    0.09
+12:13:45.179 [INFO] (trainer.py:173) Total Epi:     221 Steps:  161796 Episode Steps:    1388 Return:  22.8056 Coverage Node:  0.6944 Coverage Edge  0.6181 Eps:  0.028983611066256822 FPS:    0.79
+12:42:45.404 [INFO] (trainer.py:173) Total Epi:     222 Steps:  163172 Episode Steps:    1376 Return:  39.7500 Coverage Node:  0.7500 Coverage Edge  0.6458 Eps:  0.028867676621991793 FPS:    0.79
+12:54:18.914 [INFO] (trainer.py:173) Total Epi:     223 Steps:  163719 Episode Steps:     547 Return:  69.9167 Coverage Node:  0.6667 Coverage Edge  0.5347 Eps:  0.028752205915503825 FPS:    0.79
+13:30:51.141 [INFO] (trainer.py:173) Total Epi:     224 Steps:  165454 Episode Steps:    1735 Return: -17.1111 Coverage Node:  0.6944 Coverage Edge  0.6528 Eps:  0.028637197091841808 FPS:    0.79
+13:45:11.121 [INFO] (trainer.py:173) Total Epi:     225 Steps:  166132 Episode Steps:     678 Return:  74.6944 Coverage Node:  0.7222 Coverage Edge  0.6181 Eps:  0.02852264830347444 FPS:    0.79
+13:58:36.665 [INFO] (trainer.py:173) Total Epi:     226 Steps:  166768 Episode Steps:     636 Return:  70.0000 Coverage Node:  0.6667 Coverage Edge  0.5694 Eps:  0.028408557710260542 FPS:    0.79
+14:12:37.484 [INFO] (trainer.py:173) Total Epi:     227 Steps:  167432 Episode Steps:     664 Return:  64.4167 Coverage Node:  0.6667 Coverage Edge  0.5347 Eps:  0.0282949234794195 FPS:    0.79
+14:43:02.121 [INFO] (trainer.py:173) Total Epi:     228 Steps:  168875 Episode Steps:    1443 Return:  21.9167 Coverage Node:  0.7500 Coverage Edge  0.6319 Eps:  0.028181743785501822 FPS:    0.79
+14:47:54.099 [INFO] (trainer.py:173) Total Epi:     229 Steps:  169103 Episode Steps:     228 Return:  41.9167 Coverage Node:  0.5000 Coverage Edge  0.3819 Eps:  0.028069016810359816 FPS:    0.79
+15:25:42.025 [INFO] (trainer.py:173) Total Epi:     230 Steps:  170898 Episode Steps:    1795 Return: -7.2500 Coverage Node:  0.7500 Coverage Edge  0.6458 Eps:  0.027956740743118377 FPS:    0.79
+15:50:43.148 [INFO] (trainer.py:173) Total Epi:     231 Steps:  172084 Episode Steps:    1186 Return:  50.9167 Coverage Node:  0.7500 Coverage Edge  0.6736 Eps:  0.0278449137801459 FPS:    0.79
+16:01:37.690 [INFO] (trainer.py:173) Total Epi:     232 Steps:  172600 Episode Steps:     516 Return:  66.1944 Coverage Node:  0.6389 Coverage Edge  0.5208 Eps:  0.027733534125025317 FPS:    0.79
+16:13:36.439 [INFO] (trainer.py:173) Total Epi:     233 Steps:  173167 Episode Steps:     567 Return:  72.0000 Coverage Node:  0.6667 Coverage Edge  0.5694 Eps:  0.027622599988525214 FPS:    0.79
+16:41:22.211 [INFO] (trainer.py:173) Total Epi:     234 Steps:  174485 Episode Steps:    1318 Return:  41.3333 Coverage Node:  0.7500 Coverage Edge  0.6389 Eps:  0.027512109588571112 FPS:    0.79
+17:22:15.766 [INFO] (trainer.py:173) Total Epi:     235 Steps:  176426 Episode Steps:    1941 Return:  13.1944 Coverage Node:  0.8056 Coverage Edge  0.7569 Eps:  0.027402061150216827 FPS:    0.79
+17:36:59.818 [INFO] (trainer.py:173) Total Epi:     236 Steps:  177123 Episode Steps:     697 Return:  57.3611 Coverage Node:  0.6389 Coverage Edge  0.5486 Eps:  0.02729245290561596 FPS:    0.79
+18:01:39.334 [INFO] (trainer.py:173) Total Epi:     237 Steps:  178293 Episode Steps:    1170 Return:  61.5000 Coverage Node:  0.7500 Coverage Edge  0.6667 Eps:  0.027183283093993496 FPS:    0.79
+18:16:33.108 [INFO] (trainer.py:173) Total Epi:     238 Steps:  178999 Episode Steps:     706 Return:  64.4167 Coverage Node:  0.6667 Coverage Edge  0.5347 Eps:  0.02707454996161752 FPS:    0.79
+18:26:47.444 [INFO] (trainer.py:173) Total Epi:     239 Steps:  179483 Episode Steps:     484 Return:  75.7222 Coverage Node:  0.6944 Coverage Edge  0.5833 Eps:  0.026966251761771053 FPS:    0.79
+18:37:43.405 [INFO] (trainer.py:265) Testing Episode 1
+19:19:32.295 [INFO] (trainer.py:265) Testing Episode 2
+20:01:21.194 [INFO] (trainer.py:207) Evaluation Total Steps:  180000 Average Reward  52.5833 over  2 episodes
+20:15:42.716 [INFO] (trainer.py:173) Total Epi:     240 Steps:  180679 Episode Steps:    1196 Return:  158.0278 Coverage Node:  0.6111 Coverage Edge  0.4931 Eps:  0.02685838675472397 FPS:    0.18
+20:54:22.747 [INFO] (trainer.py:173) Total Epi:     241 Steps:  182513 Episode Steps:    1834 Return: -15.2500 Coverage Node:  0.7500 Coverage Edge  0.6875 Eps:  0.026750953207705073 FPS:    0.79
+21:17:52.681 [INFO] (trainer.py:173) Total Epi:     242 Steps:  183627 Episode Steps:    1114 Return:  59.1667 Coverage Node:  0.7500 Coverage Edge  0.6528 Eps:  0.02664394939487425 FPS:    0.79
+21:35:17.080 [INFO] (trainer.py:173) Total Epi:     243 Steps:  184452 Episode Steps:     825 Return:  48.5833 Coverage Node:  0.6667 Coverage Edge  0.5625 Eps:  0.026537373597294755 FPS:    0.79
+21:56:26.064 [INFO] (trainer.py:173) Total Epi:     244 Steps:  185454 Episode Steps:    1002 Return:  42.4167 Coverage Node:  0.6667 Coverage Edge  0.6181 Eps:  0.026431224102905576 FPS:    0.79
+22:38:35.931 [INFO] (trainer.py:173) Total Epi:     245 Steps:  187454 Episode Steps:    2000 Return:  9.7222 Coverage Node:  0.6944 Coverage Edge  0.6667 Eps:  0.026325499206493953 FPS:    0.79
+23:20:20.583 [INFO] (trainer.py:173) Total Epi:     246 Steps:  189434 Episode Steps:    1980 Return: -35.4167 Coverage Node:  0.7500 Coverage Edge  0.6597 Eps:  0.026220197209667978 FPS:    0.79
+23:33:47.325 [INFO] (trainer.py:173) Total Epi:     247 Steps:  190069 Episode Steps:     635 Return:  73.7222 Coverage Node:  0.6944 Coverage Edge  0.5833 Eps:  0.026115316420829305 FPS:    0.79
+23:40:19.955 [INFO] (trainer.py:173) Total Epi:     248 Steps:  190378 Episode Steps:     309 Return:  66.7222 Coverage Node:  0.6111 Coverage Edge  0.5278 Eps:  0.02601085515514599 FPS:    0.79
+23:47:14.950 [INFO] (trainer.py:173) Total Epi:     249 Steps:  190703 Episode Steps:     325 Return:  61.9722 Coverage Node:  0.6111 Coverage Edge  0.4653 Eps:  0.025906811734525404 FPS:    0.79
+23:55:20.051 [INFO] (trainer.py:173) Total Epi:     250 Steps:  191084 Episode Steps:     381 Return:  64.4722 Coverage Node:  0.6111 Coverage Edge  0.5069 Eps:  0.025803184487587304 FPS:    0.79
+00:06:30.288 [INFO] (trainer.py:173) Total Epi:     251 Steps:  191612 Episode Steps:     528 Return:  74.8056 Coverage Node:  0.6944 Coverage Edge  0.5764 Eps:  0.025699971749636955 FPS:    0.79
+00:31:43.831 [INFO] (trainer.py:173) Total Epi:     252 Steps:  192808 Episode Steps:    1196 Return:  47.9167 Coverage Node:  0.7500 Coverage Edge  0.6736 Eps:  0.025597171862638407 FPS:    0.79
+01:13:53.868 [INFO] (trainer.py:173) Total Epi:     253 Steps:  194808 Episode Steps:    2000 Return:  20.9167 Coverage Node:  0.7500 Coverage Edge  0.6736 Eps:  0.025494783175187854 FPS:    0.79
+01:42:05.578 [INFO] (trainer.py:173) Total Epi:     254 Steps:  196144 Episode Steps:    1336 Return:  34.1667 Coverage Node:  0.7500 Coverage Edge  0.6528 Eps:  0.025392804042487102 FPS:    0.79
+01:50:13.207 [INFO] (trainer.py:173) Total Epi:     255 Steps:  196527 Episode Steps:     383 Return:  61.0556 Coverage Node:  0.6111 Coverage Edge  0.4583 Eps:  0.025291232826317154 FPS:    0.79
+02:03:21.936 [INFO] (trainer.py:173) Total Epi:     256 Steps:  197149 Episode Steps:     622 Return:  62.4167 Coverage Node:  0.6667 Coverage Edge  0.5347 Eps:  0.025190067895011884 FPS:    0.79
+02:38:03.027 [INFO] (trainer.py:173) Total Epi:     257 Steps:  198794 Episode Steps:    1645 Return:  10.2500 Coverage Node:  0.7500 Coverage Edge  0.6458 Eps:  0.025089307623431836 FPS:    0.79
+03:03:29.284 [INFO] (trainer.py:265) Testing Episode 1
+03:22:23.262 [INFO] (trainer.py:265) Testing Episode 2
+04:04:12.144 [INFO] (trainer.py:207) Evaluation Total Steps:  200000 Average Reward  49.1667 over  2 episodes
+04:20:59.879 [INFO] (trainer.py:173) Total Epi:     258 Steps:  200794 Episode Steps:    2000 Return:  188.3611 Coverage Node:  0.6944 Coverage Edge  0.6042 Eps:  0.02498895039293811 FPS:    0.32
+05:03:10.174 [INFO] (trainer.py:173) Total Epi:     259 Steps:  202794 Episode Steps:    2000 Return:  28.0833 Coverage Node:  0.7500 Coverage Edge  0.7014 Eps:  0.024888994591366356 FPS:    0.79
+05:31:57.406 [INFO] (trainer.py:173) Total Epi:     260 Steps:  204158 Episode Steps:    1364 Return:  19.8889 Coverage Node:  0.6944 Coverage Edge  0.6111 Eps:  0.02478943861300089 FPS:    0.79
+05:45:55.304 [INFO] (trainer.py:173) Total Epi:     261 Steps:  204819 Episode Steps:     661 Return:  55.4722 Coverage Node:  0.6111 Coverage Edge  0.5903 Eps:  0.024690280858548887 FPS:    0.79
+05:55:07.264 [INFO] (trainer.py:173) Total Epi:     262 Steps:  205253 Episode Steps:     434 Return:  69.9167 Coverage Node:  0.6667 Coverage Edge  0.5347 Eps:  0.02459151973511469 FPS:    0.79
+06:37:17.804 [INFO] (trainer.py:173) Total Epi:     263 Steps:  207253 Episode Steps:    2000 Return: -2.4444 Coverage Node:  0.6944 Coverage Edge  0.6389 Eps:  0.024493153656174233 FPS:    0.79
+07:19:29.034 [INFO] (trainer.py:173) Total Epi:     264 Steps:  209253 Episode Steps:    2000 Return:  3.9722 Coverage Node:  0.6944 Coverage Edge  0.6042 Eps:  0.024395181041549537 FPS:    0.79
+07:31:14.754 [INFO] (trainer.py:173) Total Epi:     265 Steps:  209809 Episode Steps:     556 Return:  83.3333 Coverage Node:  0.7500 Coverage Edge  0.5972 Eps:  0.024297600317383337 FPS:    0.79
+07:37:59.345 [INFO] (trainer.py:173) Total Epi:     266 Steps:  210126 Episode Steps:     317 Return:  63.3056 Coverage Node:  0.6111 Coverage Edge  0.4792 Eps:  0.024200409916113805 FPS:    0.79
+08:20:10.019 [INFO] (trainer.py:173) Total Epi:     267 Steps:  212126 Episode Steps:    2000 Return:  29.1389 Coverage Node:  0.7778 Coverage Edge  0.7292 Eps:  0.02410360827644935 FPS:    0.79
+09:02:20.730 [INFO] (trainer.py:173) Total Epi:     268 Steps:  214126 Episode Steps:    2000 Return:  57.7500 Coverage Node:  0.8333 Coverage Edge  0.7847 Eps:  0.024007193843343554 FPS:    0.79
+09:34:42.401 [INFO] (trainer.py:173) Total Epi:     269 Steps:  215660 Episode Steps:    1534 Return:  10.6389 Coverage Node:  0.6944 Coverage Edge  0.6319 Eps:  0.02391116506797018 FPS:    0.79
+10:04:04.973 [INFO] (trainer.py:173) Total Epi:     270 Steps:  217052 Episode Steps:    1392 Return:  33.6111 Coverage Node:  0.7222 Coverage Edge  0.6667 Eps:  0.0238155204076983 FPS:    0.79
+10:46:15.505 [INFO] (trainer.py:173) Total Epi:     271 Steps:  219052 Episode Steps:    2000 Return: -1.3611 Coverage Node:  0.6944 Coverage Edge  0.6319 Eps:  0.023720258326067504 FPS:    0.79
+11:06:14.801 [INFO] (trainer.py:265) Testing Episode 1

@@ -1,0 +1,13 @@
+diff --git a/cisc856_ws/src/PIC4rl_gym/pic4rl/config/training_params.yaml b/cisc856_ws/src/PIC4rl_gym/pic4rl/config/training_params.yaml
+index c688008..69356b7 100644
+--- a/cisc856_ws/src/PIC4rl_gym/pic4rl/config/training_params.yaml
++++ b/cisc856_ws/src/PIC4rl_gym/pic4rl/config/training_params.yaml
+@@ -34,7 +34,7 @@ training_params:
+     --gpu: 0 # (int) GPU id. ``-1`` disables GPU. The default is ``0``.
+ 
+ # For all off-policy algos (DDPG, TD3, SAC)
+-    --n-warmup: 10 # (int) Number of warmup steps before training. The default is ``1e4``.
++    --n-warmup: 1000 # (int) Number of warmup steps before training. The default is ``1e4``.
+     --memory-capacity: 500000  # (int) Replay Buffer size. The default is ``1e6``.
+ 
+ # For only SAC

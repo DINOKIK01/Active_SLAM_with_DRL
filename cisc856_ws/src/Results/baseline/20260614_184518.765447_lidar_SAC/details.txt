@@ -1,0 +1,11 @@
+baseline version: modified reward parameters
+
+observation space:
+    g^top
+reward function:
+    step counter penalty: 20 steps -> -0.5
+    reentry counter penalty: 2 reentries -> -1.5
+    coverage calculation: nodes and edges
+    timout penalty: none
+warmup_steps:
+    1000
