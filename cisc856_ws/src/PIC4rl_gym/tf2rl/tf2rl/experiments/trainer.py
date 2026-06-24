@@ -170,8 +170,36 @@ class Trainer:
                 n_episode += 1
                 
                 fps = episode_steps / (time.perf_counter() - episode_start_time)
-                self.logger.info("Total Epi: {0: 7} Steps: {1: 7} Episode Steps: {2: 7} Return: {3: 7.4f} Coverage Node: {4:7.4f} Coverage Edge {5:7.4f} Eps: {6: 7} FPS: {7:7.2f}".format(
-                    n_episode, total_steps, episode_steps, episode_return, info["node_coverage"], info["edge_coverage"], self._policy.epsilon, fps))
+                (
+                    _,
+                    _,
+                    robot_pose,
+                    _,
+                    _,
+                    _
+                ) = self._env.get_sensor_data()
+                self._env.topologic_graph.append_to_path_at_episode_end(robot_pose)
+                print(f"=================== path: {self._env.topologic_graph.get_path()}, steps per node: {self._env.topologic_graph.get_step_counts()}")
+
+                self.logger.info(
+                    "Total Epi: {0:7} "
+                    "Steps: {1:7} "
+                    "Episode Steps: {2:7} "
+                    "Return: {3:7.4f} "
+                    "Coverage Node: {4:7.4f} "
+                    "Coverage Edge: {5:7.4f} "
+                    "Travelled Path: {6} "
+                    "Steps Per_Node: {7}".format(
+                        n_episode,
+                        total_steps,
+                        episode_steps,
+                        episode_return,
+                        info["node_coverage"],
+                        info["edge_coverage"],
+                        " -> ".join(map(str, self._env.topologic_graph.get_path())),
+                        ", ".join(map(str, self._env.topologic_graph.get_step_counts()))
+                    )
+                )
                 obs = self._env.reset(n_episode, total_steps)
                 tf.summary.scalar(name="Common/training_return", data=episode_return)
                 tf.summary.scalar(name="Common/training_episode_length", data=episode_steps)

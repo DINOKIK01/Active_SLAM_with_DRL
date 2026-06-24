@@ -542,6 +542,7 @@ class Pic4rlEnvironmentLidar(Node):
         ]
         frontier_vector = self.topologic_graph.get_frontier_vector(robot_pose)
         print(f"=================== step count: {self.topologic_graph.get_step_count(robot_pose)}, reentries:{self.topologic_graph.get_reentries(robot_pose)}")
+        print(f"=================== path: {self.topologic_graph.get_path()}, steps per node: {self.topologic_graph.get_step_counts()}")
         print(f"frontier vector: {frontier_vector}")
 
         #old state design

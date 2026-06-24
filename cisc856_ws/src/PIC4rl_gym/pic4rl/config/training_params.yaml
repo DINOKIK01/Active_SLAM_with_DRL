@@ -14,7 +14,7 @@ training_params:
 
 # ENABLE TESTING MODE    
     #--evaluate: # THIS FLAG ENABLE TESTING MODE
-    --test-interval: 50000 # (int) Interval to evaluate trained model. The default is ``int(1e4)``
+    --test-interval: 500000 # (int) Interval to evaluate trained model. The default is ``int(1e4)``
     #--show-test-progress: # Call ``render`` function during evaluation.
     --test-episodes: 1 # (int) Number of episodes at validation to be averaged. # IF TESTING MODE SET TO 1, default validation '3' or '5'
 # --save-test-path: # Save trajectories of evaluation.

@@ -36,6 +36,7 @@ class GraphMap:
         self.width = width
         self.height = height
         self.last_position = (-1, -1)
+        self.path = []
 
         self.nodes = [
             [Node(x, y) for y in range(height)]
@@ -52,6 +53,18 @@ class GraphMap:
 
     def in_bounds(self, x, y):
         return 0 <= x < self.width and 0 <= y < self.height
+    
+    def get_path(self):
+        return [node for node, _ in self.path]
+
+    def get_step_counts(self):
+        return [steps for _, steps in self.path]
+    
+    def append_to_path_at_episode_end(self, robot_pose):
+        i, j = get_coordinates(robot_pose)
+
+        node = self.get_node(i, j)
+        self.path.append([(i, j), node.steps_since_entry])
 
     # -----------------------------
     # Nachbarn
@@ -701,11 +714,14 @@ def update_graph_from_lidar(
         return
     
     # -----------------------------
-    # 2. Node als besucht markieren
+    # 2. Node als besucht markieren und Pfad hinzufügen
     # -----------------------------
     last_x, last_y = graph.last_position
     if i != last_x or j != last_y:
         graph.update_visit_state(i, j)
+        last_node = graph.get_node(last_x, last_y)
+        if last_node is not None:
+            graph.path.append([(last_x, last_y), last_node.steps_since_entry])
     graph.increment_step_counter(i, j)
 
     # -----------------------------
