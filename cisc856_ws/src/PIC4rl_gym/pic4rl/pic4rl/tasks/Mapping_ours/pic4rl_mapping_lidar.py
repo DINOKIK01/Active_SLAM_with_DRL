@@ -117,6 +117,8 @@ class Pic4rlLidar(Pic4rlEnvironmentLidar):
         ] + [
             (0.0, 1.0), # steps after node entry normed to [0,1]
             (0.0, 1.0), # amount of entries into current node normed to [0,1]
+        ] + [
+            (0.0, 1.0) for _ in range(5) # frontier features
         ]
 
 

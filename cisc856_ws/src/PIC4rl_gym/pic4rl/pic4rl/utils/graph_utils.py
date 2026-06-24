@@ -1,5 +1,6 @@
 import numpy as np
 from enum import IntEnum
+from collections import deque
 from pic4rl.utils.env_utils import *
 
 
@@ -235,17 +236,33 @@ class GraphMap:
             node_w = self.get_neighbor(node, "W")
 
             status = []
-            neighbors = [
-                self.get_neighbor(node_n,"W"),
-                node_n,
-                self.get_neighbor(node_n,"E"),
+            neighbors_n = []
+            neighbors_m = []
+            neighbors_s = []
+
+            if node_n is None:
+                neighbors_n = [None, None, None,]
+            else:
+                neighbors_n = [
+                    self.get_neighbor(node_n,"W"),
+                    node_n,
+                    self.get_neighbor(node_n,"E"),
+                ]
+            neighbors_m = [
                 self.get_neighbor(node,"W"),
                 node,
                 self.get_neighbor(node,"E"),
-                self.get_neighbor(node_s,"W"),
-                node_s,
-                self.get_neighbor(node_s,"E"),
             ]
+            if node_s is None:
+                neighbors_s = [None, None, None,]
+            else:
+                neighbors_s = [
+                    self.get_neighbor(node_s,"W"),
+                    node_s,
+                    self.get_neighbor(node_s,"E"),
+                ]
+
+            neighbors = neighbors_n + neighbors_m + neighbors_s
             for neighbor in neighbors:
                 if neighbor is not None and neighbor.visited:
                     status.append(1)
@@ -253,7 +270,193 @@ class GraphMap:
                     status.append(0)
             return status
 
+    def get_frontier_vector(self, robot_pose):
+        free_frontiers, unknown_unvisited_frontiers, unknown_visited_frontiers =  self.calculate_frontier_sets()
+        target_node, distance, direction, frontier_type = self.choose_frontier_node(
+            robot_pose,
+            free_frontiers,
+            unknown_unvisited_frontiers,
+            unknown_visited_frontiers,
+        )
 
+        print(f"target node: {target_node} ; distance: {distance} ; direction: {direction} ; frontier type: {frontier_type}")
+
+        if target_node is None:
+            print("!!!THIS SHOULD NOT HAPPEN")
+            return [0,0,0,0,0]
+            #return [0,0,0,0,0,0,0,0]
+        
+        if distance == 0:   # if current node is frontier node
+            return [0,0,0,0,0]
+            #return [0,0,0,0,0,0,0,0]
+        
+        distance_normed = min(distance / 4.0, 1.0)
+
+        match direction:
+            case "N":
+                direction_vector = [1,0,0,0]
+            case "E":
+                direction_vector = [0,1,0,0]
+            case "S":
+                direction_vector = [0,0,1,0]
+            case "W":
+                direction_vector = [0,0,0,1]
+            case _:
+                direction_vector = [0,0,0,0]
+
+        match frontier_type:
+            case 0:
+                frontier_type_vector = [1,0,0]
+            case 1:
+                frontier_type_vector = [0,1,0]
+            case 2:
+                frontier_type_vector = [0,0,1]
+            case _:
+                frontier_type_vector = [0,0,0]
+
+        return [distance_normed] + direction_vector #+ frontier_type_vector
+    
+    def choose_frontier_node(
+        self,
+        robot_pose,
+        free_frontiers,
+        unknown_unvisited_frontiers,
+        unknown_visited_frontiers,
+    ):
+        i, j = get_coordinates(robot_pose)
+
+        start_node = self.get_node(i, j)
+
+        if start_node is None:
+            return None, -1, None, None
+        
+        if start_node in free_frontiers:
+            print("free_frontiers0")
+            direction = self.get_frontier_direction(start_node, 0)
+            return start_node, 0, direction, 0
+
+        if start_node in unknown_unvisited_frontiers:
+            print("free_frontiers1")
+            direction = self.get_frontier_direction(start_node, 1)
+            return start_node, 0, direction, 1
+
+        if start_node in unknown_visited_frontiers:
+            print("free_frontiers2")
+            direction = self.get_frontier_direction(start_node, 2)
+            return start_node, 0, direction, 2
+
+        if free_frontiers:
+            candidates = free_frontiers
+            frontier_type = 0
+        elif unknown_unvisited_frontiers:
+            candidates = unknown_unvisited_frontiers
+            frontier_type = 1
+        elif unknown_visited_frontiers:
+            candidates = unknown_visited_frontiers
+            frontier_type = 2
+        else:
+            return None, -1, None, None
+
+        best_node = None
+        best_distance = float("inf")
+        best_direction = None
+
+        for candidate in candidates:
+
+            distance, direction = self.shortest_path_info(
+                start_node,
+                candidate
+            )
+
+            if distance >= 0 and distance < best_distance:
+                best_node = candidate
+                best_distance = distance
+                best_direction = direction
+
+        return best_node, best_distance, best_direction, frontier_type
+    
+    def get_frontier_direction(self, node, frontier_type):
+        for direction, edge_state in node.edges.items():
+
+            neighbor = self.get_neighbor(node, direction)
+
+            if neighbor is None:
+                continue
+
+            if frontier_type == 0:
+                if (
+                    edge_state == EdgeState.FREE
+                    and not neighbor.visited
+                ):
+                    return direction
+
+            elif frontier_type == 1:
+                if (
+                    edge_state == EdgeState.UNKNOWN
+                    and not neighbor.visited
+                ):
+                    return direction
+
+            elif frontier_type == 2:
+                if (
+                    edge_state == EdgeState.UNKNOWN
+                    and neighbor.visited
+                ):
+                    return direction
+
+        return None
+    
+    def calculate_frontier_sets(self):
+        free_frontiers = []
+        unknown_unvisited_frontiers = []
+        unknown_visited_frontiers = []
+
+        for row in self.nodes:
+            for node in row:
+
+                has_free_unvisited = False
+                has_unknown_unvisited = False
+                has_unknown_visited = False
+
+                for direction, edge_state in node.edges.items():
+
+                    neighbor = self.get_neighbor(node, direction)
+
+                    if neighbor is None:
+                        continue
+
+                    if (
+                        edge_state == EdgeState.FREE
+                        and not neighbor.visited
+                    ):
+                        has_free_unvisited = True
+
+                    elif (
+                        edge_state == EdgeState.UNKNOWN
+                        and not neighbor.visited
+                    ):
+                        has_unknown_unvisited = True
+
+                    elif (
+                        edge_state == EdgeState.UNKNOWN
+                        and neighbor.visited
+                    ):
+                        has_unknown_visited = True
+
+                if has_free_unvisited:
+                    free_frontiers.append(node)
+
+                if has_unknown_unvisited:
+                    unknown_unvisited_frontiers.append(node)
+
+                if has_unknown_visited:
+                    unknown_visited_frontiers.append(node)
+
+        return (
+            free_frontiers,
+            unknown_unvisited_frontiers,
+            unknown_visited_frontiers,
+        )
     
     def total_edges(self):
         return self.width * self.height * 4
@@ -327,27 +530,61 @@ class GraphMap:
     # -----------------------------
     # BFS: nächster unvisited Node
     # -----------------------------
-    def distance_to_nearest_unvisited(self, start_node):
+    
+
+    def shortest_path_info(self, start_node, goal_node):
+
+        if start_node == goal_node:
+            return 0, None
+
         visited = set()
-        queue = [(start_node, 0)]
+        queue = deque()
+
+        visited.add((start_node.x, start_node.y))
+
+        for direction, state in start_node.edges.items():
+
+            if state != EdgeState.FREE:
+                continue
+
+            neighbor = self.get_neighbor(start_node, direction)
+
+            if neighbor is None:
+                continue
+
+            queue.append((neighbor, 1, direction))
 
         while queue:
-            current, dist = queue.pop(0)
 
-            if (current.x, current.y) in visited:
+            current, distance, first_direction = queue.popleft()
+
+            key = (current.x, current.y)
+
+            if key in visited:
                 continue
-            visited.add((current.x, current.y))
 
-            if not current.visited:
-                return dist
+            visited.add(key)
 
-            for d, state in current.edges.items():
-                if state == EdgeState.FREE:
-                    neighbor = self.get_neighbor(current, d)
-                    if neighbor:
-                        queue.append((neighbor, dist + 1))
+            if current == goal_node:
+                return distance, first_direction
 
-        return -1  # nichts gefunden
+            for direction, state in current.edges.items():
+
+                if state != EdgeState.FREE:
+                    continue
+
+                neighbor = self.get_neighbor(current, direction)
+
+                if neighbor is not None:
+                    queue.append(
+                        (
+                            neighbor,
+                            distance + 1,
+                            first_direction
+                        )
+                    )
+
+        return -1, None
 
     # -----------------------------
     # Debug / Visualisierung
@@ -439,7 +676,7 @@ def update_graph_from_lidar(
     center_tol=0.5,
     angle_tol=0.35,  
     wall_threshold=2.0,
-    free_threshold=3.5,
+    free_threshold=2.9,
 ):
     """
     Update GraphMap basierend auf Lidar + Pose
@@ -627,7 +864,7 @@ def update_edges_near_walls_with_orientation(
     proximity_threshold=0.5,
     angle_tol=0.35,
     wall_threshold=0.8,
-    free_threshold=3.0,
+    free_threshold=2.9,
 ):
     dx = robot_x - cx
     dy = cy - robot_y

@@ -63,8 +63,8 @@ class GraphDebugNode(Node):
     def scan_callback(self, msg: LaserScan):
         ranges = np.array(msg.ranges)
 
-        # Clip auf 10m (wie du willst)
-        ranges = np.clip(ranges, 0.0, 10.0)
+        # Clip auf 3m (wie du willst)
+        ranges = np.clip(ranges, 0.0, 3.0)
         scan_range = np.minimum.reduceat(ranges, np.arange(0, len(ranges), 10))
 
         self.lidar_data = scan_range
@@ -83,6 +83,31 @@ class GraphDebugNode(Node):
         )
 
         self.graph.print_graph(self.robot_pose)
+        vector = self.graph.get_frontier_vector(self.robot_pose)
+        print(f"vector: {vector}")
+        #neighbors = self.graph.get_neighbor_status(self.robot_pose, radius=1)
+        #edges = self.graph.get_edge_status(self.robot_pose, radius=1)
+        #print("\n=== LOCAL 3x3 OBSERVATION ===\n")
+
+        #print(
+        #    f"      ({neighbors[0]}) --{edges[2]:2}-- ({neighbors[1]}) --{edges[0]:2}-- ({neighbors[2]})"
+        #)
+
+        #print(
+        #    f"         | {edges[9]:2}      | {edges[1]:2}      | {edges[3]:2}"
+        #)
+
+        #print(
+        #    f"      ({neighbors[3]}) --{edges[10]:2}-- ({neighbors[4]}) --{edges[5]:2}-- ({neighbors[5]})"
+        #)
+
+        #print(
+        #    f"         | {edges[11]:2}      | {edges[6]:2}      | {edges[4]:2}"
+        #)
+
+        #print(
+        #    f"      ({neighbors[6]}) --{edges[8]:2}-- ({neighbors[7]}) --{edges[7]:2}-- ({neighbors[8]})"
+        #)
         print("\n----------------------------\n")
 
     # -----------------------------

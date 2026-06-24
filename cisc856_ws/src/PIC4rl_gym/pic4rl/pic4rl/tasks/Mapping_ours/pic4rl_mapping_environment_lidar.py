@@ -353,6 +353,9 @@ class Pic4rlEnvironmentLidar(Node):
         if reentries > self.prev_reentries and reentries >= 2:
             reward -= 1.5
 
+        # step penalty
+        #reward -= 0.05
+
         # coverage gain
         
         prev_node_coverage = self.prev_visited_nodes / self.topologic_graph.total_nodes()
@@ -381,9 +384,9 @@ class Pic4rlEnvironmentLidar(Node):
             covered = True
 
         # timout penalty
-        if self.episode_step == self.timeout_steps:
-            reward -= 20
-            print("================ Maximal steps reached! Timout penalty applied")
+        #if self.episode_step == self.timeout_steps:
+        #    reward -= 20
+        #    print("================ Maximal steps reached! Timout penalty applied")
 
         print(f"================ Current Coverage: {current_coverage}, Coverage Gains: {coverage_gain}, Reward: {reward}, Episode Step:{self.episode_step}")
         return reward, total_known, covered
@@ -531,13 +534,15 @@ class Pic4rlEnvironmentLidar(Node):
         #self.info_map = update_info_map(self.info_map, robot_pose)
         update_graph_from_lidar(self.topologic_graph, robot_pose, lidar_measurements)
 
-        edge_status = self.topologic_graph.get_edge_status(robot_pose)
-        neighbor_status = self.topologic_graph.get_neighbor_status(robot_pose)
+        edge_status = self.topologic_graph.get_edge_status(robot_pose, radius=0)
+        neighbor_status = self.topologic_graph.get_neighbor_status(robot_pose, radius=0)
         step_counts = [
             step_count_sigmoid(self.topologic_graph.get_step_count(robot_pose)),
             reentry_sigmoid(self.topologic_graph.get_reentries(robot_pose))
         ]
+        frontier_vector = self.topologic_graph.get_frontier_vector(robot_pose)
         print(f"=================== step count: {self.topologic_graph.get_step_count(robot_pose)}, reentries:{self.topologic_graph.get_reentries(robot_pose)}")
+        print(f"frontier vector: {frontier_vector}")
 
         #old state design
         #state_list = goal_info
@@ -551,6 +556,7 @@ class Pic4rlEnvironmentLidar(Node):
             np.asarray(edge_status, dtype=np.float32),
             np.asarray(neighbor_status, dtype=np.float32),
             np.asarray(step_counts, dtype=np.float32),
+            np.asarray(frontier_vector, dtype=np.float32),
         ])
 
         return state

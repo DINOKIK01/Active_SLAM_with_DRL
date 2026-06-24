@@ -7,16 +7,16 @@ training_params:
     --save-model-interval: 500 # (int) Interval to save model. The default is ``int(1e4)``
     --save-summary-interval: 500 # (int) Interval to save summary. The default is ``int(1e3)``
     #--model-dir: 'src/Results/v1'
-    #--model-dir: 'src/Results/baseline/20260607_113209.774899_lidar_SAC/20260607T113210.090681_SAC_' # (str) Directory to restore model.
+    #--model-dir: 'src/Results/frontier/20260622_234204.648336_lidar_SAC/20260622T234204.965662_SAC_' # (str) Directory to restore model.
 #    --dir-suffix: ""  # (str) Suffix for directory that stores results.
 #    --normalize-obs: # Whether normalize observation
-    --logdir: 'src/Results/baseline' # (str) Output directory name. The default is ``"results"`` (it is relative to workspace directory).
+    --logdir: 'src/Results/frontier' # (str) Output directory name. The default is ``"results"`` (it is relative to workspace directory).
 
 # ENABLE TESTING MODE    
     #--evaluate: # THIS FLAG ENABLE TESTING MODE
-    --test-interval: 20000 # (int) Interval to evaluate trained model. The default is ``int(1e4)``
+    --test-interval: 50000 # (int) Interval to evaluate trained model. The default is ``int(1e4)``
     #--show-test-progress: # Call ``render`` function during evaluation.
-    --test-episodes: 2 # (int) Number of episodes at validation to be averaged. # IF TESTING MODE SET TO 1, default validation '3' or '5'
+    --test-episodes: 1 # (int) Number of episodes at validation to be averaged. # IF TESTING MODE SET TO 1, default validation '3' or '5'
 # --save-test-path: # Save trajectories of evaluation.
     #--show-test-images: # Show input images to neural networks when an episode finishes
 # --save-test-movie: # Save rendering results.
@@ -24,7 +24,7 @@ training_params:
     --use-nstep-rb: # Use Nstep experience replay
     --n-step: 4 # (int) Number of steps for nstep experience reward. The default is ``4``
     --rb-path-save: 'buffer' # Save experience replay buffer in case of save
-    #--rb-path-load: 'src/Results/baseline/20260607_113209.774899_lidar_SAC/buffer.npz' # Load experience replay buffer in case of restore
+    #--rb-path-load: 'src/Results/frontier/20260622_234204.648336_lidar_SAC/buffer.npz' # Load experience replay buffer in case of restore
     --logging-level: DEBUG # (DEBUG, INFO, WARNING) Choose logging level. The default is ``INFO``
     --policy: 'SAC' # training policy
     --policy_trainer: 'off-policy' # trainer off-policy / on-policy
