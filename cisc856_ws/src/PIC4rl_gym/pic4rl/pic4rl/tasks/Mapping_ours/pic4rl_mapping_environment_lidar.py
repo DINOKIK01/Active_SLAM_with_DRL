@@ -676,10 +676,15 @@ class Pic4rlEnvironmentLidar(Node):
     def respawn_robot(self, index):
         """ """
         self.get_logger().debug("funtction respawn_robot: start")
-        if self.episode <= self.starting_episodes:
-            x, y, yaw = tuple(self.initial_pose)
-        else:
-            x, y, yaw = tuple(self.initial_pose) #TODO change back
+        #if self.episode <= self.starting_episodes:
+        #    x, y, yaw = tuple(self.initial_pose)
+        #else:
+        #    x, y, yaw = tuple(self.initial_pose) #TODO change back
+
+        # random spawn point
+        positions = [-7.5, -4.5, -1.5, 1.5, 4.5, 7.5]
+        x, y = random.sample(positions, 2)
+        yaw = random.uniform(-3.14, 3.14)
 
         qz = np.sin(yaw / 2)
         qw = np.cos(yaw / 2)
